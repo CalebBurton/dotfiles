@@ -1,13 +1,15 @@
 # Save the following as ~/.zshrc so it immediately redirects to this file:
-    ## This isn't in source control... load everything from my GitHub repo
-    #source ~/Documents/Github/dotfiles/zshrc.zsh
+: "
+# This file isn't in source control... load everything from one that is.
+source ~/Documents/GitHub/dotfiles/zshrc.zsh
+"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/caleb.burton/.oh-my-zsh"
-export PATH="/Users/caleb.burton/.nvm/versions/node/v8.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/share/npm/bin/"
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/.nvm/versions/node/v8.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/share/npm/bin/"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
