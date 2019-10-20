@@ -72,6 +72,9 @@ ZSH_THEME="go-cats"
 # git is a built-in plugin (I think)
 # zsh-syntax-highlighting is from https://github.com/zsh-users/zsh-syntax-highlighting/
 # zsh-autosuggestions is from https://github.com/zsh-users/zsh-autosuggestions/
+# ^^^^^^^^^^^^ make sure these are installed in the proper folder:
+    # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 plugins=(
   git
@@ -120,6 +123,15 @@ export NVM_DIR="$HOME/.nvm"
 if command -v brew >/dev/null 2>&1; then
 	# Load rupa's z if installed
 	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+fi
+
+# Install the "trash-cli" npm package to make "rm" safer
+TRASH_CLI=$(command -v trash)
+if ! [ -x "$TRASH_CLI" ]; then
+    echo "Trash-CLI npm package not found. Installing globally..." >&2
+    # If this fails, try fixing the global npm permissions with
+    # `sudo chown -R $USER /usr/local/lib/node_modules`
+    npm install --global trash-cli
 fi
 
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
