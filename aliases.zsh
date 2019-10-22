@@ -63,9 +63,9 @@ function extract () {
 alias grim='git rebase -i master'
 alias gcom='git add . && git commit -m'
 
-alias reload='source ~/Documents/GitHub/dotfiles/zshrc.zsh'
-alias zshrc='code ~/Documents/GitHub/dotfiles/zshrc.zsh'
-alias aliases='code ~/Documents/GitHub/dotfiles/aliases.zsh'
+alias reload='source $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
+alias zshrc='code $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
+alias aliases='code $HOME/Documents/GitHub/dotfiles/aliases.zsh'
 
 # Use the Trash-CLI npm package for safer deleting
 alias rm='trash'

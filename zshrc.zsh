@@ -1,7 +1,7 @@
 # Save the following as ~/.zshrc so it immediately redirects to this file:
 : "
 # This file isn't in source control... load everything from one that is.
-source ~/Documents/GitHub/dotfiles/zshrc.zsh
+source $HOME/Documents/GitHub/dotfiles/zshrc.zsh
 "
 
 # If you come from bash you might have to change your $PATH.
