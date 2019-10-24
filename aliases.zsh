@@ -4,8 +4,8 @@ alias cdn-build='cd ~/Documents/GitHub/CDN/global && nvm use 6.2.1 && make build
 alias cdn-go='cd ~/Documents/GitHub/CDN/global && nvm use 6.2.1 && grunt serve'
 alias myaccount-go='cd ~/Documents/GitHub/cupcake && make serve'
 alias myaccount-pqa='cd ~/Documents/GitHub/cupcake && make pqa'
-alias cupcake-go='cupcake-go'
-alias cupcake-pqa='cupcake-pqa'
+alias cupcake-go='myaccount-go'
+alias cupcake-pqa='myaccount-pqa'
 alias wa-go='cd ~/Documents/GitHub/Node-Webadmin && make serve'
 alias wa-pqa='cd ~/Documents/GitHub/Node-Webadmin && make pqa'
 
