@@ -62,6 +62,8 @@ function extract () {
     fi
 }
 
+alias gs='git stash'
+alias gsp='git stash pop'
 alias grim='git rebase -i master'
 alias gcom='git add . && git commit -m'
 
