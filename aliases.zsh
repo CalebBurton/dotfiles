@@ -22,6 +22,9 @@ alias product-catalog-pqa='cd ~/Documents/GitHub/product-catalog && waf && cd pr
 
 alias pm2='./node_modules/pm2/bin/pm2'
 
+alias dcu='docker-compose up'
+alias dcb='docker-compose build'
+
 alias website-go='cd ~/Documents/GitHub/website-source/dev && npm run build:dev'
 alias website-publish='cd ~/Documents/GitHub/website-source/dev && npm run publish'
 
@@ -67,6 +70,7 @@ alias gsp='git stash pop'
 alias grim='git rebase -i master'
 alias gcom='git add . && git commit -m'
 
+alias please='sudo'
 alias reload='source $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
 alias zshrc='code $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
 alias aliases='code $HOME/Documents/GitHub/dotfiles/aliases.zsh'
