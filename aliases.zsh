@@ -6,7 +6,7 @@ alias myaccount-go='cd ~/Documents/GitHub/cupcake && make serve'
 alias myaccount-pqa='cd ~/Documents/GitHub/cupcake && make pqa'
 alias cupcake-go='myaccount-go'
 alias cupcake-pqa='myaccount-pqa'
-alias wa-go='cd ~/Documents/GitHub/Node-Webadmin && make serve'
+alias wa-go='cd ~/Documents/GitHub/Node-Webadmin && trash public/js && nvm use 8 && npm run grunt && make serve'
 alias wa-pqa='cd ~/Documents/GitHub/Node-Webadmin && make pqa'
 
 alias signup-go='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run start:watch'
