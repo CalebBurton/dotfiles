@@ -70,6 +70,8 @@ alias gsp='git stash pop'
 alias grim='git rebase -i master'
 alias gcom='git add . && git commit -m'
 
+alias bcu='brew cask upgrade'
+
 alias please='sudo'
 alias reload='source $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
 alias zshrc='code $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
