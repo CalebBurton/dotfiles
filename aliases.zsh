@@ -76,6 +76,3 @@ alias please='sudo'
 alias reload='source $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
 alias zshrc='code $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
 alias aliases='code $HOME/Documents/GitHub/dotfiles/aliases.zsh'
-
-# Use the Trash-CLI npm package for safer deleting
-alias rm='trash'
