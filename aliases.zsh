@@ -1,13 +1,14 @@
-alias api-go='cd ~/Documents/GitHub/Node-API && make serve'
-alias api-pqa='cd ~/Documents/GitHub/Node-API && make pqa'
+alias old-api-go='cd ~/Documents/GitHub/Node-API && make serve'
+alias old-api-pqa='cd ~/Documents/GitHub/Node-API && make pqa'
+alias old-wa-go='cd ~/Documents/GitHub/Node-Webadmin && trash public/js && nvm use 8 && npm run grunt && make serve'
+alias old-wa-pqa='cd ~/Documents/GitHub/Node-Webadmin && make pqa'
+
 alias cdn-build='cd ~/Documents/GitHub/CDN/global && nvm use 6.2.1 && make build'
 alias cdn-go='cd ~/Documents/GitHub/CDN/global && nvm use 6.2.1 && grunt serve'
 alias myaccount-go='cd ~/Documents/GitHub/cupcake && make serve'
 alias myaccount-pqa='cd ~/Documents/GitHub/cupcake && make pqa'
 alias cupcake-go='myaccount-go'
 alias cupcake-pqa='myaccount-pqa'
-alias wa-go='cd ~/Documents/GitHub/Node-Webadmin && trash public/js && nvm use 8 && npm run grunt && make serve'
-alias wa-pqa='cd ~/Documents/GitHub/Node-Webadmin && make pqa'
 
 alias signup-go='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run start:watch'
 alias signup-pqa='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run test && npm run lint'
@@ -19,6 +20,9 @@ alias promotions-go='cd ~/Documents/GitHub/promotions && waf && cd promotions &&
 alias promotions-pqa='cd ~/Documents/GitHub/promotions && waf && cd promotions && wafexec npm run test && npm run lint'
 alias product-catalog-go='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run start:watch'
 alias product-catalog-pqa='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run test && npm run lint'
+
+alias wa-go='cd ~/Documents/GitHub/webadmin && waf && cd frontend && wafexec npm run serve && cd ../api && wafexec npm run serve'
+alias wa-pqa='cd ~/Documents/GitHub/webadmin && waf && cd frontend && wafexec npm run pqa && npm run lint && cd ../api && wafexec npm run pqa && npm run lint'
 
 alias pm2='./node_modules/pm2/bin/pm2'
 
