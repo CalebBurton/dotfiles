@@ -75,6 +75,9 @@ alias grim='git rebase -i master'
 alias gcom='git add . && git commit -m'
 
 alias bcu='brew cask upgrade'
+alias bcug='brew cask upgrade --greedy'
+alias bco='brew cask outdated'
+alias bcog='brew cask outdated --greedy'
 
 alias please='sudo'
 alias reload='source $HOME/Documents/GitHub/dotfiles/zshrc.zsh'
