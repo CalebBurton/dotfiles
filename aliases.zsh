@@ -74,6 +74,10 @@ alias gsp='git stash pop'
 alias grim='git rebase -i master'
 alias gcom='git add . && git commit -m'
 
+alias bup='brew update'
+alias bs='brew search'
+alias bsc='brew search --casks'
+
 alias bc='brew cask'
 alias bci='brew cask install'
 alias bcu='brew cask upgrade'
