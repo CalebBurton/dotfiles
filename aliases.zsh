@@ -21,6 +21,13 @@ alias promotions-pqa='cd ~/Documents/GitHub/promotions && waf && cd promotions &
 alias product-catalog-go='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run start:watch'
 alias product-catalog-pqa='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run test && npm run lint'
 
+alias reporter-a-go='cd ~/Documents/GitHub/reporter && waf && cd aggregator && wafexec npm run start:local'
+alias reporter-r-go='cd ~/Documents/GitHub/reporter && waf && cd reviewer && wafexec npm run start:local:local'
+alias reporter-f-go='cd ~/Documents/GitHub/reporter && waf && cd formatter && wafexec npm run start:local:local'
+alias reporter-d-go='echo "This one doesnt work, but it seems unnecessary anyway"'
+alias reporter-e-go='cd ~/Documents/GitHub/reporter/template_generators/email_foundation && nvm use 8 && wafexec npm run start:dev:local'
+alias reporter-logs='cd ~/Documents/GitHub/reporter/aggregator && wafexec npm run pm2 logs'
+
 alias wa-go='cd ~/Documents/GitHub/webadmin && waf && cd frontend && wafexec npm run serve && cd ../api && wafexec npm run serve'
 alias wa-pqa='cd ~/Documents/GitHub/webadmin && waf && cd frontend && wafexec npm run pqa && npm run lint && cd ../api && wafexec npm run pqa && npm run lint'
 
