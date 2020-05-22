@@ -115,6 +115,15 @@ source $ZSH/oh-my-zsh.sh
 
 source $HOME/Documents/GitHub/dotfiles/aliases.zsh # Store all aliases in their own file
 
+# Allow filtering the arrow up and arrow down buttons to only match commands beginning with what is already typed
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A'  up-line-or-beginning-search    # Arrow up
+bindkey '^[OA'  up-line-or-beginning-search
+bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
+bindkey '^[OB'  down-line-or-beginning-search
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
