@@ -1,8 +1,4 @@
-# Save the following as ~/.zshrc so it immediately redirects to this file:
-: "
-# This file isn't in source control... load everything from one that is.
-source $HOME/Documents/GitHub/dotfiles/zshrc.zsh
-"
+# Symlink this into the home directory: `ln -sf /path/to/this/file ~/.zshrc`
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
