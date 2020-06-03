@@ -93,6 +93,8 @@ alias bco='brew cask outdated'
 alias bcog='brew cask outdated --greedy'
 
 alias please='sudo'
-alias reload='source $HOME/Documents/GitHub/dotfiles/.zshrc'
+alias reload='source $HOME/.zshrc'
+
 alias zshrc='code $HOME/Documents/GitHub/dotfiles/.zshrc'
 alias aliases='code $HOME/Documents/GitHub/dotfiles/aliases.zsh'
+alias tmuxconf='code $HOME/Documents/GitHub/dotfiles/.tmux.conf'
