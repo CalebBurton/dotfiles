@@ -78,19 +78,35 @@ function extract () {
 
 alias gs='git stash'
 alias gsp='git stash pop'
-alias grim='git rebase -i master'
-alias gcom='git add . && git commit -m'
+alias grim='git rebase -i --autosquash origin/master'
+alias gamend='git add -A && git commit -a --amend -C HEAD'
+alias gcom='git add -A && git commit -a -m'
 
-alias bup='brew update'
+function bup() {
+    echo 'Updating homebrew...\n'
+    brew update
+    echo ''
+    brew cask outdated --greedy
+    while true; do
+        echo -n "\nUpgrade outdated casks? [Y/n]: "
+        read yn
+        case $yn in
+            [Nn]* ) break;;
+            * ) echo '' && brew cask upgrade --greedy;;
+        esac
+        yn=''
+        break;
+    done
+    echo ''
+    return 0;
+}
+
 alias bs='brew search'
 alias bsc='brew search --casks'
 
 # `bc` is already a command, don't overwrite it
 alias bci='brew cask install'
-alias bcu='brew cask upgrade'
 alias bcug='brew cask upgrade --greedy'
-alias bco='brew cask outdated'
-alias bcog='brew cask outdated --greedy'
 
 alias please='sudo'
 alias reload='source $HOME/.zshrc'
