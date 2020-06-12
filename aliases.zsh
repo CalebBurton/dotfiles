@@ -76,6 +76,7 @@ function extract () {
     fi
 }
 
+alias gcm='get checkout master 2>/dev/null || git checkout main'  # checkout default branch, regardless of name
 alias gs='git stash'
 alias gsp='git stash pop'
 alias grim='git rebase -i --autosquash origin/master'
