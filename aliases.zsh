@@ -5,10 +5,13 @@ alias old-wa-pqa='cd ~/Documents/GitHub/Node-Webadmin && make pqa'
 
 alias cdn-build='cd ~/Documents/GitHub/CDN/global && nvm use 6.2.1 && make build'
 alias cdn-go='cd ~/Documents/GitHub/CDN/global && nvm use 6.2.1 && grunt serve'
-alias myaccount-go='cd ~/Documents/GitHub/cupcake && make serve'
-alias myaccount-pqa='cd ~/Documents/GitHub/cupcake && make pqa'
-alias cupcake-go='myaccount-go'
-alias cupcake-pqa='myaccount-pqa'
+alias cupcake-go='cd ~/Documents/GitHub/cupcake && make serve'
+alias cupcake-pqa='cd ~/Documents/GitHub/cupcake && make pqa'
+
+alias myaccount-go='cupcake-go'
+alias myaccount-pqa='cupcake-pqa'
+
+alias ma19-go='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm run start:watch'
 
 alias signup-go='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run start:watch'
 alias signup-pqa='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run test && npm run lint'
