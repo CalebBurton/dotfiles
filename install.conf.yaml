@@ -1,0 +1,18 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.hammerspoon: .hammerspoon
+    ~/.ssh/config: .ssh/config
+    ~/.tmux: .tmux
+    ~/.tmux.conf: .tmux.conf
+    ~/.vimrc: .vimrc
+    ~/.zshrc: .zshrc
+
+- shell:
+  - git submodule sync --recursive
+  - ./macos
