@@ -1,6 +1,6 @@
 utilMenu = hs.menubar.new()
 
-local icon = [[
+local caffeinatedIcon = [[
 1 . . . . . . . . . . . 3
 . # # . . . . . . . # # .
 . # # # # . . . # # # # .
@@ -16,7 +16,23 @@ local icon = [[
 7 . . . . . . . . . . . 5
 ]]
 
-utilMenu:setIcon('ASCII:' .. icon)
+local sleepyIcon = [[
+. 1 . . . . . . . . . 3 .
+C . # . . . . . . . # . 4
+. # . # # . . . # # . # .
+. . # . . 1 2 3 . . # . .
+. . # . . . . . . . # . .
+. . . C . . . . . 4 . . .
+. . . B . . . . . 5 . . .
+. . . A . . . . . 6 . . .
+. . # . . . . . . . # . .
+. . # . . 9 8 7 . . # . .
+. # . # # . . . # # . # .
+A . # . . . . . . . # . 6
+. 9 . . . . . . . . . 7 .
+]]
+
+utilMenu:setIcon('ASCII:' .. sleepyIcon)
 
 local menu = nil
 
@@ -68,9 +84,11 @@ menu = {
     fn = function(modifiers, menuItem)
       local enabled = hs.caffeinate.toggle('displayIdle')
       if enabled then
-        hs.notify.new({title='Caffeinate', informativeText='Caffeinate on'}):send()
+        print('Caffeinate on')
+        utilMenu:setIcon('ASCII:' .. caffeinatedIcon)
       else
-        hs.notify.new({title='Caffeinate', informativeText='Caffeinate off'}):send()
+        print('Caffeinate off')
+        utilMenu:setIcon('ASCII:' .. sleepyIcon)
       end
 
       menuItem.checked = enabled
@@ -86,10 +104,6 @@ menu = {
   },
   {
     title = "-" -- separator
-  },
-  {
-    title = "Homebrew",
-    fn = hb_update
   },
   -- {
   --   title = "Layout: Home",
