@@ -1,87 +1,126 @@
 -- Homebrew menubar
 Homebrew = {
     menubar  = hs.menubar.new(),
-    items    = {},
+    formulas = {},
+    casks    = {},
     disabled = false,
     notified = false,
 }
 
-function Homebrew:loadOutdated()
-    self.items = {}
-    -- local pipe = io.popen('/usr/local/bin/brew outdated -1 --quiet', 'r')
-    -- print(pipe)
-    -- for item in pipe:lines() do
-    --     table.insert(self.items, item)
-    -- end
-    -- pipe:close()
-
-    -- local outdated_kegs = hs.execute('/usr/local/bin/brew outdated --quiet')
-    local check_kegs = hs.task.new(
+function Homebrew:loadOutdatedFormulas()
+    Homebrew.formulas = {}
+    local check_formulas = hs.task.new(
         '/usr/local/bin/brew',
-        function(exitCode, outdated_kegs_str, stdErr)
+        function(exitCode, outdated_formulas_str, stdErr)
             if ((exitCode ~= 0) or (stdErr ~= '')) then
-                hs.notify.show('Homebrew', '', 'Error updating homebrew. See console for details.')
-                print('Error updating homebrew. Exit code ' .. exitCode)
-                print('StdErr: ' .. stdErr)
+                hs.notify.show('Homebrew', '', 'Error updating homebrew formulas. See console for details.')
+                print('Error updating homebrew formulas. Exit code ' .. exitCode)
+                print('StdErr:\n\t' .. stdErr)
             else
-                print(outdated_kegs_str)
+                -- print('Outdated formulas:\n' .. outdated_formulas_str)
+                -- hs.notify.show('Homebrew', '', 'Updated formulas available')
+                for formula in string.gmatch(outdated_formulas_str or '', "%S+") do
+                    table.insert(Homebrew.formulas, formula)
+                end
             end
         end,
         {'outdated', '--quiet'}
     ):start()
+end
 
-    for keg in string.gmatch(outdated_kegs_str or '', "%S+") do
-        table.insert(self.items, keg)
-    end
-
-    if next(self.items) == nil then
-        self.disabled = true
-        self.notified = false
-        -- self.menubar:removeFromMenuBar()
-    else
-        self.disabled = false
-        self.menubar:returnToMenuBar()
-        if not self.notified then
-            hs.notify.show('Homebrew', '', 'Updated formulas available')
-            self.notified = true
-        end
-    end
+function Homebrew:loadOutdatedCasks()
+    Homebrew.casks = {}
+    local check_casks = hs.task.new(
+        '/usr/local/bin/brew',
+        function(exitCode, outdated_casks_str, stdErr)
+            if ((exitCode ~= 0) or (stdErr ~= '')) then
+                hs.notify.show('Homebrew', '', 'Error updating homebrew casks. See console for details.')
+                print('Error updating homebrew casks. Exit code ' .. exitCode)
+                print('StdErr:\n\t' .. stdErr)
+            else
+                -- print('Outdated casks:\n' .. outdated_casks_str)
+                -- hs.notify.show('Homebrew', '', 'Updated casks available')
+                for cask in string.gmatch(outdated_casks_str or '', "%S+") do
+                    table.insert(Homebrew.casks, cask)
+                end
+            end
+        end,
+        {'cask', 'outdated', '--quiet'}
+    ):start()
 end
 
 function Homebrew:getMenu()
     local menu = {
         {
-            title='Upgrade all',
-            -- Probably better to use a background task here
-            fn=function() self.disabled = true; hs.execute('/usr/local/bin/brew upgrade') end,
-            disabled=self.disabled
+            title=('Upgrade ' .. #Homebrew.formulas .. ' formulas'),
+            fn=function()
+                self.disabled = true;
+                hs.task.new(
+                    '/usr/local/bin/brew', -- executable
+                    function() -- callback
+                        print('Formula upgrade complete')
+                        Homebrew:loadOutdatedFormulas()
+                    end,
+                    function(task, stdOut, stdErr) -- stream callback
+                        -- if stdOut ~= '' then print('StdOut:\n' .. stdOut) end
+                        if stdErr ~= '' then print('!!!! Formula Upgrade StdErr:\n' .. stdErr) end
+                        return true
+                    end,
+                    {'upgrade'} -- arguments
+                ):start()
+            end,
+            disabled=(next(Homebrew.formulas) == nil)
+        },
+        {
+            title=('Upgrade ' .. #Homebrew.casks .. ' casks'),
+            fn=function()
+                self.disabled = true;
+                hs.task.new(
+                    '/usr/local/bin/brew', -- executable
+                    function() -- callback
+                        print('Cask upgrade complete')
+                        Homebrew:loadOutdatedCasks()
+                    end,
+                    function(task, stdOut, stdErr) -- stream callback
+                        -- if stdOut ~= '' then print('StdOut:\n' .. stdOut) end
+                        if stdErr ~= '' then print('!!!! Cask Upgrade StdErr:\n' .. stdErr) end
+                        return true
+                    end,
+                    {'cask', 'upgrade', '--greedy'} -- arguments
+                ):start()
+            end,
+            disabled=(next(Homebrew.casks) == nil)
         },
         {title='-'},
     }
-    for _, item in ipairs(self.items) do
-        table.insert(
-            menu,
-            {
-                title=item,
-                fn=function()
-                    self.disabled = true;
-                    hs.task.new(
-                        '/usr/local/bin/brew',
-                        function() Homebrew:loadOutdated() end,
-                        {'upgrade', item}
-                    ):start()
-                end,
-                disabled=self.disabled
-            }
-        )
-    end
+    -- for _, formula in ipairs(self.formulas) do
+    --     table.insert(
+    --         menu,
+    --         {
+    --             title=formula,
+    --             fn=function()
+    --                 self.disabled = true;
+    --                 hs.task.new(
+    --                     '/usr/local/bin/brew',
+    --                     function() Homebrew:loadOutdatedFormulas() end,
+    --                     {'upgrade', formula}
+    --                 ):start()
+    --             end,
+    --             disabled=self.disabled
+    --         }
+    --     )
+    -- end
 
     return menu
 end
 
 function Homebrew:update()
     print('Updating Homebrew')
-    hs.task.new('/usr/local/bin/brew', function() Homebrew:loadOutdated() end, {'update'}):start()
+    hs.task.new(
+        '/usr/local/bin/brew',
+        function() Homebrew:loadOutdatedFormulas(); Homebrew:loadOutdatedCasks() end,
+        {'update'}
+    ):start()
 end
 
 hb_update = function()
