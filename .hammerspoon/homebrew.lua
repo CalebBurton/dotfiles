@@ -8,11 +8,31 @@ Homebrew = {
 
 function Homebrew:loadOutdated()
     self.items = {}
-    local pipe = io.popen('/usr/local/bin/brew outdated -1 --quiet', 'r')
-    for item in pipe:lines() do
-        table.insert(self.items, item)
+    -- local pipe = io.popen('/usr/local/bin/brew outdated -1 --quiet', 'r')
+    -- print(pipe)
+    -- for item in pipe:lines() do
+    --     table.insert(self.items, item)
+    -- end
+    -- pipe:close()
+
+    -- local outdated_kegs = hs.execute('/usr/local/bin/brew outdated --quiet')
+    local check_kegs = hs.task.new(
+        '/usr/local/bin/brew',
+        function(exitCode, outdated_kegs_str, stdErr)
+            if ((exitCode ~= 0) or (stdErr ~= '')) then
+                hs.notify.show('Homebrew', '', 'Error updating homebrew. See console for details.')
+                print('Error updating homebrew. Exit code ' .. exitCode)
+                print('StdErr: ' .. stdErr)
+            else
+                print(outdated_kegs_str)
+            end
+        end,
+        {'outdated', '--quiet'}
+    ):start()
+
+    for keg in string.gmatch(outdated_kegs_str or '', "%S+") do
+        table.insert(self.items, keg)
     end
-    pipe:close()
 
     if next(self.items) == nil then
         self.disabled = true
@@ -30,11 +50,30 @@ end
 
 function Homebrew:getMenu()
     local menu = {
-        {title='Upgrade all', fn=function() self.disabled = true; hs.task.new('/usr/local/bin/brew', function() Homebrew:loadOutdated() end, {'upgrade'}):start() end, disabled=self.disabled},
+        {
+            title='Upgrade all',
+            -- Probably better to use a background task here
+            fn=function() self.disabled = true; hs.execute('/usr/local/bin/brew upgrade') end,
+            disabled=self.disabled
+        },
         {title='-'},
     }
     for _, item in ipairs(self.items) do
-        table.insert(menu, {title=item, fn=function() self.disabled = true; hs.task.new('/usr/local/bin/brew', function() Homebrew:loadOutdated() end, {'upgrade', item}):start() end, disabled=self.disabled})
+        table.insert(
+            menu,
+            {
+                title=item,
+                fn=function()
+                    self.disabled = true;
+                    hs.task.new(
+                        '/usr/local/bin/brew',
+                        function() Homebrew:loadOutdated() end,
+                        {'upgrade', item}
+                    ):start()
+                end,
+                disabled=self.disabled
+            }
+        )
     end
 
     return menu
