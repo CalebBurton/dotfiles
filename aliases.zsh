@@ -24,6 +24,15 @@ alias promotions-pqa='cd ~/Documents/GitHub/promotions && waf && cd promotions &
 alias product-catalog-go='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run start:watch'
 alias product-catalog-pqa='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run test && npm run lint'
 
+alias reporter-help='echo "
+-------------------------
+|     a     |     r     |
+-------------------------
+|     f     |  d (opt)  |
+-------------------------
+|     e     |    logs   |
+-------------------------
+"'
 alias reporter-a-go='cd ~/Documents/GitHub/reporter && cd aggregator && wafexec npm run start:local'
 alias reporter-r-go='cd ~/Documents/GitHub/reporter && cd reviewer && wafexec npm run start:local:local'
 alias reporter-f-go='cd ~/Documents/GitHub/reporter && cd formatter && wafexec npm run start:local:local'
