@@ -1,0 +1,8 @@
+pane	reporter	1	:zsh	1	:*	0	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	reporter	1	:zsh	1	:*	1	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	reporter	1	:zsh	1	:*	2	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	1	zsh	:
+pane	reporter	1	:zsh	1	:*	3	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	reporter	1	:zsh	1	:*	4	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	reporter	1	:zsh	1	:*	5	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+window	reporter	1	1	:*	8070,143x40,0,0[143x12,0,0{71x12,0,0,0,71x12,72,0,4},143x12,0,13{71x12,0,13,5,71x12,72,13,1},143x14,0,26{71x14,0,26,2,71x14,72,26,3}]
+state	reporter	

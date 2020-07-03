@@ -1,0 +1,15 @@
+pane	micro	1	:zsh	1	:*	0	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	micro	1	:zsh	1	:*	1	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	1	zsh	:
+pane	micro	1	:zsh	1	:*	2	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	micro	1	:zsh	1	:*	3	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	micro	1	:zsh	1	:*	4	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	micro	1	:zsh	1	:*	5	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	0	zsh	:
+pane	reporter	1	:zsh	1	:*	0	:/Users/caleb.burton/Documents/GitHub/reporter/aggregator	0	zsh	:
+pane	reporter	1	:zsh	1	:*	1	:/Users/caleb.burton/Documents/GitHub/reporter/reviewer	0	node	:npm   
+pane	reporter	1	:zsh	1	:*	2	:/Users/caleb.burton/Documents/GitHub/reporter/formatter	0	zsh	:
+pane	reporter	1	:zsh	1	:*	3	:/Users/caleb.burton/Documents/GitHub/dotfiles/.tmux/plugins/tmux-resurrect	1	zsh	:
+pane	reporter	1	:zsh	1	:*	4	:/Users/caleb.burton/Documents/GitHub/reporter/template_generators/email_foundation	0	zsh	:
+pane	reporter	1	:zsh	1	:*	5	:/Users/caleb.burton/Documents/GitHub/reporter/aggregator	0	node	:node ./node_modules/pm2/bin/pm2 logs
+window	micro	1	1	:*	379f,158x42,0,0[158x13,0,0{78x13,0,0,7,79x13,79,0,12},158x13,0,14{78x13,0,14,8,79x13,79,14,11},158x14,0,28{78x14,0,28,9,79x14,79,28,10}]
+window	reporter	1	1	:*	b956,158x42,0,0[158x13,0,0{79x13,0,0,0,78x13,80,0,4},158x13,0,14{79x13,0,14,5,78x13,80,14,6},158x14,0,28{79x14,0,28,2,78x14,80,28,3}]
+state	micro	
