@@ -64,11 +64,19 @@ menu = {
     end
   },
   {
+    title = "Rescue windows",
+    fn = rescue
+  },
+  {
     title = "-" -- separator
   },
   {
-    title = "Rescue windows",
-    fn = rescue
+    title = 'Show HS Console',
+    fn = function() hs.openConsole() end
+  },
+  {
+    title = 'Show HS Preferences',
+    fn = function() hs.openPreferences() end
   },
   {
     title = "-" -- separator

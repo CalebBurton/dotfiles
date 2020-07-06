@@ -1,5 +1,7 @@
 -- See https://github.com/Hammerspoon/hammerspoon/wiki/Sample-Configurations for inspiration
 -- See https://github.com/cparnot/ASCIImage for ascii art examples
+hs.console.clearConsole()
+
 require('lib')
 require('config')
 require('settings')
