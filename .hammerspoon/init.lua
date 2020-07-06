@@ -7,9 +7,10 @@ require('settings')
 require('reload')
 -- require('window')
 require('layout')
+require('breaktimer')  -- Ctrl + Alt + Shift + D
 require('homebrew')
 -- require('pomodoro') -- Run `pom_enable()` in the console
--- require('cherry') -- Ctrl + Alt + Cmd + C
--- require('mocha')  -- Ctrl + Alt + Cmd + M
+-- require('cherry')   -- Ctrl + Alt + Cmd + C
+-- require('mocha')    -- Ctrl + Alt + Cmd + M
 require('util')
 require('shortcut')

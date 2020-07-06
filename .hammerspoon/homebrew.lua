@@ -1,6 +1,6 @@
 -- Homebrew menubar
 Homebrew = {
-    menubar  = hs.menubar.new(),
+    menu = {},
     formulas = {},
     casks    = {},
     disabled = false,
@@ -50,6 +50,15 @@ function Homebrew:loadOutdatedCasks()
 end
 
 function Homebrew:getMenu()
+    Homebrew.menu = {
+        title='Homebrew',
+        disabled=true,
+        menu={
+            title='Updating...',
+            disabled=true
+        }
+    }
+
     local menu = {
         {
             title=('Upgrade ' .. #Homebrew.formulas .. ' formulas'),
@@ -69,7 +78,8 @@ function Homebrew:getMenu()
                     {'upgrade'} -- arguments
                 ):start()
             end,
-            disabled=(next(Homebrew.formulas) == nil)
+            disabled=(next(Homebrew.formulas) == nil),
+            menu={}
         },
         {
             title=('Upgrade ' .. #Homebrew.casks .. ' casks'),
@@ -89,36 +99,77 @@ function Homebrew:getMenu()
                     {'cask', 'upgrade', '--greedy'} -- arguments
                 ):start()
             end,
-            disabled=(next(Homebrew.casks) == nil)
+            disabled=(next(Homebrew.casks) == nil),
+            menu={}
         },
         {title='-'},
     }
-    -- for _, formula in ipairs(self.formulas) do
-    --     table.insert(
-    --         menu,
-    --         {
-    --             title=formula,
-    --             fn=function()
-    --                 self.disabled = true;
-    --                 hs.task.new(
-    --                     '/usr/local/bin/brew',
-    --                     function() Homebrew:loadOutdatedFormulas() end,
-    --                     {'upgrade', formula}
-    --                 ):start()
-    --             end,
-    --             disabled=self.disabled
-    --         }
-    --     )
-    -- end
 
-    return menu
+    ----------------------
+    -- Create the submenus
+    ----------------------
+    local submenu_for_formulas = menu[1].menu
+    local submenu_for_casks = menu[2].menu
+
+    for _, formula in ipairs(Homebrew.formulas) do
+        table.insert(
+            submenu_for_formulas,
+            {
+                title=formula,
+                fn=function()
+                    self.disabled = true;
+                    hs.task.new(
+                        '/usr/local/bin/brew',
+                        function()
+                            hs.notify.show('Homebrew', '', 'Upgrade complete for: '..formula)
+                            Homebrew:loadOutdatedFormulas()
+                        end,
+                        {'upgrade', formula}
+                    ):start()
+                end,
+                disabled=self.disabled
+            }
+        )
+    end
+
+    for _, cask in ipairs(Homebrew.casks) do
+        table.insert(
+            submenu_for_casks,
+            {
+                title=cask,
+                fn=function()
+                    self.disabled = true;
+                    hs.task.new(
+                        '/usr/local/bin/brew',
+                        function()
+                            hs.notify.show('Homebrew', '', 'Upgrade complete for: '..cask)
+                            Homebrew:loadOutdatedCasks()
+                        end,
+                        {'cask', 'upgrade', cask}
+                    ):start()
+                end,
+                disabled=self.disabled
+            }
+        )
+    end
+
+    local has_any_updates = ((#Homebrew.formulas + #Homebrew.casks) == 0)
+    Homebrew.menu = {
+        title='Homebrew',
+        disabled=has_any_updates,
+        menu=menu,
+    }
+    return Homebrew.menu
 end
 
 function Homebrew:update()
     print('Updating Homebrew')
     hs.task.new(
         '/usr/local/bin/brew',
-        function() Homebrew:loadOutdatedFormulas(); Homebrew:loadOutdatedCasks() end,
+        function()
+            Homebrew:loadOutdatedFormulas()
+            Homebrew:loadOutdatedCasks()
+        end,
         {'update'}
     ):start()
 end
@@ -144,9 +195,9 @@ local icon = [[
 ]]
 
 if Homebrew then
-    Homebrew.menubar:setTooltip('Homebrew')
-    Homebrew.menubar:setIcon('ASCII:' .. icon)
-    Homebrew.menubar:setMenu(function() return Homebrew:getMenu() end)
+    -- Homebrew.menubar:setTooltip('Homebrew')
+    -- Homebrew.menubar:setIcon('ASCII:' .. icon)
+    -- Homebrew.menubar:setMenu(function() return Homebrew:getMenu() end)
     -- Homebrew.menubar:removeFromMenuBar()
     Homebrew:update(); hs.timer.doEvery(3600, function() Homebrew:update() end)
 end
