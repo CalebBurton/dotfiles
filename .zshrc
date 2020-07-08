@@ -5,6 +5,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+# See below for more PATH changes
 export PATH="$HOME/.nvm/versions/node/v8.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/share/npm/bin/"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -140,8 +141,10 @@ if ! [ -x "$TRASH_CLI" ]; then
     npm install --global trash-cli
 fi
 
+# Add homebrew packages
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/mariadb@10.2/bin:$PATH"
+# export PATH="/usr/local/opt/mariadb@10.2/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin/python:$PATH"
 
 # Add rustup
 export PATH="$HOME/.cargo/bin:$PATH"
