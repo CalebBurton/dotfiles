@@ -95,6 +95,12 @@ alias grim='git rebase -i --autosquash origin/master'
 alias gamend='git add -A && git commit -a --amend -C HEAD'
 alias gcom='git add -A && git commit -a -m'
 
+function eod() {
+    cd ~/Documents/GitHub/personal
+    git add -p
+    echo $(date '+%B %_d') | awk '{print "(worklog): end of day -",tolower($0)}' | git commit -F -
+}
+
 function bup() {
     echo 'Updating homebrew...\n'
     brew update
