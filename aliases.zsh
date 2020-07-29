@@ -125,6 +125,7 @@ alias bsc='brew search --casks'
 
 # `bc` is already a command, don't overwrite it
 alias bci='brew cask install'
+alias bcu='brew cask upgrade'
 alias bcug='brew cask upgrade --greedy'
 
 alias please='sudo'
