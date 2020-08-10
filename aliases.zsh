@@ -48,8 +48,8 @@ alias pm2='./node_modules/pm2/bin/pm2'
 alias dcu='docker-compose up'
 alias dcb='docker-compose build'
 
-alias website-go='cd ~/Documents/GitHub/website-source/dev && npm run build:dev'
-alias website-publish='cd ~/Documents/GitHub/website-source/dev && npm run publish'
+alias website-go='cd ~/Documents/GitHub/website-source && npm run build:dev'
+alias website-publish='cd ~/Documents/GitHub/website-source && npm run publish'
 
 function api-token () {
     json=$(curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: application/x-www-form-urlencoded" -d 'username=qa1&password=qa1&ttl=1200000000' "http://0.0.0.0:3000/api/tech/login?u")
