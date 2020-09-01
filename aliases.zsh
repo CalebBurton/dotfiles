@@ -53,6 +53,9 @@ alias pm2='./node_modules/pm2/bin/pm2'
 alias dcu='docker-compose up'
 alias dcb='docker-compose build'
 
+alias wnpm='wafexec npm'
+alias nrl='wnpm run lint'
+
 alias website-go='cd ~/Documents/GitHub/website-source && npm run build:dev'
 alias website-publish='cd ~/Documents/GitHub/website-source && npm run publish'
 
