@@ -113,13 +113,13 @@ function bup() {
     echo 'Updating homebrew...\n'
     brew update
     echo ''
-    brew cask outdated --greedy
+    brew outdated --cask --greedy
     while true; do
         echo -n "\nUpgrade outdated casks? [Y/n]: "
         read yn
         case $yn in
             [Nn]* ) break;;
-            * ) echo '' && brew cask upgrade --greedy;;
+            * ) echo '' && brew upgrade --cask --greedy;;
         esac
         yn=''
         break;
@@ -133,8 +133,11 @@ alias bsc='brew search --casks'
 
 # `bc` is already a command, don't overwrite it
 alias bci='brew cask install'
-alias bcu='brew cask upgrade'
-alias bcug='brew cask upgrade --greedy'
+alias buc='brew upgrade --cask'
+alias bucg='brew upgrade --cask --greedy'
+# Save the old aliases until I re-train my muscle memory
+alias bcu='buc'
+alias bcug='bucg'
 
 alias please='sudo'
 alias reload='source $HOME/.zshrc'
