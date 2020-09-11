@@ -11,8 +11,10 @@ alias myaccount-go='cupcake-go'
 alias myaccount-pqa='cupcake-pqa'
 
 alias ma19-go='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm run start:watch'
+alias ma19-pqa='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm run test'
 alias ma19-build='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm install && wafexec npm run start:watch'
 alias ma-go='ma19-go'
+alias ma-pqa='ma19-pqa'
 alias ma-build='ma19-build'
 
 alias dcl-go='cd ~/Documents/GitHub/dcl/dcl && wafexec npm run dev'
