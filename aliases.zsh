@@ -58,7 +58,7 @@ alias dcb='docker-compose build'
 alias wnpm='wafexec npm'
 alias nrl='wnpm run lint'
 
-alias website-go='cd ~/Documents/GitHub/website-source && npm run build:dev'
+alias website-go='cd ~/Documents/GitHub/website-source && npm run start:dev'
 alias website-publish='cd ~/Documents/GitHub/website-source && npm run publish'
 
 function api-token () {
