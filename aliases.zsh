@@ -112,6 +112,16 @@ function eod() {
 }
 
 function bup() {
+    ## NEW VERSION?
+    #
+    # echo 'Deep fetching the cask repository...\n'
+    # git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask" fetch --unshallow
+    # echo 'Fetched. Updating homebrew...'
+    # brew update
+    # echo 'Updated. Listing outdated casks:\n'
+    #
+    ## OLD VERSION
+    #
     echo 'Updating homebrew...\n'
     brew update
     echo ''
