@@ -10,26 +10,26 @@ alias cupcake-pqa='cd ~/Documents/GitHub/cupcake && make pqa'
 alias myaccount-go='cupcake-go'
 alias myaccount-pqa='cupcake-pqa'
 
-alias ma19-go='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm run start:watch'
-alias ma19-pqa='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm run test'
-alias ma19-build='cd ~/Documents/GitHub/myaccount19 && waf && cd myaccount19 && wafexec npm install && wafexec npm run start:watch'
+alias ma19-go='cd ~/Documents/GitHub/myaccount19/myaccount19 && wafexec npm run start:watch'
+alias ma19-pqa='cd ~/Documents/GitHub/myaccount19/myaccount19 && wafexec npm run test'
+alias ma19-build='cd ~/Documents/GitHub/myaccount19/myaccount19 && wafexec npm install && wafexec npm run start:watch'
 alias ma-go='ma19-go'
 alias ma-pqa='ma19-pqa'
 alias ma-build='ma19-build'
 
 alias dcl-go='cd ~/Documents/GitHub/dcl/dcl && wafexec npm run dev'
-alias dcl-build='cd ~/Documents/GitHub/dcl && waf && cd dcl && wafexec npm install && wafexec npm run start:watch'
+alias dcl-build='cd ~/Documents/GitHub/dcl/dcl && wafexec npm install && wafexec npm run start:watch'
 
 alias signup-go='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run start:watch'
 alias signup-pqa='cd ~/Documents/GitHub/member-signup/member-signup && waf && wafexec npm run test && npm run lint'
 alias member-go='cd ~/Documents/GitHub/member/member && waf && wafexec npm run start:watch'
 alias member-pqa='cd ~/Documents/GitHub/member/member && waf && wafexec npm run test && npm run lint'
-alias billing-go='cd ~/Documents/GitHub/billing && waf && cd billing && wafexec npm run start:watch'
-alias billing-pqa='cd ~/Documents/GitHub/billing && waf && cd billing && wafexec npm run test && npm run lint'
-alias promotions-go='cd ~/Documents/GitHub/promotions && waf && cd promotions && wafexec npm run start:watch'
-alias promotions-pqa='cd ~/Documents/GitHub/promotions && waf && cd promotions && wafexec npm run test && npm run lint'
-alias product-catalog-go='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run start:watch'
-alias product-catalog-pqa='cd ~/Documents/GitHub/product-catalog && waf && cd product-catalog && wafexec npm run test && npm run lint'
+alias billing-go='cd ~/Documents/GitHub/billing/billing && wafexec npm run start:watch'
+alias billing-pqa='cd ~/Documents/GitHub/billing/billing && wafexec npm run test && npm run lint'
+alias promotions-go='cd ~/Documents/GitHub/promotions/promotions && wafexec npm run start:watch'
+alias promotions-pqa='cd ~/Documents/GitHub/promotions/promotions && wafexec npm run test && npm run lint'
+alias product-catalog-go='cd ~/Documents/GitHub/product-catalog/product-catalog && wafexec npm run start:watch'
+alias product-catalog-pqa='cd ~/Documents/GitHub/product-catalog/product-catalog && wafexec npm run test && npm run lint'
 
 alias reporter-help='echo "
 -------------------------
@@ -47,8 +47,8 @@ alias reporter-d-go='echo "This one doesnt work, but it seems unnecessary anyway
 alias reporter-e-go='cd ~/Documents/GitHub/reporter/template_generators/email_foundation && nvm use 8 && wafexec npm run start:dev:local'
 alias reporter-logs='cd ~/Documents/GitHub/reporter/aggregator && wafexec npm run pm2 logs'
 
-alias wa-go='cd ~/Documents/GitHub/webadmin && waf && cd frontend && wafexec npm run serve && cd ../api && wafexec npm run serve'
-alias wa-pqa='cd ~/Documents/GitHub/webadmin && waf && cd frontend && wafexec npm run pqa && npm run lint && cd ../api && wafexec npm run pqa && npm run lint'
+alias wa-go='cd ~/Documents/GitHub/webadmin/frontend && wafexec npm run serve && cd ../api && wafexec npm run serve'
+alias wa-pqa='cd ~/Documents/GitHub/webadmin/frontend && wafexec npm run pqa && npm run lint && cd ../api && wafexec npm run pqa && npm run lint'
 
 alias pm2='./node_modules/pm2/bin/pm2'
 
