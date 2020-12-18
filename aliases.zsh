@@ -144,12 +144,9 @@ alias bs='brew search'
 alias bsc='brew search --casks'
 
 # `bc` is already a command, don't overwrite it
-alias bci='brew cask install'
+alias bic='brew install --cask'
 alias buc='brew upgrade --cask'
 alias bucg='brew upgrade --cask --greedy'
-# Save the old aliases until I re-train my muscle memory
-alias bcu='buc'
-alias bcug='bucg'
 
 alias please='sudo'
 alias reload='source $HOME/.zshrc'
