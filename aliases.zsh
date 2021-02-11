@@ -43,8 +43,8 @@ alias reporter-help='echo "
 alias reporter-a-go='cd ~/Documents/GitHub/reporter && cd aggregator && wafexec npm run start:local'
 alias reporter-r-go='cd ~/Documents/GitHub/reporter && cd reviewer && wafexec npm run start:local:local'
 alias reporter-f-go='cd ~/Documents/GitHub/reporter && cd formatter && wafexec npm run start:local:local'
-alias reporter-d-go='echo "This one doesnt work, but it seems unnecessary anyway"'
-alias reporter-e-go='cd ~/Documents/GitHub/reporter/template_generators/email_foundation && nvm use 8 && wafexec npm run start:dev:local'
+alias reporter-d-go='cd ~/Documents/GitHub/reporter && cd detailedViewer && nvm use 8 && wafexec npm run start:local:local'
+alias reporter-e-go='cd ~/Documents/GitHub/reporter/template_generators/email_foundation && nvm use 8 && wafexec npm run start:dev:production'
 alias reporter-logs='cd ~/Documents/GitHub/reporter/aggregator && wafexec npm run pm2 logs'
 
 alias wa-go='cd ~/Documents/GitHub/webadmin/frontend && wafexec npm run serve && cd ../api && wafexec npm run serve'
