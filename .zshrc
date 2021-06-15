@@ -75,6 +75,7 @@ ZSH_THEME="go-cats"
 
 plugins=(
   git
+  asdf
   zsh-autosuggestions
   zsh-syntax-highlighting
   z
@@ -122,9 +123,9 @@ bindkey '^[OA'  up-line-or-beginning-search
 bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
 bindkey '^[OB'  down-line-or-beginning-search
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Move next only if `homebrew` is installed
 if command -v brew >/dev/null 2>&1; then
@@ -132,14 +133,14 @@ if command -v brew >/dev/null 2>&1; then
 	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
 
-# Install the "trash-cli" npm package to make "rm" safer
-TRASH_CLI=$(command -v trash)
-if ! [ -x "$TRASH_CLI" ]; then
-    echo "Trash-CLI npm package not found. Installing globally..." >&2
-    # If this fails, try fixing the global npm permissions with
-    # `sudo chown -R $USER /usr/local/lib/node_modules`
-    npm install --global trash-cli
-fi
+# # Install the "trash-cli" npm package to make "rm" safer
+# TRASH_CLI=$(command -v trash)
+# if ! [ -x "$TRASH_CLI" ]; then
+#     echo "Trash-CLI npm package not found. Installing globally..." >&2
+#     # If this fails, try fixing the global npm permissions with
+#     # `sudo chown -R $USER /usr/local/lib/node_modules`
+#     npm install --global trash-cli
+# fi
 
 # Add homebrew support binaries
 export PATH="/usr/local/sbin:$PATH"
