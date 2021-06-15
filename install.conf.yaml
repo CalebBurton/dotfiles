@@ -11,6 +11,9 @@
     ~/.tmux: .tmux
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
+    ~/.gitconfig: .gitconfig
+    ~/Documents/GitHub/.gitconfig: github.gitconfig
+    ~/Documents/GitLab/.gitconfig: ciq.gitconfig
     ~/.zshrc: .zshrc
 
 - shell:
