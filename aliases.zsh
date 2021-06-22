@@ -110,7 +110,7 @@ alias gdestroy="git ls-files --ignored --exclude-standard | xargs -0 git rm -r"
 function eod() {
     cd ~/Documents/GitHub/personal
     git add -p
-    echo $(date '+%B %_d') | awk '{print "(worklog): end of day -",tolower($0)}' | git commit -F -
+    echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
 
 function bup() {
