@@ -1,3 +1,4 @@
+alias watch-agora='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/agora && yarn watch'
 alias watch-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && yarn watch'
 alias start-ithaca='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/ithaca && yarn start'
 
@@ -10,36 +11,13 @@ alias dcb='docker-compose build'
 alias website-go='cd ~/Documents/GitHub/website-source && npm run start:dev'
 alias website-publish='cd ~/Documents/GitHub/website-source && npm run publish'
 
-# extract any kind of compressed file - from https://coderwall.com/p/arwifq/extracting-archives-from-the-terminal-easily
-function extract () {
-    echo Extracting $1 ...
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xjf $1  ;;
-            *.tar.gz)    tar xzf $1  ;;
-            *.bz2)       bunzip2 $1  ;;
-            *.rar)       rar x $1    ;;
-            *.gz)        gunzip $1   ;;
-            *.tar)       tar xf $1   ;;
-            *.tbz2)      tar xjf $1  ;;
-            *.tgz)       tar xzf $1  ;;
-            *.zip)       unzip $1   ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1  ;;
-            *)        echo "'$1' cannot be extracted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
 alias gcm='get checkout master 2>/dev/null || git checkout main'  # checkout default branch, regardless of name
 alias gs='git stash'
 alias gsp='git stash pop'
 alias grim='git rebase -i --autosquash origin/master'
 alias gamend='git add -A && git commit -a --amend -C HEAD'
 alias gcom='git add -A && git commit -a -m'
-#Delete a file and all history of it
+# Delete a file and all history of it
 alias gdestroy="git ls-files --ignored --exclude-standard | xargs -0 git rm -r"
 
 function eod() {
