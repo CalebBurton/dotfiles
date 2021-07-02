@@ -161,3 +161,9 @@ export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH" # Any installed gems
 # # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="/usr/local/opt/ruby@2.0/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/cburton/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cburton/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/cburton/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cburton/google-cloud-sdk/completion.zsh.inc'; fi
