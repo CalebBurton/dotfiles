@@ -20,6 +20,8 @@ alias gcom='git add -A && git commit -a -m'
 # Delete a file and all history of it
 alias gdestroy="git ls-files --ignored --exclude-standard | xargs -0 git rm -r"
 
+alias be='bundle exec'
+
 function eod() {
     cd ~/Documents/GitHub/personal
     git add -p
