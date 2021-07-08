@@ -16,7 +16,7 @@ alias gs='git stash'
 alias gsp='git stash pop'
 alias grim='git rebase -i --autosquash origin/master'
 alias gamend='git add -A && git commit -a --amend -C HEAD'
-alias gcom='git add -A && git commit -a -m'
+alias gcom='git commit -m'
 # Delete a file and all history of it
 alias gdestroy="git ls-files --ignored --exclude-standard | xargs -0 git rm -r"
 
