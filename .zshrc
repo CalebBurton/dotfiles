@@ -142,25 +142,20 @@ fi
 #     npm install --global trash-cli
 # fi
 
+# Add all local ssh keys to the ssh agent
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+    ssh-add
+fi
+
 # Add homebrew support binaries
 export PATH="/usr/local/sbin:$PATH"
 
 # Add homebrew packages
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-# export PATH="/usr/local/opt/mariadb@10.2/bin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin/python:$PATH"
 
 # Add rustup
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# Add ruby binaries
-export PATH="$HOME/.bin:$PATH" # Idk, important for some reason
-export PATH="$HOME/.rubies/ruby-2.7.2/bin:$PATH" # The actual ruby binary from chruby
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH" # Any installed gems
-
-# # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-# export PATH="/usr/local/opt/ruby@2.0/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/cburton/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cburton/google-cloud-sdk/path.zsh.inc'; fi
