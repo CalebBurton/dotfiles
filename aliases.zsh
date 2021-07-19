@@ -5,6 +5,8 @@ alias start-ithaca='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/i
 alias lint-umbrella='cd ~/Documents/GitLab/umbrella && source .env && yarn lint'
 alias test-umbrella='cd ~/Documents/GitLab/umbrella && source .env && yarn test'
 
+alias start-specialist='cd ~/Documents/GitLab/specialist && bundle exec rails s -p 3000'
+
 alias dcu='docker-compose up'
 alias dcb='docker-compose build'
 
