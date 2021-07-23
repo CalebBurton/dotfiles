@@ -1,11 +1,12 @@
-alias watch-agora='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/agora && yarn watch'
-alias watch-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && yarn watch'
-alias start-ithaca='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/ithaca && yarn start'
+alias watch-agora='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/agora && echo "yarn watch" && yarn watch'
+alias watch-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && echo "yarn watch" && yarn watch'
+alias start-ithaca='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/ithaca && echo "yarn start" && yarn start'
 
-alias lint-umbrella='cd ~/Documents/GitLab/umbrella && source .env && yarn lint'
-alias test-umbrella='cd ~/Documents/GitLab/umbrella && source .env && yarn test'
+alias lint-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn lint" && yarn lint'
+alias test-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn test" && yarn test'
 
-alias start-specialist='cd ~/Documents/GitLab/specialist && bundle exec rails s -p 3000'
+alias start-specialist='cd ~/Documents/GitLab/specialist && echo "bundle exec rails s -p 3000" && bundle exec rails s -p 3000'
+alias start-navigator='cd ~/Documents/GitLab/navigator && echo "bundle exec rails s -p 3001 (I hope you have specialist running)" && bundle exec rails s -p 3001'
 
 alias dcu='docker-compose up'
 alias dcb='docker-compose build'
