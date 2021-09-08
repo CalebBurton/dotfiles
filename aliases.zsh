@@ -4,7 +4,7 @@ alias build-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/
 alias start-ithaca='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/ithaca && echo "yarn start" && yarn start'
 
 alias lint-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn lint" && yarn lint'
-alias test-umbrella='cd ~/Documents/GitLab/umbrella && source .env && unset NODE_ENV && echo "yarn test" && yarn test'
+alias test-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn test" && yarn test'
 
 alias start-specialist='cd ~/Documents/GitLab/specialist && echo "bundle exec rails s -p 3000" && bundle exec rails s -p 3000'
 alias start-navigator='cd ~/Documents/GitLab/navigator && echo "bundle exec rails s -p 3001 (I hope specialist is running)" && bundle exec rails s -p 3001'
