@@ -7,6 +7,8 @@ alias lint-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn
 alias test-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn test" && yarn test'
 
 alias start-specialist='cd ~/Documents/GitLab/specialist && echo "bundle exec rails s -p 3000" && bundle exec rails s -p 3000'
+alias test-specialist='cd ~/Documents/GitLab/specialist && echo "bundle exec guard (`rspec` command runs all tests)" && bundle exec guard'
+
 alias start-navigator='cd ~/Documents/GitLab/navigator && echo "bundle exec rails s -p 3001 (I hope specialist is running)" && bundle exec rails s -p 3001'
 alias start-papuros='cd ~/Documents/GitLab/papuros && echo "yarn start -p 3002" && yarn start -p 3002'
 
