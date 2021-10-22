@@ -157,8 +157,14 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 # Add rustup
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/cburton/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cburton/google-cloud-sdk/path.zsh.inc'; fi
+# Add nix, if installed
+if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/cburton/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cburton/google-cloud-sdk/completion.zsh.inc'; fi
+# Add gcloud sdk, if installed
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# Enable shell completion for gcloud sdk
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+# # Add direnv (automatically execs .envrc when changing into a directory that has one)
+# eval "$(direnv hook zsh)"
