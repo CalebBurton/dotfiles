@@ -1,6 +1,6 @@
 alias watch-agora='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/agora && echo "yarn watch" && yarn watch'
 alias watch-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && source .env && echo "yarn watch" && yarn watch'
-alias build-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && source .env && echo "yarn typecheck && yarn build" && yarn typecheck && yarn build'
+alias build-arachne='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && source .env && echo "yarn build" && yarn build'
 alias start-ithaca='cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/ithaca && echo "yarn start" && yarn start'
 
 alias lint-umbrella='cd ~/Documents/GitLab/umbrella && source .env && echo "yarn lint" && yarn lint'
