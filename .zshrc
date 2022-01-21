@@ -129,8 +129,8 @@ bindkey '^[OB'  down-line-or-beginning-search
 
 # Move next only if `homebrew` is installed
 if command -v brew >/dev/null 2>&1; then
-	# Load rupa's z if installed
-	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
+  # Load rupa's z if installed
+  [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 fi
 
 # # Install the "trash-cli" npm package to make "rm" safer
@@ -166,5 +166,12 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 # Enable shell completion for gcloud sdk
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
-# # Add direnv (automatically execs .envrc when changing into a directory that has one)
-# eval "$(direnv hook zsh)"
+# Add ciq-shell command
+if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
+  ciq-shell () {
+    nix-shell -E 'let src = builtins.fetchGit { name = "ciq-dev-tools"; url = "git@gitlab.ops.canceriq.com:ciq/ops/dev-tools.git"; rev = "35d9bded0bb0370ed99ef5c949dc9f407fd44d65"; ref = "refs/heads/master"; }; in with import <nixpkgs> {}; callPackage "${src}/default.nix" {}'
+  }
+fi
+
+# Add direnv (when cd'ing into a directory with a .envrc, automatically calls nix-shell)
+eval "$(direnv hook zsh)"
