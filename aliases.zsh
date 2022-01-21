@@ -15,6 +15,8 @@ alias start-papuros='cd ~/Documents/GitLab/papuros && echo "yarn start -p 3002" 
 alias dcu='docker-compose up'
 alias dcb='docker-compose build'
 
+alias sad='say -v karen "all done"'
+
 alias website-go='cd ~/Documents/GitHub/website-source && npm run start:dev'
 alias website-publish='cd ~/Documents/GitHub/website-source && npm run publish'
 
