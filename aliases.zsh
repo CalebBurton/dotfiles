@@ -20,7 +20,8 @@ alias sad='say -v karen "all done"'
 alias website-go='cd ~/Documents/GitHub/website-source && npm run start:dev'
 alias website-publish='cd ~/Documents/GitHub/website-source && npm run publish'
 
-alias gcm='get checkout master 2>/dev/null || git checkout main'  # checkout default branch, regardless of name
+alias gpl="git pull"
+alias gps="git push"
 alias gs='git stash'
 alias gsp='git stash pop'
 alias grim='git rebase -i --autosquash origin/master'
@@ -34,6 +35,7 @@ alias gst="git status -s -b"
 alias glog="glol"
 alias gap="git add --patch"
 alias gdc="git diff --cached"
+alias gp='echo "Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push." && return 1'
 
 alias be='bundle exec'
 
