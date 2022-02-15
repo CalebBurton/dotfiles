@@ -1,7 +1,8 @@
-alias watch-agora="cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/agora && echo 'yarn watch' && yarn watch"
-alias watch-arachne="cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && source .env && echo 'yarn watch' && yarn watch"
-alias build-arachne="cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/arachne && source .env && echo 'yarn build' && yarn build"
-alias start-ithaca="cd ~/Documents/GitLab/umbrella && source .env && cd ./apps/ithaca && echo 'yarn start' && yarn start"
+alias watch-agora="cd ~/Documents/GitLab/umbrella/apps/agora && source ../../.env && echo 'yarn watch' && yarn watch"
+alias watch-arachne="cd ~/Documents/GitLab/umbrella/apps/arachne && source ../../.env && source .env && echo 'make db_start' && make db_start && echo 'yarn watch' && yarn watch"
+alias build-arachne="cd ~/Documents/GitLab/umbrella/apps/arachne && source ../../.env && source .env && echo 'yarn build' && yarn build"
+alias start-ithaca="cd ~/Documents/GitLab/umbrella/apps/ithaca && source ../../.env && source .env && echo 'yarn start' && yarn start"
+alias start-styleguide="cd ~/Documents/GitLab/umbrella/apps/styleguide && source ../../.env && echo 'yarn start' && yarn start"
 
 alias lint-umbrella="cd ~/Documents/GitLab/umbrella && source .env && echo 'yarn lint' && yarn lint"
 alias test-umbrella="cd ~/Documents/GitLab/umbrella && source .env && echo 'yarn test' && yarn test"
@@ -17,7 +18,7 @@ alias dcb="docker-compose build"
 
 alias sad="say -v karen 'all done'"
 
-alias website-go="cd ~/Documents/GitHub/website-source && npm run start:dev"
+alias website-go="cd ~/Documents/GitHub/website-source && npm run start"
 alias website-publish="cd ~/Documents/GitHub/website-source && npm run publish"
 
 alias gpl="git pull"
