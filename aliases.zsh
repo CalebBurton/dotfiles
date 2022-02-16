@@ -42,6 +42,8 @@ alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to 
 
 alias be="bundle exec"
 
+alias update-packages="npx npm-check-updates -i"
+
 function eod() {
     cd ~/Documents/GitHub/personal
     git add -p
