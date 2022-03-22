@@ -1,21 +1,33 @@
+# Allows storing large binary files more efficiently
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
 [user]
-	name = Caleb Burton
-	email = ccburton4@gmail.com
+    name = Caleb Burton
+    email = ccburton4@gmail.com
+
 # Ending the directory with / means include recursivly
 [includeIf "gitdir:~/Documents/GitHub/"]
     path = ~/Documents/GitHub/.gitconfig
+
 [includeIf "gitdir:~/Documents/GitLab/"]
     path = ~/Documents/GitLab/.gitconfig
+
 [core]
-	editor = code --wait
+    editor = code --wait
+
 [diff]
     tool = default-difftool
+
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
+
 [pull]
-	ff = only
+    ff = only
+
+# Avoid having to write `git push --set-upstream origin name`
+[push]
+    default = simple
