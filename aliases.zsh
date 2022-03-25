@@ -21,6 +21,7 @@ alias sad="say -v karen 'all done'"
 alias website-go="cd ~/Documents/GitHub/website-source && npm run start"
 alias website-publish="cd ~/Documents/GitHub/website-source && npm run publish"
 
+alias gcm="git checkout $(git_main_branch)"
 alias gpl="git pull"
 alias gps="git push"
 alias gpsh="git push"
