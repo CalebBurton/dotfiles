@@ -43,6 +43,8 @@ alias gdc="git diff --cached"
 alias gp="echo 'Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 
+alias ssh-start="eval \"$(ssh-agent -s)\" && ssh-add --apple-load-keychain"
+
 alias be="bundle exec"
 
 alias update-packages="npx npm-check-updates -i"
