@@ -13,7 +13,7 @@
 [includeIf "gitdir:~/Documents/GitHub/"]
     path = ~/Documents/GitHub/.gitconfig
 
-[includeIf "gitdir:~/Documents/GitLab/"]
+[includeIf "gitdir:~/Nextcloud/CancerIQ/GitLab/"]
     path = ~/Documents/GitLab/.gitconfig
 
 [core]
