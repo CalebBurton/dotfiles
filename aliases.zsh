@@ -1,17 +1,19 @@
-alias watch-agora="cd ~/Documents/GitLab/umbrella/apps/agora && source ../../.env && echo 'yarn watch' && yarn watch"
-alias watch-arachne="cd ~/Documents/GitLab/umbrella/apps/arachne && source ../../.env && source .env && echo 'make db_start' && make db_start && echo 'yarn watch' && yarn watch"
-alias build-arachne="cd ~/Documents/GitLab/umbrella/apps/arachne && source ../../.env && source .env && echo 'yarn build' && yarn build"
-alias start-ithaca="cd ~/Documents/GitLab/umbrella/apps/ithaca && source ../../.env && source .env && echo 'yarn start' && yarn start"
-alias start-styleguide="cd ~/Documents/GitLab/umbrella/apps/styleguide && source ../../.env && echo 'yarn start' && yarn start"
+GITLAB_DIR="$HOME/Nextcloud/CancerIQ/GitLab"
 
-alias lint-umbrella="cd ~/Documents/GitLab/umbrella && source .env && echo 'yarn lint' && yarn lint"
-alias test-umbrella="cd ~/Documents/GitLab/umbrella && source .env && echo 'yarn test' && yarn test"
+alias watch-agora="cd $GITLAB_DIR/umbrella/apps/agora && echo 'yarn watch' && yarn watch"
+alias watch-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'make db_start' && make db_start && echo 'yarn watch' && yarn watch"
+alias build-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'yarn build' && yarn build"
+alias start-ithaca="cd $GITLAB_DIR/umbrella/apps/ithaca && echo 'yarn start' && yarn start"
+alias start-styleguide="cd $GITLAB_DIR/umbrella/apps/styleguide && echo 'yarn start' && yarn start"
 
-alias start-specialist="cd ~/Documents/GitLab/specialist && echo 'nix-shell (\"make server\" starts things)' && nix-shell"
-alias test-specialist="cd ~/Documents/GitLab/specialist && echo 'bundle exec guard (\"rspec\" command runs all tests)' && bundle exec guard"
+alias lint-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn lint' && yarn lint"
+alias test-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn test' && yarn test"
 
-alias start-navigator="cd ~/Documents/GitLab/navigator && echo 'bundle exec rails s -p 3001 (I hope specialist is running)' && bundle exec rails s -p 3001"
-alias start-papuros="cd ~/Documents/GitLab/papuros && echo 'yarn start -p 3002' && yarn start -p 3002"
+alias start-specialist="cd $GITLAB_DIR/specialist && echo 'make server' && make server"
+alias test-specialist="cd $GITLAB_DIR/specialist && echo 'bundle exec guard (\"rspec\" command runs all tests)' && bundle exec guard"
+
+alias start-navigator="cd $GITLAB_DIR/navigator && echo 'bundle exec rails s -p 3001 (I hope specialist is running)' && bundle exec rails s -p 3001"
+alias start-papuros="cd $GITLAB_DIR/papuros && echo 'yarn start -p 3002' && yarn start -p 3002"
 
 alias dcu="docker-compose up"
 alias dcb="docker-compose build"
