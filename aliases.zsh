@@ -43,6 +43,12 @@ alias gap="git add --patch"
 alias gdc="git diff --cached"
 alias gp="echo 'Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
+alias gco="echo 'Use \"gsw\" or \"git switch\" instead' && return 1"
+alias gcb="echo 'Use \"gswc\" or \"git switch -c\" instead' && return 1"
+# # Use `gsw` or `git switch`
+# unalias gco
+# # Use `gswc` or `git switch -c`
+# unalias gcb
 
 alias ssh-start="eval \"$(ssh-agent -s)\" && ssh-add --apple-load-keychain"
 
