@@ -154,6 +154,9 @@ export PATH="/usr/local/sbin:$PATH"
 # Add homebrew packages
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
+# Add postgres config
+export PGDATA="/usr/local/var/postgres"
+
 # Add rustup
 export PATH="$HOME/.cargo/bin:$PATH"
 
