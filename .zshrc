@@ -5,8 +5,20 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
 # See below for more PATH changes
-export PATH="$HOME/.nvm/versions/node/v8.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/usr/local/share/npm/bin/"
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
+
+# Add `brew` and homebrew support binaries
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+# Add rustup
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Add postgres config
+export PGDATA="/usr/local/var/postgres"
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -75,7 +87,6 @@ ZSH_THEME="go-cats"
 
 plugins=(
   git
-  asdf
   zsh-autosuggestions
   zsh-syntax-highlighting
   z
@@ -142,41 +153,34 @@ fi
 #     npm install --global trash-cli
 # fi
 
-# Add all local ssh keys to the ssh agent
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent -s`
-    ssh-add
-fi
+# # Add all local ssh keys to the ssh agent (SUPER SLOW!)
+# if [ -z "$SSH_AUTH_SOCK" ] ; then
+#   eval `ssh-agent -s` &> /dev/null
+#   find "$HOME/.ssh" -type f -iname "id_*" ! -iname "*.pub" | \
+#   while read line; do ssh-add $line &> /dev/null ; done
+# fi
 
-# Add homebrew support binaries
-export PATH="/usr/local/sbin:$PATH"
-
-# Add homebrew packages
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-# Add postgres config
-export PGDATA="/usr/local/var/postgres"
-
-# Add rustup
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Add nix, if installed
-if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
-
-# Add gcloud sdk, if installed
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# Enable shell completion for gcloud sdk
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-
-# Add ciq-shell command
+# Add CIQ-specific pieces
 if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
-  ciq-shell () {
-    nix-shell -E 'let src = builtins.fetchGit { name = "ciq-dev-tools"; url = "git@gitlab.ops.canceriq.com:ciq/ops/dev-tools.git"; rev = "35d9bded0bb0370ed99ef5c949dc9f407fd44d65"; ref = "refs/heads/master"; }; in with import <nixpkgs> {}; callPackage "${src}/default.nix" {}'
-  }
-fi
 
-# Add direnv (when cd'ing into a directory with a .envrc, automatically calls nix-shell)
-if command -v direnv &> /dev/null; then
-  eval "$(direnv hook zsh)"
+  # Add nix, if installed
+  if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] ; then
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+  fi
+
+  # Add direnv:
+  #  When cd'ing into a directory with a .envrc, automatically calls nix-shell
+  if command -v direnv &> /dev/null; then
+    eval "$(direnv hook zsh)"
+  fi
+
+  # Add gcloud sdk, if installed
+  if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ] ; then
+    . "$HOME/google-cloud-sdk/path.zsh.inc"
+  fi
+
+  # Enable shell completion for gcloud sdk
+  if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ] ; then
+    . "$HOME/google-cloud-sdk/completion.zsh.inc"
+  fi
 fi

@@ -50,7 +50,16 @@ alias gcb="echo 'Use \"gswc\" or \"git switch -c\" instead' && return 1"
 # # Use `gswc` or `git switch -c`
 # unalias gcb
 
-alias ssh-start="eval \"$(ssh-agent -s)\" && ssh-add --apple-load-keychain"
+# alias ssh-start="eval \"$(ssh-agent -s)\" && ssh-add --apple-load-keychain"
+function ssh-start() {
+    eval `ssh-agent -s`
+    find "$HOME/.ssh" -type f -iname "id_*" ! -iname "*.pub" | \
+    while read line; do ssh-add $line ; done
+}
+function ssh-stop() {
+    kill $(ps aux | grep 'ssh-agent' | awk '{print $2}') &> /dev/null
+    echo "all 'ssh-agent' processes killed"
+}
 
 alias be="bundle exec"
 
