@@ -184,3 +184,6 @@ if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
     . "$HOME/google-cloud-sdk/completion.zsh.inc"
   fi
 fi
+
+# Enable iterm's shell integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
