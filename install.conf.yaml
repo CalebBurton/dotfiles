@@ -13,9 +13,18 @@
     ~/.vimrc: .vimrc
     ~/.gitconfig: .gitconfig
     ~/Documents/GitHub/.gitconfig: github.gitconfig
-    ~/Documents/GitLab/.gitconfig: ciq.gitconfig
+    ~/Documents/Bitbucket/.gitconfig:
+      if: '[ -d "$HOME/Documents/Bitbucket" ]'
+      path: aledade.gitconfig
+    ~/Documents/GitLab/.gitconfig:
+      if: '[ -d "$HOME/Documents/GitLab" ]'
+      path: ciq.gitconfig
     ~/.zshrc: .zshrc
 
 - shell:
   - git submodule sync --recursive
-  - ./macos
+  -
+    command: ./macos_setup.sh
+    stdin: true
+    stdout: true
+    description: Configuring macOS settings

@@ -15,6 +15,11 @@
     [core]
         excludesfile = ~/Documents/GitHub/.gitignore
 
+[includeIf "gitdir:~/Documents/Bitbucket/"]
+    path = ~/Documents/Bitbucket/.gitconfig
+    [core]
+        excludesfile = ~/Documents/Bitbucket/.gitignore
+
 [includeIf "gitdir:~/Nextcloud/CancerIQ/GitLab/"]
     path = ~/Documents/GitLab/.gitconfig
     [core]
