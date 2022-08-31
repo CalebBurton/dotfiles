@@ -38,6 +38,7 @@
     ff = only
 
 # Avoid having to write `git push --set-upstream origin name`
-# ^ doesn't seem to work
+# (only works as of git version 2.37.0)
 [push]
     default = simple
+    autoSetupRemote = true
