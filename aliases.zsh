@@ -31,7 +31,7 @@ alias gsp="git stash pop"
 alias grim="git rebase -i --autosquash origin/master"
 alias gamend="git add -A && git commit -a --amend -C HEAD"
 alias gcom="git commit -m"
-# List gitignored files that were somehow committed
+# # List gitignored files that were somehow committed
 # git ls-files --ignored --exclude-standard
 # Delete a file and all history of it
 alias gdestroy="git rm -r"
@@ -69,6 +69,12 @@ function eod() {
     cd ~/Documents/GitHub/personal
     git add -p
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
+}
+
+# Restart the logi options daemon
+function logi-restart() {
+    kill $(ps aux | grep "[L]ogiMgrDaemon" | awk '{print $2}')
+    echo 'Logi options daemon restarted'
 }
 
 function bup() {
