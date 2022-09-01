@@ -7,23 +7,24 @@
 
 [user]
     name = Caleb Burton
+    # This will be overwritten depending on the directory
     email = ccburton4@gmail.com
 
 # Ending the directory with / means include recursivly
-[includeIf "gitdir:~/Documents/GitHub/"]
-    path = ~/Documents/GitHub/.gitconfig
+[includeIf "gitdir:~/Code/GitHub/"]
+    path = ~/Code/GitHub/.gitconfig
     [core]
-        excludesfile = ~/Documents/GitHub/.gitignore
+        excludesfile = ~/Code/GitHub/.gitignore
 
-[includeIf "gitdir:~/Documents/Bitbucket/"]
-    path = ~/Documents/Bitbucket/.gitconfig
+[includeIf "gitdir:~/Code/Bitbucket/"]
+    path = ~/Code/Bitbucket/.gitconfig
     [core]
-        excludesfile = ~/Documents/Bitbucket/.gitignore
+        excludesfile = ~/Code/Bitbucket/.gitignore
 
-[includeIf "gitdir:~/Nextcloud/CancerIQ/GitLab/"]
-    path = ~/Documents/GitLab/.gitconfig
-    [core]
-        excludesfile = ~/Documents/GitLab/.gitignore
+# [includeIf "gitdir:~/Nextcloud/CancerIQ/GitLab/"]
+#     path = ~/Documents/GitLab/.gitconfig
+#     [core]
+#         excludesfile = ~/Documents/GitLab/.gitignore
 
 [core]
     editor = code --wait

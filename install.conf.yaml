@@ -12,12 +12,14 @@
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
     ~/.gitconfig: .gitconfig
-    ~/Documents/GitHub/.gitconfig: github.gitconfig
-    ~/Documents/Bitbucket/.gitconfig:
-      if: '[ -d "$HOME/Documents/Bitbucket" ]'
+    ~/Code/GitHub/.gitconfig:
+      if: '[ -d "$HOME/Code/GitHub" ]'
+      path: github.gitconfig
+    ~/Code/Bitbucket/.gitconfig:
+      if: '[ -d "$HOME/Code/Bitbucket" ]'
       path: aledade.gitconfig
-    ~/Documents/GitLab/.gitconfig:
-      if: '[ -d "$HOME/Documents/GitLab" ]'
+    ~/Code/GitLab/.gitconfig:
+      if: '[ -d "$HOME/Code/GitLab" ]'
       path: ciq.gitconfig
     ~/.zshrc: .zshrc
 

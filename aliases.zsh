@@ -1,27 +1,25 @@
-GITLAB_DIR="$HOME/Nextcloud/CancerIQ/GitLab"
+# alias watch-agora="cd $GITLAB_DIR/umbrella/apps/agora && echo 'yarn watch' && yarn watch"
+# alias watch-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'make db_start' && make db_start && echo 'yarn watch' && yarn watch"
+# alias build-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'yarn build' && yarn build"
+# alias start-ithaca="cd $GITLAB_DIR/umbrella/apps/ithaca && echo 'yarn start' && yarn start"
+# alias start-styleguide="cd $GITLAB_DIR/umbrella/apps/styleguide && echo 'yarn start' && yarn start"
 
-alias watch-agora="cd $GITLAB_DIR/umbrella/apps/agora && echo 'yarn watch' && yarn watch"
-alias watch-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'make db_start' && make db_start && echo 'yarn watch' && yarn watch"
-alias build-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'yarn build' && yarn build"
-alias start-ithaca="cd $GITLAB_DIR/umbrella/apps/ithaca && echo 'yarn start' && yarn start"
-alias start-styleguide="cd $GITLAB_DIR/umbrella/apps/styleguide && echo 'yarn start' && yarn start"
+# alias lint-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn lint' && yarn lint"
+# alias test-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn test' && yarn test"
 
-alias lint-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn lint' && yarn lint"
-alias test-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn test' && yarn test"
+# alias start-specialist="cd $GITLAB_DIR/specialist && echo 'make server' && make server"
+# alias test-specialist="cd $GITLAB_DIR/specialist && echo 'bundle exec guard (\"rspec\" command runs all tests)' && bundle exec guard"
 
-alias start-specialist="cd $GITLAB_DIR/specialist && echo 'make server' && make server"
-alias test-specialist="cd $GITLAB_DIR/specialist && echo 'bundle exec guard (\"rspec\" command runs all tests)' && bundle exec guard"
-
-alias start-navigator="cd $GITLAB_DIR/navigator && echo 'bundle exec rails s -p 3001 (I hope specialist is running)' && bundle exec rails s -p 3001"
-alias start-papuros="cd $GITLAB_DIR/papuros && echo 'yarn start -p 3002' && yarn start -p 3002"
+# alias start-navigator="cd $GITLAB_DIR/navigator && echo 'bundle exec rails s -p 3001 (I hope specialist is running)' && bundle exec rails s -p 3001"
+# alias start-papuros="cd $GITLAB_DIR/papuros && echo 'yarn start -p 3002' && yarn start -p 3002"
 
 alias dcu="docker-compose up"
 alias dcb="docker-compose build"
 
 alias sad="say -v karen 'all done'"
 
-alias website-go="cd ~/Documents/GitHub/website-source && npm run start"
-alias website-publish="cd ~/Documents/GitHub/website-source && npm run publish"
+alias website-go="cd $GITHUB_DIR/website-source && npm run start"
+alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
 alias gpl="git pull"
 alias gps="git push"
@@ -66,7 +64,7 @@ alias be="bundle exec"
 alias update-packages="npx npm-check-updates -i"
 
 function eod() {
-    cd ~/Documents/GitHub/personal
+    cd ~/Code/GitHub/personal
     git add -p
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
@@ -74,7 +72,7 @@ function eod() {
 # Restart the logi options daemon
 function logi-restart() {
     kill $(ps aux | grep "[L]ogiMgrDaemon" | awk '{print $2}')
-    echo 'Logi options daemon restarted'
+    echo 'Logi options daemon restarting. It may take a few seconds to take effect.'
 }
 
 function bup() {
@@ -117,8 +115,8 @@ alias bucg="brew upgrade --cask --greedy"
 alias please="sudo"
 alias reload="source $HOME/.zshrc"
 
-alias zshrc="code $HOME/Documents/GitHub/dotfiles/.zshrc"
-alias aliases="code $HOME/Documents/GitHub/dotfiles/aliases.zsh"
-alias tmuxconf="code $HOME/Documents/GitHub/dotfiles/.tmux.conf"
+alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
+alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
+alias tmuxconf="code $GITHUB_DIR/dotfiles/.tmux.conf"
 
 alias python="python3"

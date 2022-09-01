@@ -19,6 +19,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Add postgres config
 export PGDATA="/usr/local/var/postgres"
 
+# Used extensively in the aliases file
+export GITHUB_DIR="$HOME/Code/GitHub"
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -123,7 +126,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $HOME/Documents/GitHub/dotfiles/aliases.zsh # Store all aliases in their own file
+source "$GITHUB_DIR/dotfiles/aliases.zsh" # Store all aliases in their own file
 
 # Allow filtering the arrow up and arrow down buttons to only match commands beginning with what is already typed
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
