@@ -141,3 +141,9 @@
     - change scaling to 1440x900 if it defaulted to higher than that
 - Spotlight
     - add git folders to "privacy" section so they are not indexed
+- Finder
+    - Set the default folder to open when Finder opens:
+
+    ```sh
+    defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+    ```

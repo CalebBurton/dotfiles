@@ -17,14 +17,18 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
+
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
 # Disable the "Are you sure you want to open this application?" dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
@@ -38,11 +42,12 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
 # Turn off swiping forward/backward in browsers
 defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool false;
+
 # Turn off force clicks
 defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool false;
-
 
 # Allow zooming with ctrl-alt
 sudo defaults write com.apple.universalaccess closeViewHotkeysEnabled -bool true
@@ -91,7 +96,6 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Set the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Documents/Bitbucket"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -101,31 +105,43 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Show hidden files by default
 defaults write com.apple.finder AppleShowAllFiles -bool true
+
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
 # Show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
+
 # Show path bar
 defaults write com.apple.finder ShowPathbar -bool true
-# Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# # Display full POSIX path as Finder window title
+# defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
 # Enable spring loading for directories
 defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
 # Remove the spring loading delay for directories
 defaults write NSGlobalDomain com.apple.springing.delay -float 0
+
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
 # Disable disk image verification
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
 # Automatically open a new Finder window when a volume is mounted
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
@@ -136,8 +152,12 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
-# Use set default view mode in all Finder windows
-# Four-letter codes for the view modes: `Nlsv`, `icnv`, `clmv`, `glyv`
+# Set default view mode in all Finder windows
+# Possible values:
+# - Nlsv (list)
+# - Icnv (icons)
+# - Clmv (column)
+# - Glyv (grid)
 defaults write com.apple.finder FXPreferredViewStyle -string "Clmv"
 
 # Expand the following File Info panes:
@@ -241,10 +261,13 @@ defaults write com.apple.spotlight orderedItems -array \
   '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
   '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
   '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
 # Load new settings before rebuilding the index
 killall mds > /dev/null 2>&1
+
 # Make sure indexing is enabled for the main volume
 sudo mdutil -i on / > /dev/null
+
 # Rebuild the index from scratch
 sudo mdutil -E / > /dev/null
 
@@ -264,6 +287,8 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 ###############################################################################
 # TextEdit                                                                    #
 ###############################################################################
+
+# These setting names are all pretty self explanatory
 defaults write com.apple.TextEdit RichText -bool false
 defaults write com.apple.TextEdit ShowRuler -bool false
 defaults write com.apple.TextEdit SmartDashes -bool false
@@ -271,6 +296,8 @@ defaults write com.apple.TextEdit SmartQuotes -bool false
 defaults write com.apple.TextEdit TextReplacement -bool false
 defaults write com.apple.TextEdit CorrectSpellingAutomatically -bool false
 defaults write com.apple.TextEdit CheckGrammarWithSpelling -bool true
+
+# Set default font & font size
 # Make sure fira code is installed first!
 defaults write com.apple.TextEdit NSFixedPitchFont -string "FiraCodeRoman-Regular"
 defaults write com.apple.TextEdit NSFixedPitchFontSize -string "14";
