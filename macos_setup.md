@@ -115,7 +115,7 @@
         ./install.sh
         cd ..
         rm -rf fonts
-        cp ~/Documents/GitHub/terminal-themes/go-cats.zsh-theme ~/.oh-my-zsh/themes/
+        cp ~/Code/GitHub/terminal-themes/go-cats.zsh-theme ~/.oh-my-zsh/themes/
         # MANUAL: import all iterm preferences from the terminal-themes directory
         brew install z
         # MANUAL: install oh-my-zsh: https://ohmyz.sh/#install
