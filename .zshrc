@@ -9,15 +9,38 @@ export ZSH="$HOME/.oh-my-zsh"
 # See below for more PATH changes
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
 
+if [[ $(uname -m) == 'arm64' ]]; then
+  export IS_M1=1
+else
+  export IS_M1=0
+fi
+
 # Add `brew` and homebrew support binaries
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH" # M1 directory
+export PATH="/usr/local/sbin:$PATH" # Intel directory
+
+# Add poetry
+if [ -e "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Add rustup
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Add postgres config
+# Python version management with pyenv
+export PYENV_ROOT="/usr/local/var/pyenv"
+if [ -e $PYENV_ROOT ]; then
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+# Add postgres
 export PGDATA="/usr/local/var/postgres"
+if [ -e $PYENV_ROOT ]; then
+  export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
+fi
 
 # Used extensively in the aliases file
 export GITHUB_DIR="$HOME/Code/GitHub"
