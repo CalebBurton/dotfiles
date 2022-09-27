@@ -1,19 +1,14 @@
-# alias watch-agora="cd $GITLAB_DIR/umbrella/apps/agora && echo 'yarn watch' && yarn watch"
-# alias watch-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'make db_start' && make db_start && echo 'yarn watch' && yarn watch"
-# alias build-arachne="cd $GITLAB_DIR/umbrella/apps/arachne && echo 'yarn build' && yarn build"
-# alias start-ithaca="cd $GITLAB_DIR/umbrella/apps/ithaca && echo 'yarn start' && yarn start"
-# alias start-styleguide="cd $GITLAB_DIR/umbrella/apps/styleguide && echo 'yarn start' && yarn start"
+BITBUCKET_DIR="$HOME/Code/Bitbucket"
+
+# alias start-outreach-b="cd $BITBUCKET_DIR/outreach && echo 'make up-dev' && make up-dev"
+# alias start-outreach-f="cd $BITBUCKET_DIR/outreach && echo 'npm run watch:fast' && npm run watch:fast"
 
 # alias lint-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn lint' && yarn lint"
 # alias test-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn test' && yarn test"
 
-# alias start-specialist="cd $GITLAB_DIR/specialist && echo 'make server' && make server"
-# alias test-specialist="cd $GITLAB_DIR/specialist && echo 'bundle exec guard (\"rspec\" command runs all tests)' && bundle exec guard"
-
-# alias start-navigator="cd $GITLAB_DIR/navigator && echo 'bundle exec rails s -p 3001 (I hope specialist is running)' && bundle exec rails s -p 3001"
-# alias start-papuros="cd $GITLAB_DIR/papuros && echo 'yarn start -p 3002' && yarn start -p 3002"
-
 alias dcu="docker-compose up"
+alias dcd="docker-compose down"
+alias dcp="docker-compose pull"
 alias dcb="docker-compose build"
 
 alias sad="say -v karen 'all done'"
@@ -35,6 +30,19 @@ alias gcom="git commit -m"
 # Delete a file and all history of it
 alias gdestroy="git rm -r"
 
+gcomt() {
+    PREF="$(getbranch | grep -oE '[aApPrRcChH]{3,4}-(\d{4,6})' | tr aprch APRCH)"
+    if [ -z $PREF ] && [[ "$PREF" == "" ]]; then
+      MSG="${1}"
+    else
+          MSG="${PREF}: ${1}"
+    fi
+    printf "
+    Committing locally with message $MSG.
+    "
+    git commit -m $MSG
+}
+
 # Overwrite oh-my-zsh versions with better defaults
 alias gst="git status -s -b"
 alias glog="glol"
@@ -42,12 +50,13 @@ alias gap="git add --patch"
 alias gdc="git diff --cached"
 alias gp="echo 'Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
-alias gco="echo 'Use \"gsw\" or \"git switch\" instead' && return 1"
-alias gcb="echo 'Use \"gswc\" or \"git switch -c\" instead' && return 1"
+
 # # Use `gsw` or `git switch`
 # unalias gco
+# alias gco="echo 'Use \"gsw\" or \"git switch\" instead' && return 1"
 # # Use `gswc` or `git switch -c`
 # unalias gcb
+# alias gcb="echo 'Use \"gswc\" or \"git switch -c\" instead' && return 1"
 
 # alias ssh-start="eval \"$(ssh-agent -s)\" && ssh-add --apple-load-keychain"
 function ssh-start() {
@@ -75,6 +84,11 @@ function logi-restart() {
     kill $(ps aux | grep "[L]ogiMgrDaemon" | awk '{print $2}')
     echo 'Logi options daemon restarting. It may take a few seconds to take effect.'
 }
+
+# # Don't use the M1 version of homebrew
+# if [[ $IS_M1 == 1 ]]; then
+#     alias brew="arch -x86_64 $HOMEBREW_PREFIX/bin/brew"
+# fi
 
 function bup() {
     ## NEW VERSION?
@@ -118,6 +132,5 @@ alias reload="source $HOME/.zshrc"
 
 alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
-alias tmuxconf="code $GITHUB_DIR/dotfiles/.tmux.conf"
 
-alias python="python3"
+alias ol='aws sso login'
