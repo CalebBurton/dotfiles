@@ -71,7 +71,7 @@ function ssh-stop() {
 
 alias be="bundle exec"
 
-alias update-packages="npx npm-check-updates -i"
+alias update-npm-packages="npx npm-check-updates -i"
 
 function eod() {
     cd ~/Code/GitHub/personal
@@ -85,22 +85,14 @@ function logi-restart() {
     echo 'Logi options daemon restarting. It may take a few seconds to take effect.'
 }
 
-# # Don't use the M1 version of homebrew
-# if [[ $IS_M1 == 1 ]]; then
-#     alias brew="arch -x86_64 $HOMEBREW_PREFIX/bin/brew"
-# fi
+# Allow using the intel version of homebrew, even on M1 hardware
+if [[ $IS_M1 == 1 ]]; then
+    alias ibrew='arch -x86_64 /usr/local/bin/brew'
+    alias mbrew='arch -arm64e /opt/homebrew/bin/brew'
+    # alias brew=ibrew
+fi
 
 function bup() {
-    ## NEW VERSION?
-    #
-    # echo 'Deep fetching the cask repository...\n'
-    # git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask" fetch --unshallow
-    # echo 'Fetched. Updating homebrew...'
-    # brew update
-    # echo 'Updated. Listing outdated casks:\n'
-    #
-    ## OLD VERSION
-    #
     echo "Updating homebrew...\n"
     brew update
     echo ""

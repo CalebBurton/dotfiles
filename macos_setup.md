@@ -5,13 +5,23 @@
     - or try to use a command like `git --version` and it will prompt you
 
 - Install homebrew
-    <!-- iterm2 - better to do this one manually -->
-    <!-- firefox - better to do browsers manually -->
-    <!-- google-chrome -->
-    <!-- homebrew/cask-versions/firefox-developer-edition -->
-    <!-- homebrew/cask-versions/google-chrome-canary -->
-    <!-- microsoft-edge -->
-    <!-- spotify (updates itself too often, better to do manually) -->
+    - If on an M1, also install the intel version:
+
+        ```sh
+        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        ```
+    <!--
+        These ones are better to install manually:
+            - iterm2
+            - visual-studio-code (make sure to use the arm64 version if needed)
+            - browsers
+                - firefox
+                - google-chrome
+                - homebrew/cask-versions/firefox-developer-edition
+                - homebrew/cask-versions/google-chrome-canary
+                - microsoft-edge
+            - spotify
+    -->
     - slack
     - github
     - keepingyouawake
@@ -25,7 +35,6 @@
         - License key: GAWAE-FA5KK-QSYVR-NGZQ5-8G4FH-DMKDQ-LB7VC-26BQC-CRPCQ-NJ579-F8E5K-3JBM6-NED3C-GRKE9-9BYU
         - Format: %p% (%r)
         - Chart icon: Right
-    - visual-studio-code
     - shellcheck
     - dbeaver-community
         - required prerequisite cask: adoptopenjdk (can be fiddly...)
