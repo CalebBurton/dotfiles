@@ -19,7 +19,7 @@ alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 alias gpl="git pull"
 alias gps="git push"
 alias gpsh="git push"
-alias gs="git stash --all"
+alias gs="git stash"
 alias gsp="git stash pop"
 alias gri="git rebase -i"
 alias grim="git rebase -i --autosquash origin/$(git_main_branch)"
@@ -30,6 +30,7 @@ alias gcom="git commit -m"
 # Delete a file and all history of it
 alias gdestroy="git rm -r"
 
+alias getbranch="git rev-parse --abbrev-ref HEAD"
 gcomt() {
     PREF="$(getbranch | grep -oE '[aApPrRcChH]{3,4}-(\d{4,6})' | tr aprch APRCH)"
     if [ -z $PREF ] && [[ "$PREF" == "" ]]; then
@@ -38,7 +39,7 @@ gcomt() {
           MSG="${PREF}: ${1}"
     fi
     printf "
-    Committing locally with message $MSG.
+    Committing locally with message \`\`$MSG\`\`\n
     "
     git commit -m $MSG
 }
