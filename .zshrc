@@ -16,8 +16,11 @@ else
 fi
 
 # Add `brew` and homebrew support binaries
-export PATH="/opt/homebrew/bin:$PATH" # M1 directory
-export PATH="/usr/local/sbin:$PATH" # Intel directory
+if [[ $IS_M1 == 1 ]]; then
+  export PATH="/opt/homebrew/bin:$PATH" # M1 directory
+else
+  export PATH="/usr/local/sbin:$PATH" # Intel directory
+fi
 
 # Add poetry
 if [ -e "$HOME/.local/bin" ]; then
@@ -38,7 +41,7 @@ fi
 
 # Add postgres
 export PGDATA="/usr/local/var/postgres"
-if [ -e $PYENV_ROOT ]; then
+if [ -e $PGDATA ]; then
   export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
 fi
 
