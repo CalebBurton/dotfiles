@@ -126,6 +126,7 @@
         rm -rf fonts
         cp ~/Code/GitHub/terminal-themes/go-cats.zsh-theme ~/.oh-my-zsh/themes/
         # MANUAL: import all iterm preferences from the terminal-themes directory
+        # MANUAL: System Preferences > Keyboard > Shortcuts > Services, check "New iTerm2 Tab Here" and "New iTerm2 Window Here"
         brew install z
         # MANUAL: install oh-my-zsh: https://ohmyz.sh/#install
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
