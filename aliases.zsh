@@ -16,13 +16,18 @@ alias sad="say -v karen 'all done'"
 alias website-go="cd $GITHUB_DIR/website-source && npm run start"
 alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
+alias gitdefault="git rev-parse --abbrev-ref origin/HEAD | cut -c8-"
+alias gitcurrent="git rev-parse --abbrev-ref HEAD"
+
 alias gpl="git pull"
 alias gps="git push"
 alias gpsh="git push"
 alias gs="git stash"
 alias gsp="git stash pop"
 alias gri="git rebase -i"
-alias grim="git rebase -i --autosquash origin/$(git_main_branch)"
+alias grd="git rebase origin/$(gitdefault)"
+alias grid="git rebase -i --autosquash origin/$(gitdefault)"
+alias grim="echo 'Renamed to \`grid\`' && grid"
 alias gamend="git add -A && git commit -a --amend -C HEAD"
 alias gcom="git commit -m"
 # # List gitignored files that were somehow committed
@@ -30,9 +35,8 @@ alias gcom="git commit -m"
 # Delete a file and all history of it
 alias gdestroy="git rm -r"
 
-alias getbranch="git rev-parse --abbrev-ref HEAD"
 gcomt() {
-    PREF="$(getbranch | grep -oE '[aApPrRcChH]{3,4}-(\d{4,6})' | tr aprch APRCH)"
+    PREF="$(gitcurrent | grep -oE '[aApPrRcChH]{3,4}-(\d{4,6})' | tr aprch APRCH)"
     if [ -z $PREF ] && [[ "$PREF" == "" ]]; then
       MSG="${1}"
     else
