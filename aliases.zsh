@@ -18,6 +18,7 @@ alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
 alias gitdefault="git rev-parse --abbrev-ref origin/HEAD | cut -c8-"
 alias gitcurrent="git rev-parse --abbrev-ref HEAD"
+alias feature_branch_url='echo "https://app-$(gitcurrent | cut -c1-32).aledade.com"'
 
 alias gpl="git pull"
 alias gps="git push"
