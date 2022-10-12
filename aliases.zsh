@@ -128,7 +128,7 @@ alias buc="brew upgrade --cask"
 alias bucg="brew upgrade --cask --greedy"
 
 alias please="sudo"
-alias reload="source $HOME/.zshrc"
+alias reload="exec zsh"
 
 alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"

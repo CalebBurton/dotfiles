@@ -36,7 +36,9 @@ if [ -e $PYENV_ROOT ]; then
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+  # Slows down startup considerably, and isn't strictly necessary. Without it
+  # you have to use `pyenv shell env_name` instead of `pyenv activate env_name`
+  # eval "$(pyenv virtualenv-init -)"
 fi
 
 # Add postgres
@@ -164,14 +166,17 @@ bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
 bindkey '^[OB'  down-line-or-beginning-search
 
 # Add NVM
+# By default this is extremely slow. A workaround was copied from GitHub here:
+# https://github.com/nvm-sh/nvm/issues/539#issuecomment-245791291
+# The `--no-use` flag makes it load asynchronously.
+#
+# There's another option that uses the `zsh-async` library, but it seems like
+# overkill: https://github.com/nvm-sh/nvm/issues/539#issuecomment-403661578
+#
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Move next only if `homebrew` is installed
-if command -v brew >/dev/null 2>&1; then
-  # Load rupa's z if installed
-  [ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
-fi
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+alias node='unalias node ; unalias npm ; nvm use default ; node $@'
+alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
 # # Install the "trash-cli" npm package to make "rm" safer
 # TRASH_CLI=$(command -v trash)
