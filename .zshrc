@@ -49,6 +49,7 @@ fi
 
 # Used extensively in the aliases file
 export GITHUB_DIR="$HOME/Code/GitHub"
+export BITBUCKET_DIR="$HOME/Code/Bitbucket"
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -194,29 +195,34 @@ alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 #   while read line; do ssh-add $line &> /dev/null ; done
 # fi
 
-# Add CIQ-specific pieces
-if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
+# # Add CIQ-specific pieces
+# if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
 
-  # Add nix, if installed
-  if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] ; then
-    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-  fi
+#   # Add nix, if installed
+#   if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] ; then
+#     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+#   fi
 
-  # Add direnv:
-  #  When cd'ing into a directory with a .envrc, automatically calls nix-shell
-  if command -v direnv &> /dev/null; then
-    eval "$(direnv hook zsh)"
-  fi
+#   # Add direnv:
+#   #  When cd'ing into a directory with a .envrc, automatically calls nix-shell
+#   if command -v direnv &> /dev/null; then
+#     eval "$(direnv hook zsh)"
+#   fi
 
-  # Add gcloud sdk, if installed
-  if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ] ; then
-    . "$HOME/google-cloud-sdk/path.zsh.inc"
-  fi
+#   # Add gcloud sdk, if installed
+#   if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ] ; then
+#     . "$HOME/google-cloud-sdk/path.zsh.inc"
+#   fi
 
-  # Enable shell completion for gcloud sdk
-  if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ] ; then
-    . "$HOME/google-cloud-sdk/completion.zsh.inc"
-  fi
+#   # Enable shell completion for gcloud sdk
+#   if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ] ; then
+#     . "$HOME/google-cloud-sdk/completion.zsh.inc"
+#   fi
+# fi
+
+# Add Aledade-specific config
+if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+  #
 fi
 
 # Enable iterm's shell integration

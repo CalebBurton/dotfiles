@@ -1,5 +1,3 @@
-BITBUCKET_DIR="$HOME/Code/Bitbucket"
-
 # alias start-outreach-b="cd $BITBUCKET_DIR/outreach && echo 'make up-dev' && make up-dev"
 # alias start-outreach-f="cd $BITBUCKET_DIR/outreach && echo 'npm run watch:fast' && npm run watch:fast"
 
@@ -88,6 +86,30 @@ function eod() {
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
 
+function login_to_bitwarden() {
+    if [ -z "$BW_SESSION" ]; then
+        echo 'Logging in...'
+        login_msg=$(
+            BW_CLIENTID=$(security find-generic-password -a bitwarden_api_client_id -w) \
+                BW_CLIENTSECRET=$(security find-generic-password -a bitwarden_api_client_secret -w) \
+                bw login --apikey && \
+                unset BW_CLIENTID && \
+                unset BW_CLIENTSECRET
+        )
+        echo 'Successfully logged in'
+
+        echo 'Unlocking vault...'
+        success_msg=$(
+            BW_PASSWORD=$(security find-generic-password -a bitwarden_api_password -w) \
+                bw unlock --passwordenv BW_PASSWORD && unset BW_PASSWORD
+        )
+        export BW_SESSION=$(echo $success_msg | grep -o -m 1 '".*"' | tr -d '"')
+        echo 'Successfully unlocked vault'
+    else
+        echo '(already logged in)'
+    fi
+}
+
 # Restart the logi options daemon
 function logi-restart() {
     kill $(ps aux | grep "[L]ogiMgrDaemon" | awk '{print $2}')
@@ -134,4 +156,46 @@ alias reload="exec zsh"
 alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 
-alias ol='aws sso login'
+# Add Aledade-specific aliases
+if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+    alias ol='aws sso login'
+
+    function set_dbt_vars() {
+        if [ -z "$BW_SESSION" ]; then
+            login_to_bitwarden
+        fi
+        echo 'Setting dbt vars'
+        export DBT_PROFILES_DIR="$BITBUCKET_DIR/dbt"
+
+        # I don't have these yet. Submit a devops ticket if I need them.
+        export DBT_SNOWFLAKE_USER='cburton'
+        export DBT_SNOWFLAKE_PASSWORD=$(bw get password "[Aledade] db-dev password")
+        export DBT_SNOWFLAKE_DB='ARCHIVE'
+
+        # defaults to DATAVELOCITY but DEV is better for engineers
+        export DBT_ROLE='DEV'
+
+        export DBT_POSTGRES_USER='cburton'
+        export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
+
+        # Just use the defaults for these
+        # export DBT_SNOWFLAKE_WAREHOUSE='wh_datavelocity'
+        # export DBT_SCHEMA='public'
+        # export DBT_PORT='5432'
+
+        echo 'Successfully set dbt vars'
+        bw lock
+    }
+
+    function set_db_vars() {
+        if [ -z "$BW_SESSION" ]; then
+            login_to_bitwarden
+        fi
+        echo 'Setting db vars'
+        export DB_USER='cburton'
+        export DB_PASSWORD=$(bw get password "[Aledade] db-dev password")
+        echo 'Successfully set db vars'
+        bw lock
+    }
+fi
+
