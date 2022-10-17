@@ -1,3 +1,9 @@
+# Put these first so they're still available even if there's a syntax error in
+# one of the other aliases or functions
+alias reload="exec zsh"
+alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
+alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
+
 # alias start-outreach-b="cd $BITBUCKET_DIR/outreach && echo 'make up-dev' && make up-dev"
 # alias start-outreach-f="cd $BITBUCKET_DIR/outreach && echo 'npm run watch:fast' && npm run watch:fast"
 
@@ -86,8 +92,30 @@ function eod() {
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
 
+function get_bw_status() {
+    echo $(bw status | jq .status | cut -d '"' -f2)
+}
+
+function unlock_bitwarden() {
+    if get_bw_status | grep "^locked$" ;then
+        echo 'Unlocking vault...'
+        success_msg=$(
+            BW_PASSWORD=$(security find-generic-password -a bitwarden_api_password -w) \
+                bw unlock --passwordenv BW_PASSWORD && unset BW_PASSWORD
+        )
+        export BW_SESSION=$(echo $success_msg | grep -o -m 1 '".*"' | tr -d '"')
+        echo 'Successfully unlocked vault'
+    else
+        echo "(vault cannot be unlocked. \`get_bw_status\` returns \"$(get_bw_status)\")"
+    fi
+}
+
 function login_to_bitwarden() {
-    if [ -z "$BW_SESSION" ]; then
+    if get_bw_status | grep "^unlocked$" ;then
+        echo '(already logged in)'
+    elif get_bw_status | grep "^locked$" ;then
+        unlock_bitwarden
+    elif get_bw_status | grep "^unauthenticated$" ;then
         echo 'Logging in...'
         login_msg=$(
             BW_CLIENTID=$(security find-generic-password -a bitwarden_api_client_id -w) \
@@ -97,16 +125,10 @@ function login_to_bitwarden() {
                 unset BW_CLIENTSECRET
         )
         echo 'Successfully logged in'
-
-        echo 'Unlocking vault...'
-        success_msg=$(
-            BW_PASSWORD=$(security find-generic-password -a bitwarden_api_password -w) \
-                bw unlock --passwordenv BW_PASSWORD && unset BW_PASSWORD
-        )
-        export BW_SESSION=$(echo $success_msg | grep -o -m 1 '".*"' | tr -d '"')
-        echo 'Successfully unlocked vault'
+        unlock_bitwarden
     else
-        echo '(already logged in)'
+        echo "Unrecognized status. \`get_bw_status\` returns: $(get_bw_status)"
+        return 1
     fi
 }
 
@@ -151,17 +173,13 @@ alias buc="brew upgrade --cask"
 alias bucg="brew upgrade --cask --greedy"
 
 alias please="sudo"
-alias reload="exec zsh"
-
-alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
-alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 
 # Add Aledade-specific aliases
 if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
 
     function set_dbt_vars() {
-        if [ -z "$BW_SESSION" ]; then
+        if ! (get_bw_status | grep "^unlocked$") ;then
             login_to_bitwarden
         fi
         echo 'Setting dbt vars'
@@ -188,7 +206,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     }
 
     function set_db_vars() {
-        if [ -z "$BW_SESSION" ]; then
+        if ! (get_bw_status | grep "^unlocked$") ;then
             login_to_bitwarden
         fi
         echo 'Setting db vars'
