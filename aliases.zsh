@@ -4,11 +4,15 @@ alias reload="exec zsh"
 alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 
-# alias start-outreach-b="cd $BITBUCKET_DIR/outreach && echo 'make up-dev' && make up-dev"
-# alias start-outreach-f="cd $BITBUCKET_DIR/outreach && echo 'npm run watch:fast' && npm run watch:fast"
+alias test-outreach-f="cd $BITBUCKET_DIR/outreach \
+    && echo 'npm run test:unit:fast aledade/static/js/...'"
+alias test-outreach-b="cd $BITBUCKET_DIR/outreach \
+    && echo 'make only=api/test_api_core.py::ApiCoreTests python-test'"
+alias start-outreach-b="cd $BITBUCKET_DIR/outreach && echo 'make up-dev'"
+alias start-outreach-f="cd $BITBUCKET_DIR/outreach && echo 'npm run watch:fast'"
 
-# alias lint-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn lint' && yarn lint"
-# alias test-umbrella="cd $GITLAB_DIR/umbrella && echo 'yarn test' && yarn test"
+alias start-dbt="cd $BITBUCKET_DIR/dbt \
+    && echo 'make ozy-dev (run \`set_dbt_vars\` if needed)'"
 
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
