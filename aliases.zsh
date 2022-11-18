@@ -18,6 +18,7 @@ alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 alias dcp="docker-compose pull"
 alias dcb="docker-compose build"
+alias dsp="docker system prune --force"
 
 alias sad="say -v karen 'all done'"
 
@@ -81,6 +82,7 @@ function ssh-start() {
     find "$HOME/.ssh" -type f -iname "id_*" ! -iname "*.pub" | \
     while read line; do ssh-add $line ; done
 }
+alias ss="ssh-start"
 function ssh-stop() {
     kill $(ps aux | grep 'ssh-agent' | awk '{print $2}') &> /dev/null
     echo "all 'ssh-agent' processes killed"
