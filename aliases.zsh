@@ -49,6 +49,7 @@ alias gpsh="git push"
 alias gs="git stash"
 alias gsp="git stash pop"
 alias gri="git rebase -i"
+alias grc="git rebase --continue"
 alias gamend="git add -A && git commit -a --amend -C HEAD"
 alias gcom="git commit -m"
 # # List gitignored files that were somehow committed
@@ -60,6 +61,23 @@ alias gdestroy="git rm -r"
 alias grd='git rebase origin/$(gitdefault)'
 alias grid='git rebase -i --autosquash origin/$(gitdefault)'
 alias grim="echo 'Renamed to \`grid\`' && grid"
+
+# overwrite a `git restore` alias with my `git reset` function
+unalias grst
+function grst() {
+    while true; do
+        echo -n "Reset current branch to remote origin version? [Y/n]: "
+        read yn
+        case $yn in
+            [Nn]* ) break;;
+            * ) echo "" && git fetch && git reset --hard origin/$(gitcurrent);;
+        esac
+        yn=""
+        break;
+    done
+    echo ""
+    return 0;
+}
 
 gcomt() {
     echo 'test'
