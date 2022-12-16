@@ -25,8 +25,8 @@ alias start-event-cli-step-1="cd $BITBUCKET_DIR/ingestion-biz-logic \
         && set_db_vars"
 alias start-event-cli-step-2="cd $BITBUCKET_DIR/ingestion-biz-logic \
     && echo '  Run \`start-event-cli-step-1\` first, then paste & modify the following:' \
-    && echo '  (start the command with a space so it is not saved to history)' \
-    && echo '    DB_URL=postgresql://cburton:\$(echo \$DB_PASSWORD)@db-dev.aledade.com:5432/aledade poetry run event-cli -i ../toil/ARCH-XXXXX/ARCH-XXXXX.jsonl -d'"
+    && echo '  (if you start the command with a space it is not saved to history)' \
+    && echo '    DB_URL=postgresql://cburton:\$(echo \$DB_PASSWORD)@db-dev.aledade.com:5432/aledade poetry run event-cli -i ../toil/ARCH-X/ARCH-X.jsonl -d'"
 
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
