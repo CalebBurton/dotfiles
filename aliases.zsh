@@ -83,9 +83,9 @@ gcomt() {
     echo 'test'
     PREF="$(gitcurrent | grep -oE '[aApPrRcChH]{3,4}-(\d{4,6})' | tr aprch APRCH)"
     if [ -z $PREF ] && [[ "$PREF" == "" ]]; then
-      MSG="${1}"
+        MSG="${1}"
     else
-          MSG="${PREF}: ${1}"
+        MSG="${PREF}: ${1}"
     fi
     printf "
     Committing locally with message \`\`$MSG\`\`\n
@@ -123,6 +123,17 @@ function ssh-stop() {
 alias be="bundle exec"
 
 alias update-npm-packages="npx npm-check-updates -i"
+
+# https://www.stefanjudis.com/snippets/a-native-shell-alternative-to-the-trash-cli/
+function trash() {
+  echo "🗑️  Moving files to trash..."
+
+  for var in "$@"
+  do
+    mv "$var" "$HOME/.trash"
+    echo "Deleted $var"
+  done
+}
 
 function eod() {
     cd ~/Code/GitHub/personal
