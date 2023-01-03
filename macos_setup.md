@@ -26,13 +26,12 @@
     - github
     - keepingyouawake
     - jumpcut
+        - open the macOS system preferences and set this to launch at startup
     - signal
     - bartender
-        - License Name: Caleb Burton
-        - License Key: GAWQE-F9ASZ-X8PWH-8BEC9-NZ5J8-R8DJ8-AHDU7-RQWL6-A9KH2-CXEJS-BVCRW-QY9RN-WG5XR-534KT-HTA6M-A
+        - search bitwarden for "Bartender License" for license info
     - coconutbattery
-        - License email: ccburton4@gmail.com
-        - License key: GAWAE-FA5KK-QSYVR-NGZQ5-8G4FH-DMKDQ-LB7VC-26BQC-CRPCQ-NJ579-F8E5K-3JBM6-NED3C-GRKE9-9BYU
+        - search bitwarden for "CoconutBattery License" for license info
         - Format: %p% (%r)
         - Chart icon: Right
     - shellcheck
@@ -73,16 +72,15 @@
     - flux
 
 - Install non-homebrew apps
-    actual
-    logi options? might be in homebrew
+    - actual
+    - logi options? might be in homebrew
 
 - Install global npm packages
-    <!-- cypress (https://docs.cypress.io/guides/getting-started/installing-cypress.html) -->
-    <!-- trash-cli (https://github.com/sindresorhus/trash-cli) -->
+    - N/A
 
 - Install mac app store apps
-    imovie
-    xcode
+    - imovie
+    - xcode
 
 - Upgrade `git` instead of using the old built in macOS version
 
@@ -96,7 +94,7 @@
     ```sh
     brew install --cask stretchly
     rm -rf ~/Library/Application\ Support/Stretchly/config.json
-    ln -sf ~/Nextcloud/Settings\ Backups/stretchly.json ~/Library/Application\ Support/Stretchly/config.json
+    ln -sf ~/Nextcloud/Backups\ and\ Archives/stretchly.json ~/Library/Application\ Support/Stretchly/config.json
     ```
 
 - Install & configure day-o
@@ -104,7 +102,7 @@
     ```sh
     brew install --cask day-o
     rm -rf ~/Library/Preferences/com.shauninman.Day-O.plist
-    ln -sf ~/Nextcloud/Settings\ Backups/com.shauninman.Day-O.plist ~/Library/Preferences/com.shauninman.Day-O.plist
+    ln -sf ~/Nextcloud/Backups\ and\ Archives/com.shauninman.Day-O.plist ~/Library/Preferences/com.shauninman.Day-O.plist
     ```
 
 - Install fonts
@@ -139,7 +137,7 @@
     - Allow using touchID for `sudo`: https://it.digitaino.com/use-touchid-to-authenticate-sudo-on-macos/
 
 - Link vscode dictionary
-    - `ln -sf ~/Nextcloud/Settings\ Backups/vscode/spellright.dict ~/Library/Application\ Support/Code/User/spellright.dict`
+    - `ln -sf ~/Nextcloud/Backups\ and\ Archives/vscode/spellright.dict ~/Library/Application\ Support/Code/User/spellright.dict`
 
 ## macOS Settings
 
