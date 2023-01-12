@@ -155,3 +155,37 @@
     ```sh
     defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
     ```
+
+## Additional Notes
+
+- <https://github.com/Homebrew/homebrew-bundle>
+- Show the "allow apps from anywhere" setting: `sudo spctl --master-disable`
+    - Turn off the "app downloaded from the internet" warning: `defaults write com.apple.LaunchServices LSQuarantine -bool NO`
+- Change default screenshot location: `defaults write com.apple.screencapture location $HOME/Documents/Screenshots` (follow up with `killall SystemUIServer` to refresh)
+- Show hidden files: `defaults write com.apple.finder AppleShowAllFiles YES` (relaunch finder to see change: Alt+RightClick on finder dock icon, click "relaunch")
+- Allow vim key repeat in VSCode: `defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false`
+
+<!--
+- Remove all default dock items: `defaults delete com.apple.dock persistent-apps` (follow it up with `killall dock` to refresh)
+- Show file extensions: `defaults write NSGlobalDomain AppleShowAllExtensions -bool true` (follow it up with `killall Finder` to refresh)
+- Set textedit to plain text: `defaults write com.apple.TextEdit RichText -int 0`
+- Freeze virtual desktop locations instead of reordering based on use: `defaults write com.apple.dock mru-spaces -bool false`
+- Turn off 2-finger swipe between browser pages: `defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE`
+- Add message to login screen: `sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Your Message"`
+- Expand the save/print dialogs:
+    ```bash
+    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+    defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+    defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+    ```
+-->
+
+- Turn off startup chime on pre-2017 devices:
+    - `sudo nvram SystemAudioVolume=%80` or `sudo nvram SystemAudioVolume=%01` or `sudo nvram SystemAudioVolume=%00` or `sudo nvram SystemAudioVolume=" "`
+- Add "Copy Path" to right click menu: <http://osxdaily.com/2013/06/19/copy-file-folder-path-mac-os-x/> (**Services** have been renamed to **Quick Actions**)
+- Add some [quick look plugins](https://github.com/sindresorhus/quick-look-plugins)
+    - `brew install --cask qlcolorcode` (add code syntax coloring)
+    - `brew install --cask qlstephen` (text files with no extension)
+    - `brew install --cask qlmarkdown` (markdown files)
+    - `brew install --cask quicklook-json` (json files)
