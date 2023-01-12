@@ -32,7 +32,7 @@ alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 alias dcp="docker-compose pull"
 alias dcb="docker-compose build"
-alias dsp="docker system prune --force"
+alias dsp="docker system prune --volumes --force"
 
 alias sad="say -v karen 'all done'"
 
@@ -58,6 +58,7 @@ alias gcom="git commit -m"
 alias gdestroy="git rm -r"
 
 # Single quotes are so the $(...) isn't evaluated until runtime
+alias gcd='git checkout $(gitdefault)'
 alias grd='git rebase origin/$(gitdefault)'
 alias grid='git rebase -i --autosquash origin/$(gitdefault)'
 alias grim="echo 'Renamed to \`grid\`' && grid"
