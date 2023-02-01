@@ -16,15 +16,10 @@
     [core]
         excludesfile = ~/Code/GitHub/.gitignore
 
-[includeIf "gitdir:~/Code/Bitbucket/"]
-    path = ~/Code/Bitbucket/.gitconfig
+[includeIf "gitdir:~/Code/Gitlab/"]
+    path = ~/Code/Gitlab/.gitconfig
     [core]
-        excludesfile = ~/Code/Bitbucket/.gitignore
-
-# [includeIf "gitdir:~/Nextcloud/CancerIQ/GitLab/"]
-#     path = ~/Documents/GitLab/.gitconfig
-#     [core]
-#         excludesfile = ~/Documents/GitLab/.gitignore
+        excludesfile = ~/Code/Gitlab/.gitignore
 
 [core]
     editor = code --wait

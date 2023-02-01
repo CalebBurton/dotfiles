@@ -94,6 +94,27 @@ gcomt() {
     git commit -m $MSG
 }
 
+migrate-to-gitlab() {
+    REPO="$(basename "$(git rev-parse --show-toplevel)")"
+    CURRENT_REMOTE="$(git remote get-url --push origin)"
+    NEW_REMOTE="git@gitlab.aledade.com:aledade/$REPO.git"
+    while true; do
+        echo -n "Change current remote origin '$CURRENT_REMOTE' to new remote origin '$NEW_REMOTE'? [Y/n]: "
+        read -r yn
+        case $yn in
+            [Nn]* ) echo "Cancelled" && break;;
+            * ) echo "" \
+                && git remote set-url origin "$NEW_REMOTE" \
+                && echo "Remote origin set" \
+                && git remote get-url --push origin
+        esac
+        yn=""
+        break;
+    done
+    echo ""
+    return 0;
+}
+
 # Overwrite oh-my-zsh versions with better defaults
 alias gst="git status -s -b"
 alias glog="glol"

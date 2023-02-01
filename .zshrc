@@ -1,8 +1,5 @@
 # Symlink this into the home directory: `ln -sf /path/to/this/file ~/.zshrc`
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -166,6 +163,12 @@ bindkey '^[OA'  up-line-or-beginning-search
 bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
 bindkey '^[OB'  down-line-or-beginning-search
 
+# Use `vi` key bindings. Make sure this is near the bottom of the config.
+bindkey -v # (in bash this would be `set -o vi`)
+# avoid the annoying backspace/delete issue
+# where backspace stops deleting characters
+bindkey -v '^?' backward-delete-char
+
 # Add NVM
 # By default this is extremely slow. A workaround was copied from GitHub here:
 # https://github.com/nvm-sh/nvm/issues/539#issuecomment-245791291
@@ -178,22 +181,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
-
-# # Install the "trash-cli" npm package to make "rm" safer
-# TRASH_CLI=$(command -v trash)
-# if ! [ -x "$TRASH_CLI" ]; then
-#     echo "Trash-CLI npm package not found. Installing globally..." >&2
-#     # If this fails, try fixing the global npm permissions with
-#     # `sudo chown -R $USER /usr/local/lib/node_modules`
-#     npm install --global trash-cli
-# fi
-
-# # Add all local ssh keys to the ssh agent (SUPER SLOW!)
-# if [ -z "$SSH_AUTH_SOCK" ] ; then
-#   eval `ssh-agent -s` &> /dev/null
-#   find "$HOME/.ssh" -type f -iname "id_*" ! -iname "*.pub" | \
-#   while read line; do ssh-add $line &> /dev/null ; done
-# fi
 
 # # Add CIQ-specific pieces
 # if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then

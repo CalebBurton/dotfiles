@@ -18,9 +18,9 @@
     ~/Code/Bitbucket/.gitconfig:
       if: '[ -d "$HOME/Code/Bitbucket" ]'
       path: aledade.gitconfig
-    ~/Code/GitLab/.gitconfig:
+    ~/Code/Gitlab/.gitconfig:
       if: '[ -d "$HOME/Code/GitLab" ]'
-      path: ciq.gitconfig
+      path: aledade.gitconfig
     ~/.zshrc: .zshrc
 
 - shell:
