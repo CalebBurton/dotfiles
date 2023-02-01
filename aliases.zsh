@@ -51,6 +51,7 @@ alias gsp="git stash pop"
 alias gri="git rebase -i"
 alias grc="git rebase --continue"
 alias gamend="git add -A && git commit -a --amend -C HEAD"
+alias gamend-staged="git commit --amend -C HEAD"
 alias gcom="git commit -m"
 # # List gitignored files that were somehow committed
 # git ls-files --ignored --exclude-standard
@@ -136,7 +137,8 @@ function ssh-start() {
     find "$HOME/.ssh" -type f -iname "id_*" ! -iname "*.pub" | \
     while read line; do ssh-add $line ; done
 }
-alias ss="ssh-start"
+# Hacking this together... zsh is annoying about shell expansion https://superuser.com/a/1731518
+alias ss='ssh-start && echo "${(z)history[(r)*]}" && "${(z)history[(r)*]}"'
 function ssh-stop() {
     kill $(ps aux | grep 'ssh-agent' | awk '{print $2}') &> /dev/null
     echo "all 'ssh-agent' processes killed"
