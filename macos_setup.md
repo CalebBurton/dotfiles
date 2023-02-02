@@ -27,6 +27,7 @@
     - keepingyouawake
     - jumpcut
         - open the macOS system preferences and set this to launch at startup
+    - background-music (doesn't work with bluetooth, but nice to have anyway)
     - signal
     - bartender
         - search bitwarden for "Bartender License" for license info
