@@ -4,17 +4,17 @@ alias reload="exec zsh"
 alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 
-alias test-outreach-f="cd $BITBUCKET_DIR/outreach \
+alias test-outreach-f="cd $GITLAB_DIR/outreach \
     && echo 'npm run test:unit:fast aledade/static/js/...'"
-alias test-outreach-b="cd $BITBUCKET_DIR/outreach \
+alias test-outreach-b="cd $GITLAB_DIR/outreach \
     && echo 'make only=api/test_api_core.py::ApiCoreTests python-test'"
-alias start-outreach-b="cd $BITBUCKET_DIR/outreach && echo 'make up-dev'"
-alias start-outreach-f="cd $BITBUCKET_DIR/outreach && echo 'npm run watch:fast'"
+alias start-outreach-b="cd $GITLAB_DIR/outreach && echo 'make up-dev'"
+alias start-outreach-f="cd $GITLAB_DIR/outreach && echo 'npm run watch:fast'"
 
-alias start-dbt="cd $BITBUCKET_DIR/dbt \
+alias start-dbt="cd $GITLAB_DIR/dbt \
     && echo 'make ozy-dev (run \`set_dbt_vars\` if needed)'"
 
-alias start-event-cli-step-1="cd $BITBUCKET_DIR/ingestion-biz-logic \
+alias start-event-cli-step-1="cd $GITLAB_DIR/ingestion-biz-logic \
     && echo '  git checkout develop \' \
     && echo '  && poetry env use 3.8 \' \
     && echo '  && poetry install \' \
@@ -23,7 +23,7 @@ alias start-event-cli-step-1="cd $BITBUCKET_DIR/ingestion-biz-logic \
         && poetry env use 3.8 \
         && poetry install \
         && set_db_vars"
-alias start-event-cli-step-2="cd $BITBUCKET_DIR/ingestion-biz-logic \
+alias start-event-cli-step-2="cd $GITLAB_DIR/ingestion-biz-logic \
     && echo '  Run \`start-event-cli-step-1\` first, then paste & modify the following:' \
     && echo '  (if you start the command with a space it is not saved to history)' \
     && echo '    DB_URL=postgresql://cburton:\$(echo \$DB_PASSWORD)@db-dev.aledade.com:5432/aledade poetry run event-cli -i ../toil/ARCH-X/ARCH-X.jsonl -d'"
@@ -256,7 +256,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
             login_to_bitwarden
         fi
         echo 'Setting dbt vars'
-        export DBT_PROFILES_DIR="$BITBUCKET_DIR/dbt"
+        export DBT_PROFILES_DIR="$GITLAB_DIR/dbt"
 
         # I don't have these yet. Submit a devops ticket if I need them.
         export DBT_SNOWFLAKE_USER='cburton'

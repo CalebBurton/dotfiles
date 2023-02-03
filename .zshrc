@@ -46,7 +46,7 @@ fi
 
 # Used extensively in the aliases file
 export GITHUB_DIR="$HOME/Code/GitHub"
-export BITBUCKET_DIR="$HOME/Code/Bitbucket"
+export GITLAB_DIR="$HOME/Code/Gitlab"
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
