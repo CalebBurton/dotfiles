@@ -39,6 +39,8 @@ alias sad="say -v karen 'all done'"
 alias website-go="cd $GITHUB_DIR/website-source && npm run start"
 alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
+# omz already includes $git_main_branch and $git_develop_branch
+# https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index
 alias gitdefault="git rev-parse --abbrev-ref origin/HEAD | cut -c8-"
 alias gitcurrent="git rev-parse --abbrev-ref HEAD"
 alias feature_branch_url='echo "https://app-$(gitcurrent | cut -c1-32).aledade.com"'
@@ -51,7 +53,7 @@ alias gsp="git stash pop"
 alias gri="git rebase -i"
 alias grc="git rebase --continue"
 alias gamend="git add -A && git commit -a --amend -C HEAD"
-alias gamend-staged="git commit --amend -C HEAD"
+alias gamend_staged="git commit --amend -C HEAD"
 alias gcom="git commit -m"
 # # List gitignored files that were somehow committed
 # git ls-files --ignored --exclude-standard
@@ -59,10 +61,8 @@ alias gcom="git commit -m"
 alias gdestroy="git rm -r"
 
 # Single quotes are so the $(...) isn't evaluated until runtime
-alias gcd='git checkout $(gitdefault)'
-alias grd='git rebase origin/$(gitdefault)'
-alias grid='git rebase -i --autosquash origin/$(gitdefault)'
-alias grim="echo 'Renamed to \`grid\`' && grid"
+alias grid='git rebase -i --autosquash origin/$(git_develop_branch)'
+alias grim="git rebase -i --autosquash origin/$(git_main_branch)"
 
 # overwrite a `git restore` alias with my `git reset` function
 unalias grst
