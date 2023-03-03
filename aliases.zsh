@@ -7,7 +7,11 @@ alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 alias test-outreach-f="cd $GITLAB_DIR/outreach \
     && echo 'npm run test:unit:fast aledade/static/js/...'"
 alias test-outreach-b="cd $GITLAB_DIR/outreach \
-    && echo 'make only=api/test_api_core.py::ApiCoreTests python-test'"
+    && echo 'make only=api/test_api_core.py::ApiCoreTests python-test' \
+    && echo '          ^ remove \`aledade/tests/\` from the file path' \
+    && echo '' \
+    && echo 'Be sure to run \`make up-dev\` in another tab first!' \
+    "
 alias start-outreach-b="cd $GITLAB_DIR/outreach && echo 'make up-dev'"
 alias start-outreach-f="cd $GITLAB_DIR/outreach && echo 'npm run watch:fast'"
 
