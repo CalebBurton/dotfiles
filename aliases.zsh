@@ -232,7 +232,7 @@ function bup() {
         read yn
         case $yn in
             [Nn]* ) break;;
-            * ) echo "" && brew upgrade --cask --greedy;;
+            * ) echo "" && brew upgrade --cask --greedy && brew upgrade;;
         esac
         yn=""
         break;
