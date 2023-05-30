@@ -228,7 +228,7 @@ function bup() {
     echo ""
     brew outdated --cask --greedy
     while true; do
-        echo -n "\nUpgrade outdated casks? [Y/n]: "
+        echo -n "\nUpgrade outdated casks and packages? [Y/n]: "
         read yn
         case $yn in
             [Nn]* ) break;;
