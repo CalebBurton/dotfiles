@@ -20,17 +20,19 @@ alias start-dbt="cd $GITLAB_DIR/dbt \
 
 alias start-event-cli-step-1="cd $GITLAB_DIR/ingestion-biz-logic \
     && echo '  git checkout develop \' \
+    && echo '  && git pull \' \
     && echo '  && poetry env use 3.8 \' \
     && echo '  && poetry install \' \
     && echo '  && set_db_vars\n' \
         && git checkout develop \
+        && git pull \
         && poetry env use 3.8 \
         && poetry install \
         && set_db_vars"
 alias start-event-cli-step-2="cd $GITLAB_DIR/ingestion-biz-logic \
     && echo '  Run \`start-event-cli-step-1\` first, then paste & modify the following:' \
     && echo '  (if you start the command with a space it is not saved to history)' \
-    && echo '    DB_URL=postgresql://cburton:\$(echo \$DB_PASSWORD)@db-dev.aledade.com:5432/aledade poetry run event-cli -i ../toil/ARCH-X/ARCH-X.jsonl -d'"
+    && echo '    DB_URL=postgresql://cburton:\$(echo \$DB_PASSWORD)@db-dev.aledade.com:5432/aledade poetry run event-cli -i ../toil/ARCH-X\ description/ARCH-X.jsonl -d'"
 
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
