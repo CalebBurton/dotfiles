@@ -166,7 +166,7 @@ function trash() {
 }
 
 function eod() {
-    cd ~/Code/GitHub/personal
+    pushd ~/Code/GitHub/personal
     git add -p
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
@@ -275,8 +275,10 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         export DBT_POSTGRES_USER='cburton'
         export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
 
+        # Defaults to wh_datavelocity, but since I'm using the dev role this should be wh_dev
+        export DBT_SNOWFLAKE_WAREHOUSE='wh_dev'
+
         # Just use the defaults for these
-        # export DBT_SNOWFLAKE_WAREHOUSE='wh_datavelocity'
         # export DBT_SCHEMA='public'
         # export DBT_PORT='5432'
 
