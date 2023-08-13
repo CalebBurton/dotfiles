@@ -212,5 +212,14 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
   #
 fi
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# I'm sure there's a better way to do this, but whatever.
+if [ -e '/nix/store/zgz87qspyip4ls6srcm0qkxj4kzj0rkw-set-environment' ]; then
+  . '/nix/store/zgz87qspyip4ls6srcm0qkxj4kzj0rkw-set-environment'
+fi
+
 # Enable iterm's shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

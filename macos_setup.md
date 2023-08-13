@@ -74,7 +74,6 @@
 
 - Install non-homebrew apps
     - actual
-    - logi options? might be in homebrew
 
 - Install global npm packages
     - N/A
