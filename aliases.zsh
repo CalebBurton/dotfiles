@@ -171,6 +171,34 @@ function eod() {
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
 
+function get_current_mac() {
+    ifconfig en0 ether | grep -oE '(.{2}:){5}.{2}'
+}
+
+function spoof_mac(){
+    OLD_MAC="$(get_current_mac)"
+    RANDOM_MAC=$(openssl rand -hex 6 | sed -E 's/(..)/\1:/g; s/.$//')
+
+    # These have to run as root in quick succession.
+    # The first line turns off wifi, the second line sets the new MAC.
+    sudo sh -c "\
+        /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -z ; \
+        ifconfig en0 lladdr $RANDOM_MAC"
+
+    # Confirm it worked
+    NEW_MAC="$(get_current_mac)"
+    if [[ $NEW_MAC == $RANDOM_MAC ]] ;then
+        echo 'Success? yes!'
+        echo '(The wifi should reboot automatically, but it might take a second)'
+    else
+        echo 'Success? no... Trying again sometimes works though.'
+    fi
+    echo -e "  Old:    $OLD_MAC\n  Random: $RANDOM_MAC\n  New:    $NEW_MAC"
+
+    # Turn wifi back on
+    networksetup -detectnewhardware
+}
+
 function get_bw_status() {
     echo $(bw status | jq .status | cut -d '"' -f2)
 }
