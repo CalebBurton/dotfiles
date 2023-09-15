@@ -184,42 +184,36 @@ alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
 # # Add CIQ-specific pieces
 # if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
-
 #   # Add nix, if installed
 #   if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] ; then
 #     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-#   fi
-
-#   # Add direnv:
-#   #  When cd'ing into a directory with a .envrc, automatically calls nix-shell
-#   if command -v direnv &> /dev/null; then
-#     eval "$(direnv hook zsh)"
-#   fi
-
-#   # Add gcloud sdk, if installed
-#   if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ] ; then
-#     . "$HOME/google-cloud-sdk/path.zsh.inc"
-#   fi
-
-#   # Enable shell completion for gcloud sdk
-#   if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ] ; then
-#     . "$HOME/google-cloud-sdk/completion.zsh.inc"
 #   fi
 # fi
 
 # Add Aledade-specific config
 if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
-  #
+  # NOOP
 fi
 
+# =============================================================================
 # Nix
+# =============================================================================
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
+
+# nix-darwin
 # I'm sure there's a better way to do this, but whatever.
 if [ -e '/nix/store/zgz87qspyip4ls6srcm0qkxj4kzj0rkw-set-environment' ]; then
   . '/nix/store/zgz87qspyip4ls6srcm0qkxj4kzj0rkw-set-environment'
 fi
+
+# # Add direnv:
+# #  When cd'ing into a directory with a .envrc, automatically calls nix-shell
+# if command -v direnv &> /dev/null; then
+#   eval "$(direnv hook zsh)"
+# fi
+# =============================================================================
 
 # Enable iterm's shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
