@@ -130,13 +130,6 @@ alias gdc="git diff --cached"
 alias gp="echo 'Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 
-# # Use `gsw` or `git switch`
-# unalias gco
-# alias gco="echo 'Use \"gsw\" or \"git switch\" instead' && return 1"
-# # Use `gswc` or `git switch -c`
-# unalias gcb
-# alias gcb="echo 'Use \"gswc\" or \"git switch -c\" instead' && return 1"
-
 # alias ssh-start="eval \"$(ssh-agent -s)\" && ssh-add --apple-load-keychain"
 function ssh-start() {
     eval `ssh-agent -s`
@@ -297,8 +290,8 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         export DBT_SNOWFLAKE_PASSWORD=$(bw get password "[Aledade] db-dev password")
         export DBT_SNOWFLAKE_DB='ARCHIVE'
 
-        # defaults to DATAVELOCITY but DEV is better for engineers
-        export DBT_ROLE='DEV'
+        # defaults to DATAVELOCITY but might need to use DEV sometimes
+        export DBT_ROLE='DATAVELOCITY'
 
         export DBT_POSTGRES_USER='cburton'
         export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
@@ -319,7 +312,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
             login_to_bitwarden
         fi
         echo 'Setting db vars'
-        export DB_USER='cburton'
+        export DB_USERNAME='cburton'
         export DB_PASSWORD=$(bw get password "[Aledade] db-dev password")
         echo 'Successfully set db vars'
         bw lock
