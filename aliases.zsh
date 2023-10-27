@@ -5,7 +5,7 @@ alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 
 alias test-outreach-f="cd $GITLAB_DIR/outreach \
-    && echo 'npm run test:unit:fast aledade/static/js/...'"
+    && echo 'npm run test aledade/static/js/...'"
 alias test-outreach-b="cd $GITLAB_DIR/outreach \
     && echo 'make only=api/test_api_core.py::ApiCoreTests python-test' \
     && echo '          ^ remove \`aledade/tests/\` from the file path' \
@@ -211,11 +211,12 @@ function unlock_bitwarden() {
 }
 
 function login_to_bitwarden() {
-    if get_bw_status | grep "^unlocked$" ;then
-        echo '(already logged in)'
-    elif get_bw_status | grep "^locked$" ;then
+    if [[ $(get_bw_status) = "unlocked" ]]; then
+        # Already logged in, nothing to do
+        return 0
+    elif [[ $(get_bw_status) = "locked" ]]; then
         unlock_bitwarden
-    elif get_bw_status | grep "^unauthenticated$" ;then
+    elif [[ $(get_bw_status) = "unauthenticated" ]]; then
         echo 'Logging in...'
         login_msg=$(
             BW_CLIENTID=$(security find-generic-password -a bitwarden_api_client_id -w) \
@@ -264,6 +265,7 @@ function bup() {
     return 0;
 }
 
+
 alias bs="brew search"
 alias bsc="brew search --casks"
 
@@ -279,9 +281,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
 
     function set_dbt_vars() {
-        if ! (get_bw_status | grep "^unlocked$") ;then
-            login_to_bitwarden
-        fi
+        login_to_bitwarden
         echo 'Setting dbt vars'
         export DBT_PROFILES_DIR="$GITLAB_DIR/dbt"
 
@@ -291,7 +291,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         export DBT_SNOWFLAKE_DB='ARCHIVE'
 
         # defaults to DATAVELOCITY but might need to use DEV sometimes
-        export DBT_ROLE='DATAVELOCITY'
+        export DBT_ROLE='DEV'
 
         export DBT_POSTGRES_USER='cburton'
         export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
@@ -308,13 +308,25 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     }
 
     function set_db_vars() {
-        if ! (get_bw_status | grep "^unlocked$") ;then
-            login_to_bitwarden
-        fi
+        login_to_bitwarden
         echo 'Setting db vars'
         export DB_USERNAME='cburton'
         export DB_PASSWORD=$(bw get password "[Aledade] db-dev password")
         echo 'Successfully set db vars'
+        bw lock
+    }
+
+    function set_dag_vars() {
+        echo 'Remember to run this within a poetry shell! (`poetry shell`)'
+        login_to_bitwarden
+        echo 'Setting snowflake DAG vars'
+        export DB_USERNAME='cburton'
+        export DB_PASSWORD=$(bw get password "[Aledade] db-dev password")
+        export SNOWFLAKE_USER=cburton
+        export SNOWFLAKE_PASS=
+        export SNOWFLAKE_ACCT=qla80296.us-east-1
+        export DB_URL="postgresql://$DB_USERNAME:$DB_PASSWORD@db-dev.aledade.com/aledade"
+        echo 'Successfully set snowflake DAG vars'
         bw lock
     }
 fi
