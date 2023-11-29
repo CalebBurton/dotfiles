@@ -285,9 +285,8 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         echo 'Setting dbt vars'
         export DBT_PROFILES_DIR="$GITLAB_DIR/dbt"
 
-        # I don't have these yet. Submit a devops ticket if I need them.
         export DBT_SNOWFLAKE_USER='cburton'
-        export DBT_SNOWFLAKE_PASSWORD=$(bw get password "[Aledade] db-dev password")
+        export DBT_SNOWFLAKE_PASSWORD=''
         export DBT_SNOWFLAKE_DB='ARCHIVE'
 
         # defaults to DATAVELOCITY but might need to use DEV sometimes
@@ -296,10 +295,10 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         export DBT_POSTGRES_USER='cburton'
         export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
 
-        # Defaults to wh_datavelocity, but since I'm using the dev role this should be wh_dev
+        # Defaults to wh_datavelocity, but when using the dev role this should be wh_dev
         export DBT_SNOWFLAKE_WAREHOUSE='wh_dev'
 
-        # Just use the defaults for these
+        # # Just use the defaults for these
         # export DBT_SCHEMA='public'
         # export DBT_PORT='5432'
 
