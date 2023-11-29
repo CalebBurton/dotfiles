@@ -15,9 +15,6 @@
     ~/Code/GitHub/.gitconfig:
       if: '[ -d "$HOME/Code/GitHub" ]'
       path: github.gitconfig
-    ~/Code/Bitbucket/.gitconfig:
-      if: '[ -d "$HOME/Code/Bitbucket" ]'
-      path: aledade.gitconfig
     ~/Code/Gitlab/.gitconfig:
       if: '[ -d "$HOME/Code/GitLab" ]'
       path: aledade.gitconfig
