@@ -4,6 +4,10 @@ let
 in
 {
   users.users.calebburton.home = "/Users/calebburton";
+  # darwin-rebuild switch --flake ~/Code/GitHub/dotfiles/nix/
+  # nix run nix-darwin -- switch --flake ~/Code/GitHub/dotfiles/nix
+  # darwin-rebuild switch --flake .#Calebs2015MBP2
+  # (^ hash syntax needs to be run from ~/Code/GitHub/dotfiles)
 
   nix = {
     #package = lib.mkDefault pkgs.unstable.nix;
