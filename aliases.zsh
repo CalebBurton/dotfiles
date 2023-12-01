@@ -136,12 +136,12 @@ function ssh-start() {
     find "$HOME/.ssh" -type f -iname "id_*" ! -iname "*.pub" | \
     while read line; do ssh-add $line ; done
 }
-# Hacking this together... zsh is annoying about shell expansion https://superuser.com/a/1731518
-alias ss='ssh-start && echo "${(z)history[(r)*]}" && "${(z)history[(r)*]}"'
 function ssh-stop() {
     kill $(ps aux | grep 'ssh-agent' | awk '{print $2}') &> /dev/null
     echo "all 'ssh-agent' processes killed"
 }
+# Hacking this together... zsh is annoying about shell expansion https://superuser.com/a/1731518
+alias ss='ssh-start && echo "${(z)history[(r)*]}" && "${(z)history[(r)*]}"'
 
 alias be="bundle exec"
 
