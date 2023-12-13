@@ -316,7 +316,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     }
 
     function set_dag_vars() {
-        echo 'Remember to run this within a poetry shell! (`poetry shell`)'
+        # echo 'Remember to run this within a poetry shell! (`poetry shell`)'
         login_to_bitwarden
         echo 'Setting snowflake DAG vars'
         export DB_USERNAME='cburton'
@@ -327,5 +327,17 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         export DB_URL="postgresql://$DB_USERNAME:$DB_PASSWORD@db-dev.aledade.com/aledade"
         echo 'Successfully set snowflake DAG vars'
         bw lock
+    }
+
+    function open_ibl_container() {
+        if [[ -z $DB_URL || -z $SNOWFLAKE_USER || -z $SNOWFLAKE_ACCT ]]; then
+            echo 'DAG variables not set. Exiting. Run `set_dag_vars` before trying again.'
+            return 1
+        fi
+        CONTAINER_ID=ingestion-biz-logic-biz-logic-1
+        docker exec -it $CONTAINER_ID /bin/bash -c "export SNOWFLAKE_USER=$SNOWFLAKE_USER && \
+            export SNOWFLAKE_ACCT=$SNOWFLAKE_ACCT && \
+            export DB_URL=$DB_URL && \
+            bash"
     }
 fi
