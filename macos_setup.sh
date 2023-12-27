@@ -69,6 +69,12 @@ defaults write com.apple.Accessibility KeyRepeatEnabled -bool true
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
+# Increase the TTL by 1 so it's harder for phone carriers to determine if I'm
+# using a mobile hotspot & throttle me.
+# From: https://infosec.exchange/@briankrebs/111434555426146154
+sudo sysctl -w net.inet.ip.ttl=65
+sudo sysctl -w net.inet6.ip6.hlim=65
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
