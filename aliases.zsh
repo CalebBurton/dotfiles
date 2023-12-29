@@ -331,8 +331,8 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
 
     function open_ibl_container() {
         if [[ -z $DB_URL || -z $SNOWFLAKE_USER || -z $SNOWFLAKE_ACCT ]]; then
-            echo 'DAG variables not set. Exiting. Run `set_dag_vars` before trying again.'
-            return 1
+            echo 'DAG variables not set. Running `set_dag_vars` before continuing.'
+            set_dag_vars
         fi
         CONTAINER_ID=ingestion-biz-logic-biz-logic-1
         docker exec -it $CONTAINER_ID /bin/bash -c "export SNOWFLAKE_USER=$SNOWFLAKE_USER && \
