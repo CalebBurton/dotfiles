@@ -330,6 +330,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     }
 
     function open_ibl_container() {
+        echo '(Remember to tear down the biz-logic container and rebuild it first!)'
         if [[ -z $DB_URL || -z $SNOWFLAKE_USER || -z $SNOWFLAKE_ACCT ]]; then
             echo 'DAG variables not set. Running `set_dag_vars` before continuing.'
             set_dag_vars
