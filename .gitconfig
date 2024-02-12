@@ -33,6 +33,10 @@
 [pull]
     ff = only
 
+# Sorts by most recent branches by default
+[branch]
+    sort = -committerdate
+
 # Avoid having to write `git push --set-upstream origin name`
 # (only works as of git version 2.37.0)
 [push]
