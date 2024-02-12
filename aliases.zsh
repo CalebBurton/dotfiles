@@ -329,8 +329,15 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         bw lock
     }
 
+    function rebuild_biz_logic() {
+        echo 'docker compose down biz-logic && docker compose build biz-logic && docker compose up -d biz-logic'
+        docker compose down biz-logic
+        docker compose build biz-logic
+        docker compose up -d biz-logic
+    }
+
     function open_ibl_container() {
-        echo '(Remember to tear down the biz-logic container and rebuild it first!)'
+        echo '(Remember to rebuild the biz-logic container first!)'
         if [[ -z $DB_URL || -z $SNOWFLAKE_USER || -z $SNOWFLAKE_ACCT ]]; then
             echo 'DAG variables not set. Running `set_dag_vars` before continuing.'
             set_dag_vars
