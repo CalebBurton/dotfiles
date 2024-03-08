@@ -1,3 +1,6 @@
+# See https://jvns.ca/blog/2024/02/16/popular-git-config-options/ for
+# descriptions of these options
+
 # Allows storing large binary files more efficiently
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -21,24 +24,61 @@
     [core]
         excludesfile = ~/Code/Gitlab/.gitignore
 
+# Sorts by most recent branches by default
+[branch]
+    sort = -committerdate
+
 [core]
     editor = code --wait
 
 [diff]
     tool = default-difftool
+    algorithm = histogram
+    submodule = log
 
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
 
+[fetch]
+    fsckobjects = true
+    prune = true
+
+[init]
+    defaultBranch = main
+
+[log]
+    date = iso
+
+[merge]
+    conflictstyle = zdiff3
+
 [pull]
     ff = only
-
-# Sorts by most recent branches by default
-[branch]
-    sort = -committerdate
 
 # Avoid having to write `git push --set-upstream origin name`
 # (only works as of git version 2.37.0)
 [push]
     default = simple
     autoSetupRemote = true
+    followtags = true
+
+[rebase]
+    autosquash = true
+    missingCommitsCheck = error
+
+[receive]
+    fsckObjects = true
+
+# "reuse recovered resolution": remember how you resolve merge conflicts during
+# a rebase and automatically resolve conflicts when possible
+[rerere]
+    enabled = true
+
+[status]
+    submoduleSummary = true
+
+[submodule]
+    recurse = true
+
+[transfer]
+    fsckobjects = true

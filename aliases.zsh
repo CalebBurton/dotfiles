@@ -344,6 +344,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
         fi
         CONTAINER_ID=ingestion-biz-logic-biz-logic-1
         docker exec -it $CONTAINER_ID /bin/bash -c "export SNOWFLAKE_USER=$SNOWFLAKE_USER && \
+            export SNOWFLAKE_PASS=$DB_PASSWORD && \
             export SNOWFLAKE_ACCT=$SNOWFLAKE_ACCT && \
             export DB_URL=$DB_URL && \
             bash"
