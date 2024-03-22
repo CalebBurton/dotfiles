@@ -45,6 +45,27 @@ alias sad="say -v karen 'all done'"
 alias website-go="cd $GITHUB_DIR/website-source && npm run start"
 alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
+
+# NixOS Stuff
+FLAKE_LOCATION="/etc/nixos"
+alias nixos-update="echo 'sudo nix flake update $FLAKE_LOCATION#' \
+    && sudo nix flake update $FLAKE_LOCATION#"
+alias nixos-switch="echo 'sudo nixos-rebuild switch --flake $FLAKE_LOCATION#' \
+    && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
+alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run' \
+    && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run"
+
+alias port-forwarding-check="echo natpmpc && natpmpc"
+function port-forwarding-start() {
+    while true; do
+        date;
+        natpmpc -a 1 0 udp 60 -g 10.2.0.1 && \
+            natpmpc -a 1 0 tcp 60 -g 10.2.0.1 || \
+            { echo -e "ERROR with natpmpc command \a" ; break ; }
+        sleep 50;
+    done
+}
+
 # omz already includes $git_main_branch and $git_develop_branch
 # https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index
 alias gitdefault="git rev-parse --abbrev-ref origin/HEAD | cut -c8-"
@@ -101,10 +122,10 @@ gcomt() {
     git commit -m $MSG
 }
 
-migrate-to-gitlab() {
+migrate-to-github() {
     REPO="$(basename "$(git rev-parse --show-toplevel)")"
     CURRENT_REMOTE="$(git remote get-url --push origin)"
-    NEW_REMOTE="git@gitlab.aledade.com:aledade/$REPO.git"
+    NEW_REMOTE="git@github.aledade.com:aledade/$REPO.git"
     while true; do
         echo -n "Change current remote origin '$CURRENT_REMOTE' to new remote origin '$NEW_REMOTE'? [Y/n]: "
         read -r yn
