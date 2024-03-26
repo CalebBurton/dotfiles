@@ -38,7 +38,7 @@ alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 alias dcp="docker-compose pull"
 alias dcb="docker-compose build"
-alias dsp="docker system prune --volumes --force"
+alias dsp="docker system prune --all --force"
 
 alias sad="say -v karen 'all done'"
 
@@ -47,13 +47,19 @@ alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
 
 # NixOS Stuff
-FLAKE_LOCATION="/etc/nixos"
+FLAKE_LOCATION="/home/cburton/Code/GitHub/dotfiles/nix/f16"
 alias nixos-update="echo 'sudo nix flake update $FLAKE_LOCATION#' \
     && sudo nix flake update $FLAKE_LOCATION#"
+alias nixos-build="echo 'sudo nixos-rebuild build --flake $FLAKE_LOCATION#' \
+    && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
 alias nixos-switch="echo 'sudo nixos-rebuild switch --flake $FLAKE_LOCATION#' \
     && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
-alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run' \
+alias nixos-rollback="echo 'sudo nixos-rebuild switch --rollback --flake $FLAKE_LOCATION#' \
+    && sudo nixos-rebuild switch --rollback --flake $FLAKE_LOCATION#"
+alias nixos-trim-dry="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run' \
     && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run"
+alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d' \
+    && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d"
 
 alias port-forwarding-check="echo natpmpc && natpmpc"
 function port-forwarding-start() {
