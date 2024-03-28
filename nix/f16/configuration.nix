@@ -79,6 +79,9 @@
   # Plasma 6
   services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager.defaultSession = "plasma";
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    kate
+  ];
 
   # For use with RDP (see below)
   services.xrdp.defaultWindowManager = "startplasma-x11";
@@ -277,10 +280,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     awscli
+    bitwarden-cli
     ffmpeg
     git
     gparted # For partitioning drives (GUI version)
     # home-manager
+    jq
     killall
     libnatpmp # Allows using Bonjour
     lsof
