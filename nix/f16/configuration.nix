@@ -283,6 +283,7 @@
     bitwarden-cli
     ffmpeg
     git
+    gnome.gucharmap # Unicode symbol selector
     gparted # For partitioning drives (GUI version)
     # home-manager
     jq
