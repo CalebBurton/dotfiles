@@ -60,6 +60,10 @@ alias nixos-trim-dry="echo 'sudo nix profile wipe-history --profile /nix/var/nix
     && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run"
 alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d' \
     && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d"
+alias nixos-history="echo 'sudo nix profile history --profile /nix/var/nix/profiles/system | sed '\''/No changes\./d; s/://; /^$/d'\''' \
+    && sudo nix profile history --profile /nix/var/nix/profiles/system | sed '/No changes\./d; s/://; /^$/d'"
+alias nixos-collect-garbage="echo 'You meant nix-collect-garbage. Running that now.' \
+    && nix-collect-garbage"
 
 alias port-forwarding-check="echo natpmpc && natpmpc"
 function port-forwarding-start() {
