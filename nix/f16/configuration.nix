@@ -232,7 +232,7 @@
       protonmail-bridge
       protonvpn-gui
       qbittorrent
-      realvnc-vnc-viewer
+      # realvnc-vnc-viewer # Broken as of 4/6/24
       # rustdesk
       signal-desktop
       spotify
@@ -245,18 +245,25 @@
         vscodeExtensions = with vscode-extensions; [
           bbenoist.nix # Nix syntax highlighting
           # yzane.markdown-pdf # md -> pdf
-        ];  # ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        #   {
-        #     name = "markdown-pdf";
-        #     publisher = "yzane";
-        #     version = "1.5.0";
-        #     sha256 = "499e0247c2a3198232b2e0111839877291566af79ba8020185a956791aa1f42f";
-        #     # Get this from python:
-        #     # import base64
-        #     # text = b'SZ4CR8KjGYIysuARGDmHcpFWavebqAIBhalWeRqh9C8='
-        #     # print(base64.decodebytes(text).hex())
-        #   }
-        # ];
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            # Sieve syntax highlighting
+            name = "vscode-sievehighlight";
+            publisher = "adzero";
+            version = "1.0.6";
+            sha256 = "f0e9a9bfbf76788da4207fb9f8a3cbf6301ff3cc6c30641ec07110c22f018684";
+          }
+          # {
+          #   name = "markdown-pdf";
+          #   publisher = "yzane";
+          #   version = "1.5.0";
+          #   sha256 = "499e0247c2a3198232b2e0111839877291566af79ba8020185a956791aa1f42f";
+          #   # Get this from python:
+          #   # import base64
+          #   # text = b'8Ompv792eI2kIH+5+KPL9jAf88xsMGQewHEQwi8BhoQ='
+          #   # print(base64.decodebytes(text).hex())
+          # }
+        ];
       })
       warp-terminal
       # # WINE >>>
