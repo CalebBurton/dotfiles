@@ -224,6 +224,7 @@
       kdePackages.kdenlive
       kdePackages.plasma-nm # Network manager
       kdePackages.skanpage
+      krename # File renaming tool
       krita
       ktailctl
       libreoffice
