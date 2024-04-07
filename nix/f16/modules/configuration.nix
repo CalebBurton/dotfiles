@@ -197,6 +197,10 @@
     ];
   };
 
+  # Use zsh as the default shell. Additional config in home.nix.
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cburton = {
@@ -210,76 +214,7 @@
       "vboxusers" # Grants access to virtualbox
       "wheel"
     ];
-    packages = with pkgs; [
-      audacity
-      # cyberduck -- macos/windows only
-      docker
-      firefox
-      github-desktop
-      gimp
-      # gimp-with-plugins
-      google-chrome
-      # handbrake
-      inkscape-with-extensions
-      kdePackages.filelight # Disk usage visualizer
-      kdePackages.kdenlive
-      kdePackages.plasma-nm # Network manager
-      kdePackages.skanpage
-      krename # File renaming tool
-      krita
-      ktailctl
-      libreoffice
-      nextcloud-client
-      pdfarranger
-      protonmail-bridge
-      protonvpn-gui
-      qbittorrent
-      # realvnc-vnc-viewer # Broken as of 4/6/24
-      # rustdesk
-      signal-desktop
-      spotify
-      sweethome3d.application # Excludes the textures and furniture editors
-      thunderbird
-      tor-browser-bundle-bin
-      vlc
-      # See https://nixos.wiki/wiki/Visual_Studio_Code
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.nix # Nix syntax highlighting
-          # yzane.markdown-pdf # md -> pdf
-        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            # Sieve syntax highlighting
-            name = "vscode-sievehighlight";
-            publisher = "adzero";
-            version = "1.0.6";
-            sha256 = "f0e9a9bfbf76788da4207fb9f8a3cbf6301ff3cc6c30641ec07110c22f018684";
-          }
-          # {
-          #   name = "markdown-pdf";
-          #   publisher = "yzane";
-          #   version = "1.5.0";
-          #   sha256 = "499e0247c2a3198232b2e0111839877291566af79ba8020185a956791aa1f42f";
-          #   # Get this from python:
-          #   # import base64
-          #   # text = b'8Ompv792eI2kIH+5+KPL9jAf88xsMGQewHEQwi8BhoQ='
-          #   # print(base64.decodebytes(text).hex())
-          # }
-        ];
-      })
-      warp-terminal
-      # # WINE >>>
-      # wineWowPackages.stable # support both 32- and 64-bit applications
-      # # wine # support 32-bit only
-      # # (wine.override { wineBuild = "wine64"; }) # support 64-bit only
-      # # wine64 # support 64-bit only
-      # wineWowPackages.staging # wine-staging (version with experimental features)
-      # winetricks # Additional DLLs needed for some software to work with WINE
-      # wineWowPackages.waylandFull # native wayland support (unstable)
-      # # <<< WINE
-      yt-dlp
-      zoom-us
-    ];
+    # (packages are set in home.nix)
   };
 
   # Set VS Code to use Wayland
