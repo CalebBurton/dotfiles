@@ -135,6 +135,7 @@
   services.xserver = {
     xkb.layout = "us";
     xkb.variant = "";
+    libinput.touchpad.disableWhileTyping = true;
   };
 
   # Enable support for Bluetooth

@@ -7,8 +7,8 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # Use home manager
-    # home-manager.url = "github:nix-community/home-manager/release-23.05";
-    # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager"; # targets unstable by default
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Waiting on https://github.com/NixOS/nixos-hardware/issues/859
     # # Framework specific hardware tweaks
@@ -18,6 +18,7 @@
 
   outputs = {
     nixpkgs,
+    home-manager,
     # nixos-hardware,
     ...
   }:
@@ -45,8 +46,17 @@
         inherit system;
         modules = [
           # nixos-hardware.nixosModules.framework
-          ./configuration.nix
+          ./modules/configuration.nix
           # ./modules/protonvpn.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.cburton = import ./modules/home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
         ];
       };
     };
