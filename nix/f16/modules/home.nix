@@ -89,81 +89,14 @@
         autocd = true; # Entering a directory is interpeted as "cd $directory"
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
-
         shellAliases = {
             ll = "ls -l";
-            # update = "sudo nixos-rebuild switch";
         };
         history = {
             extended = true; # Save timestamp with each history entry
             # size = 10000;
-            # path = "${config.xdg.dataHome}/zsh/history"; # Defaults to "$ZDOTDIR/.zsh_history"
         };
-
-        # TODO: import this from ../../../aliases.zsh
-        initExtra = ''
-            FLAKE_LOCATION="/home/cburton/Code/GitHub/dotfiles/nix/f16"
-            alias nixos-update="echo 'sudo nix flake update $FLAKE_LOCATION#' \
-                && sudo nix flake update $FLAKE_LOCATION#"
-            alias nixos-build="echo 'sudo nixos-rebuild build --flake $FLAKE_LOCATION#' \
-                && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
-            alias nixos-switch="echo 'sudo nixos-rebuild switch --flake $FLAKE_LOCATION#' \
-                && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
-            alias nixos-trim-dry="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run' \
-                && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d --dry-run"
-            alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d' \
-                && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d"
-            alias nixos-history="echo 'sudo nix profile history --profile /nix/var/nix/profiles/system | sed ...' \
-                && sudo nix profile history --profile /nix/var/nix/profiles/system | sed '/No changes\./d; s/://; /^$/d'"
-            alias nixos-collect-garbage="echo 'You meant nix-collect-garbage. Running that now.' \
-                && nix-collect-garbage"
-
-            alias port-forwarding-check="echo natpmpc && natpmpc"
-            function port-forwarding-start() {
-                while true; do
-                    date;
-                    natpmpc -a 1 0 udp 60 -g 10.2.0.1 && \
-                        natpmpc -a 1 0 tcp 60 -g 10.2.0.1 || \
-                        { echo -e "ERROR with natpmpc command \a" ; break ; }
-                    sleep 45
-                done
-            }
-
-
-            function get_bw_status() {
-                echo $(bw status | jq .status | cut -d '"' -f2)
-            }
-
-            BW_ORG_ID="e4f8f012-5485-44b4-ad15-ab2b012c56f4"
-
-            # Need to see if this can work with kde wallet rather than
-            # apple keychain
-            #
-            # function unlock_bitwarden() {
-            #     if get_bw_status | grep "^locked$" ;then
-            #         echo 'Unlocking vault...'
-            #         success_msg=$(
-            #             BW_PASSWORD=$(security find-generic-password -a bitwarden_api_password -w) \
-            #                 bw unlock --passwordenv BW_PASSWORD && unset BW_PASSWORD
-            #         )
-            #         export BW_SESSION=$(echo $success_msg | grep -o -m 1 '".*"' | tr -d '"')
-            #         echo 'Successfully unlocked vault'
-            #     else
-            #         echo "(vault cannot be unlocked. \`get_bw_status\` returns \"$(get_bw_status)\")"
-            #     fi
-            # }
-
-            alias gpl="git pull"
-            alias gps="git push"
-            alias gpsh="git push"
-            alias gs="git stash"
-            alias gsp="git stash pop"
-            alias gri="git rebase -i"
-            alias grc="git rebase --continue"
-            alias gamend="git add -A && git commit -a --amend -C HEAD"
-            alias gamend_staged="git commit --amend -C HEAD"
-            alias gcom="git commit -m"
-        '';
+        initExtra = builtins.readFile(../../../aliases.zsh);
 
         oh-my-zsh = {
             enable = true;

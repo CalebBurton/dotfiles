@@ -223,6 +223,7 @@ function spoof_mac(){
     networksetup -detectnewhardware
 }
 
+# TODO: see if this can work with kde wallet rather than apple keychain
 function get_bw_status() {
     echo $(bw status | jq .status | cut -d '"' -f2)
 }
