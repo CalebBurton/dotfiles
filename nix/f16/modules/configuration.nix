@@ -190,6 +190,34 @@
       #   };
       # })
 
+      # Pin chromium so it matches the path the markdownpdf vscode extension is configured to use.
+      # See https://lazamar.co.uk/nix-versions/?package=chromium for available versions
+      (final: prev: {
+          chromium-pinned = prev.chromium.overrideAttrs (old: {
+            # src = builtins.fetchTarball {
+            #   url = "https://github.com/NixOS/nixpkgs/archive/07518c851b0f12351d7709274bbbd4ecc1f089c7.tar.gz";
+            #   sha256 = "1q2fn8szx99narznglglsdpc6c4fj1mhrl42ig02abjqfikl723i";
+            # };
+            # src = prev.fetchFromGitHub {
+            #   owner = "NixOS";
+            #   repo = "nixpkgs";
+            #   rev = "07518c851b0f12351d7709274bbbd4ecc1f089c7";
+            #   sha256 = "7188436774582e25c08b82d00c6b908e30c36ed3f4d1677f5636a5fe35b24ee0";
+            # };
+            # === v122 ===
+            src = builtins.fetchTarball {
+              url = "https://github.com/NixOS/nixpkgs/archive/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3.tar.gz";
+              sha256 = "1q2fn8szx99narznglglsdpc6c4fj1mhrl42ig02abjqfikl723i";
+            };
+            # src = prev.fetchFromGitHub {
+            #   owner = "NixOS";
+            #   repo = "nixpkgs";
+            #   rev = "336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3";
+            #   sha256 = "";
+            # };
+          });
+      })
+
       # Temporary fix until https://github.com/NixOS/nixpkgs/pull/298491 is in unstable
       (final: prev: {
         fprintd = prev.fprintd.overrideAttrs (_: {

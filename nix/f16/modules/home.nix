@@ -5,6 +5,8 @@
     home.homeDirectory = "/home/cburton";
     home.packages = with pkgs; [
       audacity
+      # chromium
+      chromium-pinned
       # cyberduck -- macos/windows only
       docker
       firefox
@@ -39,7 +41,6 @@
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           bbenoist.nix # Nix syntax highlighting
-          # yzane.markdown-pdf # md -> pdf
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           # Run the `get_sha` alias to get the correct sha256 value
           {
@@ -70,6 +71,8 @@
       # # <<< WINE
       yt-dlp
       zoom-us
+    # ] ++ [
+    #   pkgs23_11.chromium
     ];
 
     # This value determines the Home Manager release that your configuration is
