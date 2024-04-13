@@ -41,6 +41,7 @@
           bbenoist.nix # Nix syntax highlighting
           # yzane.markdown-pdf # md -> pdf
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          # Run the `get_sha` alias to get the correct sha256 value
           {
             # Sieve syntax highlighting
             name = "vscode-sievehighlight";
@@ -48,16 +49,13 @@
             version = "1.0.6";
             sha256 = "f0e9a9bfbf76788da4207fb9f8a3cbf6301ff3cc6c30641ec07110c22f018684";
           }
-          # {
-          #   name = "markdown-pdf";
-          #   publisher = "yzane";
-          #   version = "1.5.0";
-          #   sha256 = "499e0247c2a3198232b2e0111839877291566af79ba8020185a956791aa1f42f";
-          #   # Get this from python:
-          #   # import base64
-          #   # text = b'8Ompv792eI2kIH+5+KPL9jAf88xsMGQewHEQwi8BhoQ='
-          #   # print(base64.decodebytes(text).hex())
-          # }
+          {
+            # Markdown to PDF converter
+            name = "markdown-pdf";
+            publisher = "yzane";
+            version = "1.5.0";
+            sha256 = "6a289f6601d70b819411b90a01b2dcd29fe3519c69d6317f27563f288caf2c81";
+          }
         ];
       })
       warp-terminal

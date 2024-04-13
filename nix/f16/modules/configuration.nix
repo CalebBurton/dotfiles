@@ -44,6 +44,10 @@
     options cfg80211 ieee80211_regdom="US"
   '';
 
+  # Bump up the TTL
+  # https://infosec.exchange/@briankrebs/111434555426146154
+  # sudo sysctl -w net.ipv4.ip_default_ttl=65
+
   hardware.enableAllFirmware = true;
 
   # Configure internationalization properties
@@ -73,12 +77,12 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.defaultSession = "plasma";
 
   # Plasma 6
   services.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.defaultSession = "plasma";
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     kate
   ];

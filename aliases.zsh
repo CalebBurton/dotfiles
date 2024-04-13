@@ -1,3 +1,7 @@
+# Used extensively in the aliases file
+export GITHUB_DIR="$HOME/Code/GitHub"
+export GITLAB_DIR="$HOME/Code/Gitlab"
+
 # Put these first so they're still available even if there's a syntax error in
 # one of the other aliases or functions
 alias reload="exec zsh"
@@ -65,6 +69,7 @@ alias nixos-history="echo 'sudo nix profile history --profile /nix/var/nix/profi
 alias nixos-collect-garbage="echo 'You meant nix-collect-garbage. Running that now.' \
     && nix-collect-garbage"
 
+alias get_sha="python '$GITHUB_DIR/dotfiles/nix/get_sha.py'"
 alias port-forwarding-check="echo natpmpc && natpmpc"
 function port-forwarding-start() {
     while true; do
