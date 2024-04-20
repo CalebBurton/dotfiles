@@ -28,15 +28,38 @@
   # home-manager.useUserPackages = true;
   # home-manager.useGlobalPkgs = true;
 
-  # Define the hostname
-  networking.hostName = "f16";
+  networking = {
+    # Define the hostname
+    hostName = "f16";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-  # DNS queries use tailscale first, then Cloudflare
-  networking.nameservers = [ "100.100.100.100" "1.1.1.1" ];
-  # Use tailscale magicDNS names
-  networking.search = [ "capybara-castor.ts.net" ];
+    # Enable networking
+    networkmanager.enable = true;
+
+    # DNS queries use tailscale first, then Cloudflare
+    nameservers = [ "100.100.100.100" "1.1.1.1" ];
+
+    # Use tailscale magicDNS names
+    search = [ "capybara-castor.ts.net" ];
+
+    # IPv6 messes up everything...
+    enableIPv6 = false;
+
+    firewall = {
+      # Open ports in the firewall.
+      # enable = true;
+      # allowedTCPPortRanges = [
+      #   { from = 1714; to = 1764; } # KDE Connect
+      # ];
+      # allowedUDPPortRanges = [
+      #   { from = 1714; to = 1764; } # KDE Connect
+      # ];
+      # allowedTCPPorts = [ ... ];
+      # allowedUDPPorts = [ ... ];
+
+      # Or disable the firewall altogether.
+      enable = false;
+    };
+  };
 
   # Set the regulatory domain so WiFi isn't throttled
   hardware.wirelessRegulatoryDatabase = true;
@@ -84,7 +107,7 @@
   # Plasma 6
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    kate
+    # Any default KDE packages that should be skipped
   ];
 
   # For use with RDP (see below)
@@ -194,17 +217,6 @@
       # See https://lazamar.co.uk/nix-versions/?package=chromium for available versions
       (final: prev: {
           chromium-pinned = prev.chromium.overrideAttrs (old: {
-            # src = builtins.fetchTarball {
-            #   url = "https://github.com/NixOS/nixpkgs/archive/07518c851b0f12351d7709274bbbd4ecc1f089c7.tar.gz";
-            #   sha256 = "1q2fn8szx99narznglglsdpc6c4fj1mhrl42ig02abjqfikl723i";
-            # };
-            # src = prev.fetchFromGitHub {
-            #   owner = "NixOS";
-            #   repo = "nixpkgs";
-            #   rev = "07518c851b0f12351d7709274bbbd4ecc1f089c7";
-            #   sha256 = "7188436774582e25c08b82d00c6b908e30c36ed3f4d1677f5636a5fe35b24ee0";
-            # };
-            # === v122 ===
             src = builtins.fetchTarball {
               url = "https://github.com/NixOS/nixpkgs/archive/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3.tar.gz";
               sha256 = "1q2fn8szx99narznglglsdpc6c4fj1mhrl42ig02abjqfikl723i";
@@ -406,22 +418,6 @@
   # users.users."user".openssh.authorizedKeys.keyFiles = [
   #   /etc/nixos/ssh/authorized_keys
   # ];
-
-  # # Open ports in the firewall.
-  # networking.firewall = { 
-  #   enable = true;
-  #   allowedTCPPortRanges = [ 
-  #     { from = 1714; to = 1764; } # KDE Connect
-  #   ];  
-  #   allowedUDPPortRanges = [ 
-  #     { from = 1714; to = 1764; } # KDE Connect
-  #   ];  
-  # };  
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
