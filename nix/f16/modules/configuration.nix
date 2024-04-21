@@ -67,7 +67,7 @@
     options cfg80211 ieee80211_regdom="US"
   '';
 
-  # Bump up the TTL
+  # TODO: Bump up the TTL
   # https://infosec.exchange/@briankrebs/111434555426146154
   # sudo sysctl -w net.ipv4.ip_default_ttl=65
 
@@ -166,14 +166,15 @@
   };
 
   # Enable support for Bluetooth
-  hardware.bluetooth.enable = true;
-  # Power up the default Bluetooth controller on boot
-  hardware.bluetooth.powerOnBoot = true;
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
-      # Showing the battery % of connected devices is experimental
-      Experimental = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        # Showing the battery % of connected devices is experimental
+        Experimental = true;
+      };
     };
   };
 
@@ -359,7 +360,8 @@
     # Allow printing over USB
     ipp-usb.enable=true;
 
-    # Until TLP is supported -- Or forever? Might be the preferred AMD option.
+    # AMD has better battery life with PPD over TLP:
+    # https://community.frame.work/t/responded-amd-7040-sleep-states/38101/13
     power-profiles-daemon.enable = true;
 
     # # TLP battery manager -- not recommended for AMD?

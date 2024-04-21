@@ -10,16 +10,15 @@
     home-manager.url = "github:nix-community/home-manager"; # targets unstable by default
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Waiting on https://github.com/NixOS/nixos-hardware/issues/859
-    # # Framework specific hardware tweaks
-    # # From https://github.com/NixOS/nixos-hardware/tree/master/framework
-    # nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # Framework specific hardware tweaks
+    # From https://github.com/NixOS/nixos-hardware/tree/master/framework
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
-    # nixos-hardware,
+    nixos-hardware,
     ...
   }:
   let
@@ -45,7 +44,7 @@
       f16 = lib.nixosSystem {
         inherit system;
         modules = [
-          # nixos-hardware.nixosModules.framework
+          nixos-hardware.nixosModules.framework-16-7040-amd
           ./modules/configuration.nix
           # ./modules/protonvpn.nix
           home-manager.nixosModules.home-manager
