@@ -1,6 +1,6 @@
-# Used extensively in the aliases file
+# Also defined in .zshrc, keep them synchronized
 export GITHUB_DIR="$HOME/Code/GitHub"
-export GITLAB_DIR="$HOME/Code/Gitlab"
+export ALEDADE_DIR="$HOME/Code/Aledade"
 
 # Put these first so they're still available even if there's a syntax error in
 # one of the other aliases or functions
@@ -8,21 +8,21 @@ alias reload="exec zsh"
 alias zshrc="code $GITHUB_DIR/dotfiles/.zshrc"
 alias aliases="code $GITHUB_DIR/dotfiles/aliases.zsh"
 
-alias test-outreach-f="cd $GITLAB_DIR/outreach \
+alias test-outreach-f="cd $ALEDADE_DIR/outreach \
     && echo 'npm run test aledade/static/js/...'"
-alias test-outreach-b="cd $GITLAB_DIR/outreach \
+alias test-outreach-b="cd $ALEDADE_DIR/outreach \
     && echo 'make only=api/test_api_core.py::ApiCoreTests python-test' \
     && echo '          ^ remove \`aledade/tests/\` from the file path' \
     && echo '' \
     && echo 'Be sure to run \`make up-dev\` in another tab first!' \
     "
-alias start-outreach-b="cd $GITLAB_DIR/outreach && echo 'make up-dev'"
-alias start-outreach-f="cd $GITLAB_DIR/outreach && echo 'npm run watch:fast'"
+alias start-outreach-b="cd $ALEDADE_DIR/outreach && echo 'make up-dev'"
+alias start-outreach-f="cd $ALEDADE_DIR/outreach && echo 'npm run watch:fast'"
 
-alias start-dbt="cd $GITLAB_DIR/dbt \
+alias start-dbt="cd $ALEDADE_DIR/dbt \
     && echo 'make ozy-dev (run \`set_dbt_vars\` if needed)'"
 
-alias start-event-cli-step-1="cd $GITLAB_DIR/ingestion-biz-logic \
+alias start-event-cli-step-1="cd $ALEDADE_DIR/ingestion-biz-logic \
     && echo '  git checkout develop \' \
     && echo '  && git pull \' \
     && echo '  && poetry env use 3.8 \' \
@@ -33,7 +33,7 @@ alias start-event-cli-step-1="cd $GITLAB_DIR/ingestion-biz-logic \
         && poetry env use 3.8 \
         && poetry install \
         && set_db_vars"
-alias start-event-cli-step-2="cd $GITLAB_DIR/ingestion-biz-logic \
+alias start-event-cli-step-2="cd $ALEDADE_DIR/ingestion-biz-logic \
     && echo '  Run \`start-event-cli-step-1\` first, then paste & modify the following:' \
     && echo '  (if you start the command with a space it is not saved to history)' \
     && echo '    DB_URL=postgresql://cburton:\$(echo \$DB_PASSWORD)@db-dev.aledade.com:5432/aledade poetry run event-cli -i ../toil/ARCH-X\ description/ARCH-X.jsonl -d'"
@@ -140,15 +140,15 @@ gcomt() {
 migrate-to-github() {
     REPO="$(basename "$(git rev-parse --show-toplevel)")"
     CURRENT_REMOTE="$(git remote get-url --push origin)"
-    NEW_REMOTE="git@github.aledade.com:aledade/$REPO.git"
+    NEW_REMOTE="git@github.com:aledade-org/$REPO.git"
     while true; do
-        echo -n "Change current remote origin '$CURRENT_REMOTE' to new remote origin '$NEW_REMOTE'? [Y/n]: "
+        echo -n "Change remote origin?\n  Old: '$CURRENT_REMOTE'\n  New: '$NEW_REMOTE'\n[Y/n]: "
         read -r yn
         case $yn in
-            [Nn]* ) echo "Cancelled" && break;;
+            [Nn]* ) echo "Cancelled. Run 'git remote set-url origin NEW_GIT_URL_GOES_HERE' to update the URL manually" && break;;
             * ) echo "" \
                 && git remote set-url origin "$NEW_REMOTE" \
-                && echo "Remote origin set" \
+                && echo "Remote origin set. Current remote:" \
                 && git remote get-url --push origin
         esac
         yn=""
@@ -320,7 +320,7 @@ if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     function set_dbt_vars() {
         login_to_bitwarden
         echo 'Setting dbt vars'
-        export DBT_PROFILES_DIR="$GITLAB_DIR/dbt"
+        export DBT_PROFILES_DIR="$ALEDADE_DIR/dbt"
 
         export DBT_SNOWFLAKE_USER='cburton'
         export DBT_SNOWFLAKE_PASSWORD=''

@@ -10,8 +10,8 @@
 
 [user]
     name = Caleb Burton
-    # This will be overwritten depending on the directory
-    email = ccburton4@gmail.com
+    # Email will be overwritten depending on the directory
+    # email = ccburton4@gmail.com
 
 # Ending the directory with / means include recursivly
 [includeIf "gitdir:~/Code/GitHub/"]
@@ -19,10 +19,10 @@
     [core]
         excludesfile = ~/Code/GitHub/.gitignore
 
-[includeIf "gitdir:~/Code/Gitlab/"]
-    path = ~/Code/Gitlab/.gitconfig
+[includeIf "gitdir:~/Code/Aledade/"]
+    path = ~/Code/Aledade/.gitconfig
     [core]
-        excludesfile = ~/Code/Gitlab/.gitignore
+        excludesfile = ~/Code/Aledade/.gitignore
 
 # Sorts by most recent branches by default
 [branch]

@@ -46,6 +46,7 @@ fi
 
 # Used extensively in the aliases file
 export GITHUB_DIR="$HOME/Code/GitHub"
+export ALEDADE_DIR="$HOME/Code/Aledade"
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"

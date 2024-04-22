@@ -6,18 +6,15 @@
 - clean: ['~']
 
 - link:
-    ~/.hammerspoon: .hammerspoon
     ~/.ssh/config: .ssh/config
-    ~/.tmux: .tmux
-    ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
     ~/.gitconfig: .gitconfig
     ~/Code/GitHub/.gitconfig:
       if: '[ -d "$HOME/Code/GitHub" ]'
-      path: github.gitconfig
-    ~/Code/Gitlab/.gitconfig:
-      if: '[ -d "$HOME/Code/GitLab" ]'
-      path: aledade.gitconfig
+      path: .gitconfig.github
+    ~/Code/Aledade/.gitconfig:
+      if: '[ -d "$HOME/Code/Aledade" ]'
+      path: .gitconfig.aledade
     ~/.zshrc: .zshrc
 
 - shell:
