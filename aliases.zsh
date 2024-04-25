@@ -17,7 +17,7 @@ alias test-outreach-b="cd $ALEDADE_DIR/outreach \
     && echo 'Be sure to run \`make up-dev\` in another tab first!' \
     "
 alias start-outreach-b="cd $ALEDADE_DIR/outreach && echo 'make up-dev'"
-alias start-outreach-f="cd $ALEDADE_DIR/outreach && echo 'npm run watch:fast'"
+alias start-outreach-f="cd $ALEDADE_DIR/outreach && echo 'npm run watch'"
 
 alias start-dbt="cd $ALEDADE_DIR/dbt \
     && echo 'make ozy-dev (run \`set_dbt_vars\` if needed)'"
@@ -314,7 +314,7 @@ alias bucg="brew upgrade --cask --greedy"
 alias please="sudo"
 
 # Add Aledade-specific aliases
-if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+if [ command -v scutil &> /dev/null ] && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
 
     function set_dbt_vars() {
