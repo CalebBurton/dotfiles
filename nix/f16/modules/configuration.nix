@@ -7,7 +7,7 @@
 {
   imports =
     [
-      # Don't add any github repos here, they need to be put in the flake inputs
+      # Don't add any github repos here, they need to be flake inputs
 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -190,8 +190,8 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
+    # use the example session manager (no others are packaged yet so this is
+    # enabled by default, no need to redefine it in your config for now)
     #media-session.enable = true;
   };
 
@@ -214,8 +214,10 @@
       #   };
       # })
 
-      # Pin chromium so it matches the path the markdownpdf vscode extension is configured to use.
-      # See https://lazamar.co.uk/nix-versions/?package=chromium for available versions
+      # Pin chromium so it matches the path the markdownpdf vscode extension is
+      # configured to use.
+      # See https://lazamar.co.uk/nix-versions/?package=chromium for all
+      # available versions.
       (final: prev: {
           chromium-pinned = prev.chromium.overrideAttrs (old: {
             src = builtins.fetchTarball {
@@ -231,7 +233,8 @@
           });
       })
 
-      # Temporary fix until https://github.com/NixOS/nixpkgs/pull/298491 is in unstable
+      # Temporary fix until https://github.com/NixOS/nixpkgs/pull/298491 is
+      # packaged in unstable
       (final: prev: {
         fprintd = prev.fprintd.overrideAttrs (_: {
           mesonCheckFlags = [
@@ -364,11 +367,11 @@
     # https://community.frame.work/t/responded-amd-7040-sleep-states/38101/13
     power-profiles-daemon.enable = true;
 
-    # # TLP battery manager -- not recommended for AMD?
+    # # TLP battery manager -- not recommended for AMD
     # tlp = {
     #   enable = true;
     #   settings = {$ iw reg get
-    #     # # BAT0 doesn't show up in `/sys/class/power_supply/` but including it anyway
+    #     # # BAT0 doesn't show up in `/sys/class/power_supply/`...
     #     # START_CHARGE_THRESH_BAT0=75;
     #     # STOP_CHARGE_THRESH_BAT0=80;
 
@@ -385,12 +388,9 @@
     #   sudo fwupdmgr update
     fwupd = {
       enable = true;
-      # extraRemotes = [
-      #   "lvfs-testing" # Careful with this... might not be good for AMD
-      # ];
     };
 
-    # Fingerprint reader. Run sudo fprintd-enroll to actually enroll fingerprints
+    # Fingerprint reader. Run sudo fprintd-enroll to enroll fingerprints
     fprintd = {
       enable = true;
       # tod = {
@@ -411,10 +411,41 @@
 
     #   openssh = {
     #     enable = true;
-    #     # set these to false to require public key authentication for better security
+    #     # set these to false to require key auth for better security
     #     settings.PasswordAuthentication = true;
     #     settings.KbdInteractiveAuthentication = true;
     #   };
+
+    # protonvpn = {
+    #   enable = true;
+    #   autostart = true;
+
+    #   interface = {
+    #     # The name of the Wireguard network interface to create. Go to
+    #     # https://account.protonmail.com/u/0/vpn/WireGuard to create a Linux
+    #     # Wireguard certificate and download it. You'll need it's content to
+    #     # set the options for this module.
+    #     name = "protonvpn";
+
+    #     # The IP address of the interface. See your Wireguard certificate.
+    #     ip = "10.2.0.2/32";
+
+    #     # The port number of the interface
+    #     port = 51820;
+
+    #     # The path to a file containing the private key for this interface.
+    #     # Only root should have access to the file. See your Wireguard
+    #     # certificate.
+    #     privateKeyFile = "/root/secrets/protonvpn";
+
+    #     # Enable the DNS provided by the VPN
+    #     dns = true;
+
+    #     # The IP address of the DNS provider. See your Wireguard certificate.
+    #     ip = "10.2.0.1";
+    #   };
+    # };
+
   };
 
   # users.users."user".openssh.authorizedKeys.keyFiles = [

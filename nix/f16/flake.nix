@@ -6,19 +6,22 @@
     # nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    # Framework specific hardware tweaks
+    # From https://github.com/NixOS/nixos-hardware/tree/master/framework
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     # Use home manager
     home-manager.url = "github:nix-community/home-manager"; # targets unstable by default
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Framework specific hardware tweaks
-    # From https://github.com/NixOS/nixos-hardware/tree/master/framework
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # inputs.erosanix.url = "github:emmanuelrosa/erosanix";
   };
 
   outputs = {
     nixpkgs,
-    home-manager,
     nixos-hardware,
+    home-manager,
+    # erosanix,
     ...
   }:
   let
@@ -56,7 +59,12 @@
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
+          # # Facade for Wireguard's "quick" for easily connecting to Proton VPN
+          # erosanix.nixosModules.protonvpn
         ];
+        # environment.systemPackages = with pkgs; [
+        #   erosanix.packages.x86_64-linux.somePackage
+        # ];
       };
     };
 
