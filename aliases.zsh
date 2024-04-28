@@ -55,9 +55,11 @@ FLAKE_LOCATION="/home/cburton/Code/GitHub/dotfiles/nix/f16"
 alias nixos-update="echo 'sudo nix flake update $FLAKE_LOCATION#' \
     && sudo nix flake update $FLAKE_LOCATION#"
 alias nixos-build="echo 'sudo nixos-rebuild build --flake $FLAKE_LOCATION#' \
-    && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
+    && [ '$NIXOS_LABEL' != '' ] && sudo nixos-rebuild build --flake $FLAKE_LOCATION# \
+    || echo 'NIXOS_LABEL is not set! Aborting.'"
 alias nixos-switch="echo 'sudo nixos-rebuild switch --flake $FLAKE_LOCATION#' \
-    && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
+    && [ '$NIXOS_LABEL' != '' ] && sudo nixos-rebuild switch --flake $FLAKE_LOCATION# \
+    || echo 'NIXOS_LABEL is not set! Aborting.'"
 alias nixos-rollback="echo 'sudo nixos-rebuild switch --rollback --flake $FLAKE_LOCATION#' \
     && sudo nixos-rebuild switch --rollback --flake $FLAKE_LOCATION#"
 alias nixos-trim-dry="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d --dry-run' \
