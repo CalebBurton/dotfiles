@@ -201,8 +201,6 @@
       permittedInsecurePackages = [
         "openssl-1.1.1w"
       ];
-
-      # Supposed to be managed in the flake now... but apparently it's not?
       allowUnfree = true;
     };
 
@@ -387,37 +385,45 @@
 
   # # Use zsh as the default shell. Additional config below.
   # users.defaultUserShell = pkgs.zsh;
-  # environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [
+    bashInteractive
+    # regular `sh` is included by default
+    zsh
+  ];
 
   programs = {
     # See https://linuxhint.com/how-to-instal-steam-on-nixos/
     steam.enable = true;
     kdeconnect.enable = true;
 
-    # zsh = {
-    #     enable = true;
-    #     enableCompletion = true;
-    #     # autocd = true; # Entering a directory is interpeted as "cd $directory"
-    #     # autosuggestion.enable = true;
-    #     syntaxHighlighting.enable = true;
-    #     shellAliases = {
-    #         ll = "ls -l";
-    #     };
-    #     # history = {
-    #     #     extended = true; # Save timestamp with each history entry
-    #     #     # size = 10000;
-    #     # };
-    #     # initExtra = builtins.readFile(../../../aliases.zsh);
+    zsh = {
+        enable = true;
+        enableCompletion = true;
+        syntaxHighlighting.enable = true;
+        # See https://linux.die.net/man/1/zshoptions
+        setOptions = [
+          "AUTO_CD" # Allow omitting `cd` when trying to change directories
+          "AUTO_PUSHD" # `cd` is silently replaced with `pushd`
+          "EXTENDED_HISTORY" # Save timestamp with each history entry
 
-    #     ohMyZsh = {
-    #         enable = true;
-    #         plugins = [
-    #             "git"
-    #             "z"
-    #         ];
-    #         # theme = "robbyrussell";
-    #     };
-    # };
+          # nixOS Defaults
+          "HIST_IGNORE_DUPS" # Don't save a history entry if it's already in the history file
+          "SHARE_HISTORY" # Write each shell's history to the file when it exits
+          # ^ Replace with INC_APPEND_HISTORY to write each line immediately instead
+          "HIST_FCNTL_LOCK" # Improves performance when writing to history
+        ];
+        histSize = 10000;
+        # initExtra = builtins.readFile(../../../aliases.zsh);
+
+        ohMyZsh = {
+            enable = true;
+            plugins = [
+                "git"
+                "z"
+            ];
+            # theme = "robbyrussell";
+        };
+    };
   };
 
   # Enable support for SANE scanners
