@@ -7,10 +7,10 @@
 {
   imports =
     [
-      # Don't add any github repos here, they need to be flake inputs
-
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      # Don't add any github repos here, those need to be flake inputs
+      ./hardware-configuration.nix # Results of the automatic hardware scan
+      ./packages.nix
+      ./shell.nix
     ];
 
   # Turn on flakes
@@ -88,18 +88,17 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
+  # Enable the X11 windowing system
   services.xserver.enable = true;
-  # Fixes non-Qt apps (like Firefox) running in wayland
-  programs.dconf.enable = true;
-  # Set Firefox as the default browser
+
+  # Set Firefox as the default URL handler
   xdg.mime.enable = true;
   xdg.mime.addedAssociations = {
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
   };
 
-  # Enable the KDE Plasma Desktop Environment.
+  # Enable KDE Plasma
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.defaultSession = "plasma";
@@ -121,12 +120,6 @@
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # services.xrdp.defaultWindowManager = "gnome-session";
-
-  # # Enable XFCE
-  # services.xserver.displayManager.gdm.autoSuspend = false;
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.xfce.enable = true;
-  # services.xrdp.defaultWindowManager = "xfce4-session";
 
   ###############################
   ###############################
@@ -195,54 +188,6 @@
     #media-session.enable = true;
   };
 
-  nixpkgs = {
-    config = {
-      # Required by github-desktop
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
-      allowUnfree = true;
-    };
-
-    overlays = [
-      # # Sweet Home 3D
-      # (final: prev: {
-      #   sweethome3d-patched = prev.sweethome3d.application.overrideAttrs {
-      #     env.ANT_ARGS = "-DappletClassSource=8 -DappletClassTarget=8 -DclassSource=8 -DclassTarget=8";
-      #   };
-      # })
-
-      # Pin chromium so it matches the path the markdownpdf vscode extension is
-      # configured to use.
-      # See https://lazamar.co.uk/nix-versions/?package=chromium for all
-      # available versions.
-      (final: prev: {
-          chromium-pinned = prev.chromium.overrideAttrs (old: {
-            src = builtins.fetchTarball {
-              url = "https://github.com/NixOS/nixpkgs/archive/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3.tar.gz";
-              sha256 = "1q2fn8szx99narznglglsdpc6c4fj1mhrl42ig02abjqfikl723i";
-            };
-            # src = prev.fetchFromGitHub {
-            #   owner = "NixOS";
-            #   repo = "nixpkgs";
-            #   rev = "336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3";
-            #   sha256 = "";
-            # };
-          });
-      })
-
-      # Temporary fix until https://github.com/NixOS/nixpkgs/pull/298491 is
-      # packaged in unstable
-      (final: prev: {
-        fprintd = prev.fprintd.overrideAttrs (_: {
-          mesonCheckFlags = [
-            "--no-suite" "fprintd:TestPamFprintd"
-          ];
-        });
-      })
-    ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cburton = {
     isNormalUser = true;
@@ -258,113 +203,7 @@
       "vboxusers" # Grants access to virtualbox
       "wheel"
     ];
-    # MARK: User Packages
-    packages = with pkgs; [
-      audacity
-      # chromium
-      chromium-pinned
-      # cyberduck -- macos/windows only
-      docker
-      firefox
-      github-desktop
-      gimp
-      # gimp-with-plugins
-      google-chrome
-      # handbrake
-      inkscape-with-extensions
-      kdePackages.filelight # Disk usage visualizer
-      kdePackages.kdenlive
-      kdePackages.plasma-nm # Network manager
-      kdePackages.skanpage
-      krename # File renaming tool
-      krita
-      ktailctl
-      libreoffice
-      nextcloud-client
-      pdfarranger
-      protonmail-bridge
-      protonvpn-gui # Turn this off once the erosanix version is usable
-      qbittorrent
-      # realvnc-vnc-viewer # Broken as of 4/6/24
-      # rustdesk
-      signal-desktop
-      spotify
-      sweethome3d.application # Excludes the textures and furniture editors
-      thunderbird
-      tor-browser-bundle-bin
-      vlc
-      # See https://nixos.wiki/wiki/Visual_Studio_Code
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.nix # Nix syntax highlighting
-        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          # Run the `get_sha` alias to get the correct sha256 value
-          {
-            # Sieve syntax highlighting
-            name = "vscode-sievehighlight";
-            publisher = "adzero";
-            version = "1.0.6";
-            sha256 = "f0e9a9bfbf76788da4207fb9f8a3cbf6301ff3cc6c30641ec07110c22f018684";
-          }
-          {
-            # Markdown to PDF converter
-            name = "markdown-pdf";
-            publisher = "yzane";
-            version = "1.5.0";
-            sha256 = "6a289f6601d70b819411b90a01b2dcd29fe3519c69d6317f27563f288caf2c81";
-          }
-        ];
-      })
-      warp-terminal
-      whatsapp-for-linux
-      # # WINE >>>
-      # wineWowPackages.stable # support both 32- and 64-bit applications
-      # # wine # support 32-bit only
-      # # (wine.override { wineBuild = "wine64"; }) # support 64-bit only
-      # # wine64 # support 64-bit only
-      # wineWowPackages.staging # wine-staging (version with experimental features)
-      # winetricks # Additional DLLs needed for some software to work with WINE
-      # wineWowPackages.waylandFull # native wayland support (unstable)
-      # # <<< WINE
-      # Allows non-Qt apps (like Firefox) to use native tools like the file picker
-      xdg-desktop-portal # Not sure if this is really needed, but doesn't hurt
-      yt-dlp
-      zoom-us
-    # ] ++ [
-    #   pkgs23_11.chromium
-    ];
   };
-
-  # Set VS Code to use Wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # MARK: System Packages
-  # List packages installed in system profile. To search (e.g. for wget), run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    awscli
-    bitwarden-cli
-    ffmpeg
-    git
-    gnome.gucharmap # Unicode symbol selector
-    gparted # For partitioning drives (GUI version)
-    # home-manager
-    jq
-    killall
-    libnatpmp # Allows using Bonjour
-    lsof
-    man
-    nmap
-    parted # For partioning drives (CLI version)
-    python312
-    python312Packages.pip
-    s3fs
-    tailscale
-    tesseract # OCR
-    unzip
-    vim
-    zip
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -382,49 +221,6 @@
   # virtualisation.virtualbox.host.enableExtensionPack = true;
   # virtualisation.virtualbox.guest.enable = true;
   # virtualisation.virtualbox.guest.x11 = true;
-
-  # # Use zsh as the default shell. Additional config below.
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [
-    bashInteractive
-    # regular `sh` is included by default
-    zsh
-  ];
-
-  programs = {
-    # See https://linuxhint.com/how-to-instal-steam-on-nixos/
-    steam.enable = true;
-    kdeconnect.enable = true;
-
-    zsh = {
-        enable = true;
-        enableCompletion = true;
-        syntaxHighlighting.enable = true;
-        # See https://linux.die.net/man/1/zshoptions
-        setOptions = [
-          "AUTO_CD" # Allow omitting `cd` when trying to change directories
-          "AUTO_PUSHD" # `cd` is silently replaced with `pushd`
-          "EXTENDED_HISTORY" # Save timestamp with each history entry
-
-          # nixOS Defaults
-          "HIST_IGNORE_DUPS" # Don't save a history entry if it's already in the history file
-          "SHARE_HISTORY" # Write each shell's history to the file when it exits
-          # ^ Replace with INC_APPEND_HISTORY to write each line immediately instead
-          "HIST_FCNTL_LOCK" # Improves performance when writing to history
-        ];
-        histSize = 10000;
-        # initExtra = builtins.readFile(../../../aliases.zsh);
-
-        ohMyZsh = {
-            enable = true;
-            plugins = [
-                "git"
-                "z"
-            ];
-            # theme = "robbyrussell";
-        };
-    };
-  };
 
   # Enable support for SANE scanners
   hardware.sane = {
@@ -475,25 +271,12 @@
     # https://community.frame.work/t/responded-amd-7040-sleep-states/38101/13
     power-profiles-daemon.enable = true;
 
-    # # TLP battery manager -- not recommended for AMD
-    # tlp = {
-    #   enable = true;
-    #   settings = {$ iw reg get
-    #     # # BAT0 doesn't show up in `/sys/class/power_supply/`...
-    #     # START_CHARGE_THRESH_BAT0=75;
-    #     # STOP_CHARGE_THRESH_BAT0=80;
-
-    #     START_CHARGE_THRESH_BAT1=75;
-    #     STOP_CHARGE_THRESH_BAT1=80;
-    #   };
-    # };
-
     tailscale.enable = true;
 
     # For firmware updates. To apply updates, run:
-    #   fwupdmgr refresh
-    #   fwupdmgr get-updates
-    #   sudo fwupdmgr update
+    #   fwupdmgr refresh     # fetches new updates
+    #   fwupdmgr get-updates # optional, just gives extra detail
+    #   sudo fwupdmgr update # shows available updates & installs them
     fwupd = {
       enable = true;
     };
@@ -501,19 +284,6 @@
     # Fingerprint reader. Run sudo fprintd-enroll to enroll fingerprints
     fprintd = {
       enable = true;
-      # tod = {
-      #   enable = true;
-      #   driver = pkgs.libfprint-2-tod1-goodix;
-      #   # driver = pkgs.libfprint-2-tod1-goodix-550a;
-      # };
-
-      # # Semi-permanent fix for https://github.com/NixOS/nixpkgs/issues/298150
-      # package = pkgs.fprintd.overrideAttrs {
-      #   mesonCheckFlags = [
-      #     "--no-suite"
-      #     "fprintd:TestPamFprintd"
-      #   ];
-      # };
     };
 
 
@@ -523,37 +293,6 @@
     #     settings.PasswordAuthentication = true;
     #     settings.KbdInteractiveAuthentication = true;
     #   };
-
-    # protonvpn = {
-    #   enable = true;
-    #   autostart = true;
-
-    #   interface = {
-    #     # The name of the Wireguard network interface to create. Go to
-    #     # https://account.protonmail.com/u/0/vpn/WireGuard to create a Linux
-    #     # Wireguard certificate and download it. You'll need it's content to
-    #     # set the options for this module.
-    #     name = "protonvpn";
-
-    #     # The IP address of the interface. See your Wireguard certificate.
-    #     ip = "10.2.0.2/32";
-
-    #     # The port number of the interface
-    #     port = 51820;
-
-    #     # The path to a file containing the private key for this interface.
-    #     # Only root should have access to the file. See your Wireguard
-    #     # certificate.
-    #     privateKeyFile = "/root/secrets/protonvpn";
-
-    #     # Enable the DNS provided by the VPN
-    #     dns = true;
-
-    #     # The IP address of the DNS provider. See your Wireguard certificate.
-    #     ip = "10.2.0.1";
-    #   };
-    # };
-
   };
 
   # users.users."user".openssh.authorizedKeys.keyFiles = [

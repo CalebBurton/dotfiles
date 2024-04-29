@@ -101,4 +101,34 @@ in {
       ];
     };
   };
+
+    # services.protonvpn = {
+    #   enable = true;
+    #   autostart = true;
+
+    #   interface = {
+    #     # The name of the Wireguard network interface to create. Go to
+    #     # https://account.protonmail.com/u/0/vpn/WireGuard to create a Linux
+    #     # Wireguard certificate and download it. You'll need it's content to
+    #     # set the options for this module.
+    #     name = "protonvpn";
+
+    #     # The IP address of the interface. See your Wireguard certificate.
+    #     ip = "10.2.0.2/32";
+
+    #     # The port number of the interface
+    #     port = 51820;
+
+    #     # The path to a file containing the private key for this interface.
+    #     # Only root should have access to the file. See your Wireguard
+    #     # certificate.
+    #     privateKeyFile = "/root/secrets/protonvpn";
+
+    #     # Enable the DNS provided by the VPN
+    #     dns = true;
+
+    #     # The IP address of the DNS provider. See your Wireguard certificate.
+    #     ip = "10.2.0.1";
+    #   };
+    # };
 }
