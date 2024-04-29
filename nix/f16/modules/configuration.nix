@@ -384,7 +384,7 @@
   # virtualisation.virtualbox.guest.x11 = true;
 
   # # Use zsh as the default shell. Additional config below.
-  # users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [
     bashInteractive
     # regular `sh` is included by default
