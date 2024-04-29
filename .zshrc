@@ -3,8 +3,24 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# See below for more PATH changes
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki"
+POTENTIAL_PATHS=(
+  "$HOME/bin"
+  "$HOME/.local/bin" # Poetry
+  "$HOME/.cargo/bin" # Rustup
+  "/usr/local/bin"
+  "/usr/bin"
+  "/bin"
+  "/usr/sbin"
+  "/sbin"
+  "/usr/local/munki"
+)
+for var in "${POTENTIAL_PATHS[@]}"
+do
+  if [ -e "$var" ]; then
+    export PATH="$var:$PATH"
+  fi
+done
+
 
 if [[ $(uname -m) == 'arm64' ]]; then
   export IS_M1=1
@@ -18,14 +34,6 @@ if [[ $IS_M1 == 1 ]]; then
 else
   export PATH="/usr/local/sbin:$PATH" # Intel directory
 fi
-
-# Add poetry
-if [ -e "$HOME/.local/bin" ]; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
-
-# Add rustup
-export PATH="$HOME/.cargo/bin:$PATH"
 
 # Python version management with pyenv
 export PYENV_ROOT="/usr/local/var/pyenv"
