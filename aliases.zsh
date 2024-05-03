@@ -314,7 +314,7 @@ alias bucg="brew upgrade --cask --greedy"
 alias please="sudo"
 
 # Add Aledade-specific aliases
-if [ command -v scutil &> /dev/null ] && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
 
     function set_dbt_vars() {
@@ -327,13 +327,13 @@ if [ command -v scutil &> /dev/null ] && [ "$(scutil --get ComputerName)" = "Ale
         export DBT_SNOWFLAKE_DB='ARCHIVE'
 
         # defaults to DATAVELOCITY but might need to use DEV sometimes
-        export DBT_ROLE='DEV'
+        export DBT_ROLE='DATAVELOCITY'
 
         export DBT_POSTGRES_USER='cburton'
         export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
 
         # Defaults to wh_datavelocity, but when using the dev role this should be wh_dev
-        export DBT_SNOWFLAKE_WAREHOUSE='wh_dev'
+        export DBT_SNOWFLAKE_WAREHOUSE='wh_datavelocity'
 
         # # Just use the defaults for these
         # export DBT_SCHEMA='public'
