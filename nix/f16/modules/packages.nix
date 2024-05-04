@@ -45,6 +45,13 @@
           ];
         });
       })
+
+      # For wayland support
+      (final: prev: {
+        warp-terminal-patched = prev.warp-terminal.override {
+          waylandSupport = true;
+        };
+      })
     ];
   };
 
@@ -119,7 +126,8 @@
         }
       ];
     })
-    warp-terminal
+    # warp-terminal
+    warp-terminal-patched
     whatsapp-for-linux
     # XDG allows non-Qt apps (like Firefox) to use native tools like the file
     # picker: https://wiki.archlinux.org/title/Firefox#KDE_integration

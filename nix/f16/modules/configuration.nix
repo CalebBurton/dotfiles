@@ -155,7 +155,6 @@
   services.xserver = {
     xkb.layout = "us";
     xkb.variant = "";
-    libinput.touchpad.disableWhileTyping = true;
   };
 
   # Enable support for Bluetooth
@@ -234,6 +233,8 @@
   };
 
   services = {
+
+    libinput.touchpad.disableWhileTyping = true;
 
     # Enable CUPS to print documents
     printing = {
