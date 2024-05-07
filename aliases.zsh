@@ -308,8 +308,7 @@ alias bsc="brew search --casks"
 
 # `bc` is already a command, don"t overwrite it
 alias bic="brew install --cask"
-alias buc="brew upgrade --cask"
-alias bucg="brew upgrade --cask --greedy"
+alias buc="brew upgrade --cask --greedy && brew upgrade"
 
 alias please="sudo"
 
