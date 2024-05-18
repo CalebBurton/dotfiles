@@ -93,10 +93,14 @@
 
   # Set Firefox as the default URL handler
   xdg.mime.enable = true;
-  xdg.mime.addedAssociations = {
+  xdg.mime.defaultApplications = {
+    "text/html" = "firefox.desktop";
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/about" = "firefox.desktop";
+    "x-scheme-handler/unknown" = "firefox.desktop";
   };
+  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
   # Enable KDE Plasma
   services.displayManager.sddm.enable = true;
@@ -217,7 +221,8 @@
 
   # Virtualbox: https://nixos.wiki/wiki/VirtualBox
   virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  # Required for accessing USB devices on the guest OS
+  virtualisation.virtualbox.host.enableExtensionPack = true;
   # virtualisation.virtualbox.guest.enable = true;
   # virtualisation.virtualbox.guest.x11 = true;
 

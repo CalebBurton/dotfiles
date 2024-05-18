@@ -80,7 +80,6 @@
     # gimp-with-plugins
     gnome.gucharmap # Unicode symbol selector
     google-chrome
-    gparted # For partitioning drives (GUI version)
     # handbrake
     inkscape-with-extensions
     kdePackages.filelight # Disk usage visualizer
@@ -144,6 +143,7 @@
     bitwarden-cli
     ffmpeg
     git
+    gparted # For partitioning drives (GUI version)
     jq
     killall
     libnatpmp # Allows using Bonjour
