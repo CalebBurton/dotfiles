@@ -22,7 +22,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use the latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Downgrade kernel until https://github.com/NixOS/nixpkgs/pull/311362 is merged
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
 
   # # Home Manager settings
   # home-manager.useUserPackages = true;
@@ -220,11 +223,18 @@
   virtualisation.docker.enable = true;
 
   # Virtualbox: https://nixos.wiki/wiki/VirtualBox
-  virtualisation.virtualbox.host.enable = true;
-  # Required for accessing USB devices on the guest OS
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true;
-  # virtualisation.virtualbox.guest.x11 = true;
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      # # Required for USB devices on the guest OS, but causes long rebuilds.
+      # enableExtensionPack = true;
+    };
+
+    # # Guest additions
+    # guest = {
+    #   enable = true;
+    # };
+  };
 
   # Enable support for SANE scanners
   hardware.sane = {
