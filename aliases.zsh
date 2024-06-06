@@ -316,6 +316,14 @@ alias please="sudo"
 if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
 
+    function set_node_vars() {
+        login_to_bitwarden
+        echo 'Setting node vars'
+        export GITHUB_TOKEN=$(bw get password "[Aledade] GitHub npm token")
+        echo 'Successfully set node vars'
+        bw lock
+    }
+
     function set_dbt_vars() {
         login_to_bitwarden
         echo 'Setting dbt vars'

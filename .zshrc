@@ -199,8 +199,11 @@ alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 # fi
 
 # Add Aledade-specific config
-if [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
-  # NOOP
+if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+  if [ $(basename $(pwd)) = "outreach" ]; then
+    pyenv activate
+    echo "(remember to run 'set_node_vars' before using 'npm install')"
+  fi
 fi
 
 # =============================================================================
