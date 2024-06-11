@@ -8,6 +8,7 @@ POTENTIAL_PATHS=(
   "$HOME/.local/bin" # Poetry
   "$HOME/.cargo/bin" # Rustup
   "/usr/local/bin"   # Intel Homebrew?
+  "/Applications/Docker.app/Contents/Resources/bin/" # Docker Desktop for Mac
   "/usr/bin"
   "/bin"
   "/usr/sbin"

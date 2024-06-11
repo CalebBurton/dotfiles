@@ -369,6 +369,9 @@ if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade
         export SNOWFLAKE_PASS=
         export SNOWFLAKE_ACCT=qla80296.us-east-1
         export DB_URL="postgresql://$DB_USERNAME:$DB_PASSWORD@db-dev.aledade.com/aledade"
+        export ERGOMETER_BASE_URL="https://ergometer-dev.aledade.com"
+        export ERGOMETER_AUTH_CLIENT_ID=$(bw get password "[Aledade] ERGOMETER_AUTH_CLIENT_ID")
+        export ERGOMETER_AUTH_SECRET=$(bw get password "[Aledade] ERGOMETER_AUTH_SECRET")
         echo 'Successfully set snowflake DAG vars'
         bw lock
     }
