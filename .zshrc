@@ -7,7 +7,7 @@ POTENTIAL_PATHS=(
   "$HOME/bin"
   "$HOME/.local/bin" # Poetry
   "$HOME/.cargo/bin" # Rustup
-  "/usr/local/bin"
+  "/usr/local/bin"   # Intel Homebrew?
   "/usr/bin"
   "/bin"
   "/usr/sbin"
@@ -41,8 +41,8 @@ if [ -e $PYENV_ROOT ]; then
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
-  # Slows down startup considerably, and isn't strictly necessary. Without it
-  # you have to use `pyenv shell env_name` instead of `pyenv activate env_name`
+  # Slows down startup considerably, and isn't strictly necessary.
+  # In fact, I'm not entirely sure what it even does.
   # eval "$(pyenv virtualenv-init -)"
 fi
 
