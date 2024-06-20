@@ -141,6 +141,7 @@
   environment.systemPackages = with pkgs; [
     awscli
     bitwarden-cli
+    dig
     ffmpeg
     git
     gparted # For partitioning drives (GUI version)
