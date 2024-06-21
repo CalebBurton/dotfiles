@@ -195,7 +195,7 @@ function trash() {
 }
 
 function eod() {
-    pushd ~/Code/GitHub/personal
+    pushd "$GITHUB_DIR/worklog"
     git add -p
     echo $(date '+%B %_d') | awk '{print "feat(worklog): end of day -",tolower($0)}' | git commit -F -
 }
