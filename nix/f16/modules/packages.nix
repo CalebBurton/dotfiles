@@ -96,8 +96,9 @@
     protonvpn-gui # Turn this off once the erosanix version is usable
     qbittorrent
     # realvnc-vnc-viewer # Broken as of 4/6/24
-    # rustdesk
+    rustdesk
     signal-desktop
+    skypeforlinux
     spotify
     sweethome3d.application # Excludes the textures and furniture editors
     thunderbird
