@@ -372,6 +372,10 @@ if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade
         export ERGOMETER_BASE_URL="https://ergometer-dev.aledade.com"
         export ERGOMETER_AUTH_CLIENT_ID=$(bw get password "[Aledade] ERGOMETER_AUTH_CLIENT_ID")
         export ERGOMETER_AUTH_SECRET=$(bw get password "[Aledade] ERGOMETER_AUTH_SECRET")
+        # Alternative names used in some scripts
+        export ERGOMETER_URL=$ERGOMETER_BASE_URL
+        export CLIENT_ID=$ERGOMETER_AUTH_CLIENT_ID
+        export CLIENT_SECRET=$ERGOMETER_AUTH_SECRET
         echo 'Successfully set snowflake DAG vars'
         bw lock
     }
