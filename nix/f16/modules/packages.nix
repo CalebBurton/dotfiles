@@ -96,7 +96,7 @@
     protonvpn-gui # Turn this off once the erosanix version is usable
     qbittorrent
     # realvnc-vnc-viewer # Broken as of 4/6/24
-    rustdesk
+    # rustdesk # HUGELY increases build times
     signal-desktop
     skypeforlinux
     spotify
