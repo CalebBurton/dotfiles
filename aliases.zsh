@@ -228,6 +228,10 @@ function spoof_mac(){
     networksetup -detectnewhardware
 }
 
+# Might just be a macos thing
+# TODO: look up how to do this in nixOS
+alias flush-dns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+
 # TODO: see if this can work with kde wallet rather than apple keychain
 function get_bw_status() {
     echo $(bw status | jq .status | cut -d '"' -f2)
@@ -331,7 +335,7 @@ if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade
 
         export DBT_SNOWFLAKE_USER='cburton'
         export DBT_SNOWFLAKE_PASSWORD=''
-        export DBT_SNOWFLAKE_DB='ARCHIVE'
+        export DBT_SNOWFLAKE_DB='EDW_CBURTON'
 
         # defaults to DATAVELOCITY but might need to use DEV sometimes
         export DBT_ROLE='DATAVELOCITY'
@@ -376,6 +380,10 @@ if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade
         export ERGOMETER_URL=$ERGOMETER_BASE_URL
         export CLIENT_ID=$ERGOMETER_AUTH_CLIENT_ID
         export CLIENT_SECRET=$ERGOMETER_AUTH_SECRET
+        # Yet another set of names
+        export PATHFINDER_ERGOMETER_BASE_URL=$ERGOMETER_BASE_URL
+        export PATHFINDER_ERGOMETER_AUTH_CLIENT_ID=$ERGOMETER_AUTH_CLIENT_ID
+        export PATHFINDER_ERGOMETER_AUTH_SECRET=$ERGOMETER_AUTH_SECRET
         echo 'Successfully set snowflake DAG vars'
         bw lock
     }
