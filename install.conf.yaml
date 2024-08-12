@@ -6,6 +6,7 @@
 - clean: ['~']
 
 - link:
+    ~/.config/direnv/direnv.toml: .config/direnv/direnv.toml
     ~/.ssh/config: .ssh/config
     ~/.vimrc: .vimrc
     ~/.gitconfig: .gitconfig
