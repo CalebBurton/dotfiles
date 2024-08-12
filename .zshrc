@@ -219,13 +219,13 @@ fi
 if [ -e '/nix/store/zgz87qspyip4ls6srcm0qkxj4kzj0rkw-set-environment' ]; then
   . '/nix/store/zgz87qspyip4ls6srcm0qkxj4kzj0rkw-set-environment'
 fi
-
-# # Add direnv:
-# #  When cd'ing into a directory with a .envrc, automatically calls nix-shell
-# if command -v direnv &> /dev/null; then
-#   eval "$(direnv hook zsh)"
-# fi
 # =============================================================================
+
+# Add direnv:
+#  When cd'ing into a directory with a .envrc, automatically loads it
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # Enable iterm's shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
