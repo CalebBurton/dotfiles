@@ -43,7 +43,7 @@ if [ -e $PYENV_ROOT ]; then
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
   # Slows down startup considerably, and isn't strictly necessary.
-  # In fact, I'm not entirely sure what it even does.
+  # It automatically activates the local pyenv when you cd into a directory
   # eval "$(pyenv virtualenv-init -)"
 fi
 
@@ -201,10 +201,14 @@ alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
 # Add Aledade-specific config
 if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
-  if [ $(basename $(pwd)) = "outreach" ]; then
-    pyenv activate
-    echo "(remember to run 'set_node_vars' before using 'npm install')"
-  fi
+  # pyenv-virtualenv could do this too, but it's soooo slow
+  pyenv_dirs=("outreach" "ingestion-biz-logic" "dbt" "aledade.models")
+  for item in "${pyenv_dirs[@]}"; do
+    if [[ "$item" == $(basename $(pwd)) ]]; then
+      pyenv activate
+      break
+    fi
+  done
 fi
 
 # =============================================================================
