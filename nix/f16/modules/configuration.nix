@@ -22,10 +22,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use the latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Downgrade kernel until https://github.com/NixOS/nixpkgs/pull/311362 is merged
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
+  # Here's the syntax for downgrading the kernel, if needed
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
 
   # # Home Manager settings
   # home-manager.useUserPackages = true;
