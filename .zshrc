@@ -38,7 +38,7 @@ fi
 
 # Python version management with pyenv
 export PYENV_ROOT="/usr/local/var/pyenv"
-if [ -e $PYENV_ROOT ]; then
+if [ -e $PYENV_ROOT ] && command -v pyenv >/dev/null 2>&1; then
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
@@ -163,7 +163,8 @@ source $ZSH/oh-my-zsh.sh
 
 source "$GITHUB_DIR/dotfiles/aliases.zsh" # Store all aliases in their own file
 
-# Allow filtering the arrow up and arrow down buttons to only match commands beginning with what is already typed
+# Allow filtering the arrow up and arrow down buttons to only match commands
+# beginning with what is already typed
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
@@ -191,20 +192,14 @@ export NVM_DIR="$HOME/.nvm"
 alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
-# # Add CIQ-specific pieces
-# if [ "$(scutil --get ComputerName)" = "CB Work MacBook" ]; then
-#   # Add nix, if installed
-#   if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] ; then
-#     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-#   fi
-# fi
-
 # Add Aledade-specific config
-if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+if command -v scutil &> /dev/null && \
+   [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
   # pyenv-virtualenv could do this too, but it's soooo slow
   pyenv_dirs=("outreach" "ingestion-biz-logic" "dbt" "aledade.models")
   for item in "${pyenv_dirs[@]}"; do
-    if [[ "$item" == $(basename $(pwd)) ]]; then
+    if [[ "$item" == $(basename $(pwd)) ]] && \
+       command -v pyenv >/dev/null 2>&1; then
       pyenv activate
       break
     fi
@@ -214,6 +209,11 @@ fi
 # =============================================================================
 # Nix
 # =============================================================================
+# # Add nix, if installed
+# if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] ; then
+#   . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+# fi
+
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
