@@ -297,7 +297,10 @@
       enable = true;
     };
 
-    # Fingerprint reader. Run sudo fprintd-enroll to enroll fingerprints
+    # Fingerprint reader
+    # Enroll fingerprints: `sudo fprintd-enroll`
+    # Verify things are working: `fprintd-verify`
+    # List all enrolled prints: `fprintd-list $(whoami)`
     fprintd = {
       enable = true;
     };
