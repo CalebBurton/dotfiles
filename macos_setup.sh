@@ -4,9 +4,9 @@
 # See https://pawelgrzybek.com/change-macos-user-preferences-via-command-line #
 ###############################################################################
 
-echo -n "Update all macOS settings too? [Y/n]: "
+echo -n "Update all macOS settings too? [y/N]: "
 read -r yn
-[[ "$yn" =~ [Nn]$ ]] && exit 0
+[[ "$yn" =~ [Yy]$ ]] && exit 0
 echo -n "Script approved. Please provide a sudo password upfront."
 # Ask for the administrator password upfront
 sudo -v

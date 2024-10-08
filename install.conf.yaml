@@ -7,6 +7,7 @@
 
 - link:
     ~/.config/direnv/direnv.toml: .config/direnv/direnv.toml
+    ~/.oh-my-zsh/themes/go-cats.zsh-theme: go-cats.zsh-theme
     ~/.ssh/config: .ssh/config
     ~/.vimrc: .vimrc
     ~/.gitconfig: .gitconfig
