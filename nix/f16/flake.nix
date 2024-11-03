@@ -5,7 +5,7 @@
     # nixpkgs.url = "nixpkgs/nixos-23.05";
     # nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    # nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     # Framework specific hardware tweaks
     # From https://github.com/NixOS/nixos-hardware/tree/master/framework
@@ -20,6 +20,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-unstable,
     nixos-hardware,
     # home-manager,
     # erosanix,
@@ -51,6 +52,16 @@
           nixos-hardware.nixosModules.framework-16-7040-amd
           ./modules/configuration.nix
           # ./modules/protonvpn.nix
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                unstable = import nixpkgs-unstable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+              })
+            ];
+          }
 
           # home-manager.nixosModules.home-manager
           # {
@@ -65,11 +76,7 @@
           # # Facade for Wireguard's "quick" for easily connecting to Proton VPN
           # erosanix.nixosModules.protonvpn
         ];
-        # environment.systemPackages = with pkgs; [
-        #   erosanix.packages.x86_64-linux.somePackage
-        # ];
       };
     };
-
   };
 }
