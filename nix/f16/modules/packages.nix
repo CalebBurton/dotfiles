@@ -2,8 +2,8 @@
 {
   nixpkgs = {
     config = {
-      # Required by github-desktop
       permittedInsecurePackages = [
+        # Required by github-desktop
         "openssl-1.1.1w"
       ];
       allowUnfree = true;
@@ -95,7 +95,8 @@
     protonmail-bridge
     unstable.protonvpn-gui
     # protonvpn-gui # Turn this off once the erosanix version is usable
-    qbittorrent
+    unstable.qbittorrent
+    # qbittorrent # RCE in v4.6.4 blocks build. Unsure if it'll be backported.
     # realvnc-vnc-viewer # Broken as of 4/6/24
     # rustdesk # HUGELY increases build times
     signal-desktop
