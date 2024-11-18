@@ -299,10 +299,8 @@ function bup() {
         read yn
         case $yn in
             [Nn]* ) break;;
-            * ) echo "Please provide a sudo password upfront\n" && \
-                    sudo -v && \
-                    brew upgrade --cask --greedy && \
-                    brew upgrade;;
+            * ) brew upgrade --cask --greedy && \
+                brew upgrade;;
         esac
         yn=""
         break;
