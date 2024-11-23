@@ -126,6 +126,13 @@
           version = "1.5.0";
           sha256 = "6a289f6601d70b819411b90a01b2dcd29fe3519c69d6317f27563f288caf2c81";
         }
+        {
+          # Code Spell Checker
+          name = "code-spell-checker";
+          publisher = "streetsidesoftware";
+          version = "4.0.16";
+          sha256 = "sha256-1GH3liiExURy5e6owSRr5UJ7UXa8KUgglIzfGsSPARg=";
+        }
       ];
     })
     # warp-terminal
