@@ -98,6 +98,7 @@
     unstable.qbittorrent
     # qbittorrent # RCE in v4.6.4 blocks build. Unsure if it'll be backported.
     # realvnc-vnc-viewer # Broken as of 4/6/24
+    rpi-imager
     # rustdesk # HUGELY increases build times
     signal-desktop
     skypeforlinux
@@ -109,7 +110,12 @@
     # See https://nixos.wiki/wiki/Visual_Studio_Code
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
-        bbenoist.nix # Nix syntax highlighting
+        bbenoist.nix              # Nix syntax highlighting
+        eamodio.gitlens           # Gitlens
+        ms-python.python          # Python language support
+        ms-python.black-formatter # Python Black formatter
+        ms-python.vscode-pylance  # Pylance python language server
+        usernamehw.errorlens      # ErrorLens
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # Run the `get_sha` alias to get the correct sha256 value
         {
