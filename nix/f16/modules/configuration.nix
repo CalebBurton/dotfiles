@@ -228,6 +228,11 @@
       enable = true;
       # # Required for USB devices on the guest OS, but causes long rebuilds.
       # enableExtensionPack = true;
+
+      # Workaround for virtualbox issue in kernel 6.12
+      # https://discourse.nixos.org/t/issue-with-virtualbox-in-24-11/57607
+      enableKvm = true;
+      addNetworkInterface = false;
     };
 
     # # Guest additions
