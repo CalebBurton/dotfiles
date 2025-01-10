@@ -23,6 +23,9 @@
       fsType = "vfat";
     };
 
+  # Allow hibernation
+  # "If you have boot.initrd.systemd.enable, setting `boot.resumeDevice` can help (on 23.11)"
+  security.protectKernelImage = false;
   swapDevices =
     [ { device = "/dev/disk/by-uuid/2f530523-bc1f-43ee-a82d-c6c3242173aa"; }
     ];
