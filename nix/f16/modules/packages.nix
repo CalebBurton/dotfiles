@@ -92,7 +92,8 @@
     libreoffice
     nextcloud-client
     pdfarranger
-    protonmail-bridge
+    # protonmail-bridge # Backend only...
+    protonmail-bridge-gui
     unstable.protonvpn-gui
     # protonvpn-gui # Turn this off once the erosanix version is usable
     unstable.qbittorrent
@@ -158,6 +159,7 @@
     awscli
     bitwarden-cli
     dig
+    exfatprogs # For partitioning exFAT drives with gparted
     ffmpeg
     git
     gparted # For partitioning drives (GUI version)
