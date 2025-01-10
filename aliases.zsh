@@ -62,10 +62,10 @@ alias nixos-boot="echo 'sudo nixos-rebuild boot --flake $FLAKE_LOCATION#' \
     && sudo nixos-rebuild boot --flake $FLAKE_LOCATION#"
 alias nixos-rollback="echo 'sudo nixos-rebuild switch --rollback --flake $FLAKE_LOCATION#' \
     && sudo nixos-rebuild switch --rollback --flake $FLAKE_LOCATION#"
-alias nixos-trim-dry="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d --dry-run' \
-    && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d --dry-run"
-alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d' \
-    && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d"
+alias nixos-trim-dry="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 30d --dry-run' \
+    && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 30d --dry-run"
+alias nixos-trim="echo 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 30d' \
+    && sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 30d"
 alias nixos-history="echo 'sudo nix profile history --profile /nix/var/nix/profiles/system | sed '\''/No changes\./d; s/://; /^$/d'\''' \
     && sudo nix profile history --profile /nix/var/nix/profiles/system | sed '/No changes\./d; s/://; /^$/d'"
 alias nixos-collect-garbage="echo 'You meant nix-collect-garbage. Running that now.' \
