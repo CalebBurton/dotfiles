@@ -78,14 +78,15 @@
     github-desktop
     gimp
     # gimp-with-plugins
-    gnome.gucharmap # Unicode symbol selector
     google-chrome
+    gucharmap # Unicode symbol selector
     # handbrake
     inkscape-with-extensions
     kdePackages.filelight # Disk usage visualizer
     kdePackages.kdenlive
     kdePackages.plasma-nm # Network manager
-    kdePackages.skanpage
+    kdePackages.skanpage # Needs an override to allow OCR
+    # kdePackages.skanpage.override { tesseractLanguages = [ "eng" ]; }
     krename # File renaming tool
     krita
     ktailctl
@@ -148,6 +149,7 @@
     # XDG allows non-Qt apps (like Firefox) to use native tools like the file
     # picker: https://wiki.archlinux.org/title/Firefox#KDE_integration
     xdg-desktop-portal # Might already be included by Plasma, but can't hurt
+    xournalpp
     yt-dlp
     zoom-us
   # ] ++ [

@@ -52,8 +52,8 @@ alias website-publish="cd $GITHUB_DIR/website-source && npm run publish"
 
 # NixOS Stuff
 FLAKE_LOCATION="/home/cburton/Code/GitHub/dotfiles/nix/f16"
-alias nixos-update="echo 'sudo nix flake update $FLAKE_LOCATION#' \
-    && sudo nix flake update $FLAKE_LOCATION#"
+alias nixos-update="echo 'sudo nix flake update --flake $FLAKE_LOCATION#' \
+    && sudo nix flake update --flake $FLAKE_LOCATION#"
 alias nixos-build="echo 'sudo nixos-rebuild build --flake $FLAKE_LOCATION#' \
     && sudo nixos-rebuild build --flake $FLAKE_LOCATION#"
 alias nixos-switch="echo 'sudo nixos-rebuild switch --flake $FLAKE_LOCATION#' \
