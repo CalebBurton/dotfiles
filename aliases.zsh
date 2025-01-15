@@ -322,6 +322,7 @@ alias please="sudo"
 # Add Aledade-specific aliases
 if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
+    alias rotate_pgpass="python $GITHUB_DIR/dotfiles/rotate_pgpass.py"
 
     function set_node_vars() {
         login_to_bitwarden
