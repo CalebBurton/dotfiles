@@ -324,74 +324,6 @@ if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade
     alias ol='aws sso login'
     alias rotate_pgpass="python $GITHUB_DIR/dotfiles/rotate_pgpass.py"
 
-    function set_node_vars() {
-        login_to_bitwarden
-        echo 'Setting node vars'
-        export GITHUB_TOKEN=$(bw get password "[Aledade] GitHub npm token")
-        echo 'Successfully set node vars'
-        bw lock
-    }
-
-    function set_dbt_vars() {
-        login_to_bitwarden
-        echo 'Setting dbt vars'
-        export DBT_PROFILES_DIR="$ALEDADE_DIR/dbt"
-
-        export DBT_SNOWFLAKE_USER='cburton'
-        export DBT_SNOWFLAKE_PASSWORD=''
-        export DBT_SNOWFLAKE_DB='EDW_CBURTON'
-
-        # defaults to DATAVELOCITY but might need to use DEV sometimes
-        export DBT_ROLE='DATAVELOCITY'
-
-        export DBT_POSTGRES_USER='cburton'
-        export DBT_POSTGRES_PASSWORD=$(bw get password "[Aledade] db-dev password")
-
-        # Defaults to wh_datavelocity, but when using the dev role this should be wh_dev
-        export DBT_SNOWFLAKE_WAREHOUSE='wh_datavelocity'
-
-        # # Just use the defaults for these
-        # export DBT_SCHEMA='public'
-        # export DBT_PORT='5432'
-
-        echo 'Successfully set dbt vars'
-        bw lock
-    }
-
-    function set_db_vars() {
-        login_to_bitwarden
-        echo 'Setting db vars'
-        export DB_USERNAME='cburton'
-        export DB_PASSWORD=$(bw get password "[Aledade] db-dev password")
-        echo 'Successfully set db vars'
-        bw lock
-    }
-
-    function set_dag_vars() {
-        # echo 'Remember to run this within a poetry shell! (`poetry shell`)'
-        login_to_bitwarden
-        echo 'Setting snowflake DAG vars'
-        export DB_USERNAME='cburton'
-        export DB_PASSWORD=$(bw get password "[Aledade] db-dev password")
-        export SNOWFLAKE_USER=cburton
-        export SNOWFLAKE_PASS=
-        export SNOWFLAKE_ACCT=qla80296.us-east-1
-        export DB_URL="postgresql://$DB_USERNAME:$DB_PASSWORD@db-dev.aledade.com/aledade"
-        export ERGOMETER_BASE_URL="https://ergometer-dev.aledade.com"
-        export ERGOMETER_AUTH_CLIENT_ID=$(bw get password "[Aledade] ERGOMETER_AUTH_CLIENT_ID")
-        export ERGOMETER_AUTH_SECRET=$(bw get password "[Aledade] ERGOMETER_AUTH_SECRET")
-        # Alternative names used in some scripts
-        export ERGOMETER_URL=$ERGOMETER_BASE_URL
-        export CLIENT_ID=$ERGOMETER_AUTH_CLIENT_ID
-        export CLIENT_SECRET=$ERGOMETER_AUTH_SECRET
-        # Yet another set of names
-        export PATHFINDER_ERGOMETER_BASE_URL=$ERGOMETER_BASE_URL
-        export PATHFINDER_ERGOMETER_AUTH_CLIENT_ID=$ERGOMETER_AUTH_CLIENT_ID
-        export PATHFINDER_ERGOMETER_AUTH_SECRET=$ERGOMETER_AUTH_SECRET
-        echo 'Successfully set snowflake DAG vars'
-        bw lock
-    }
-
     function rebuild_biz_logic() {
         echo 'docker compose down biz-logic && docker compose build biz-logic && docker compose up -d biz-logic'
         docker compose down biz-logic
@@ -401,10 +333,6 @@ if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade
 
     function open_ibl_container() {
         echo '(Remember to rebuild the biz-logic container first!)'
-        if [[ -z $DB_URL || -z $SNOWFLAKE_USER || -z $SNOWFLAKE_ACCT ]]; then
-            echo 'DAG variables not set. Running `set_dag_vars` before continuing.'
-            set_dag_vars
-        fi
         CONTAINER_ID=ingestion-biz-logic-biz-logic-1
         docker exec -it $CONTAINER_ID /bin/bash -c "export SNOWFLAKE_USER=$SNOWFLAKE_USER && \
             export SNOWFLAKE_PASS=$DB_PASSWORD && \
