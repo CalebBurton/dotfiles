@@ -95,10 +95,10 @@
     pdfarranger
     # protonmail-bridge # Backend only...
     protonmail-bridge-gui
-    unstable.protonvpn-gui
-    # protonvpn-gui # Turn this off once the erosanix version is usable
-    unstable.qbittorrent
-    # qbittorrent # RCE in v4.6.4 blocks build. Unsure if it'll be backported.
+    # unstable.protonvpn-gui
+    protonvpn-gui
+    # unstable.qbittorrent
+    qbittorrent
     # realvnc-vnc-viewer # Broken as of 4/6/24
     rpi-imager
     # rustdesk # HUGELY increases build times
@@ -149,11 +149,13 @@
     # XDG allows non-Qt apps (like Firefox) to use native tools like the file
     # picker: https://wiki.archlinux.org/title/Firefox#KDE_integration
     xdg-desktop-portal # Might already be included by Plasma, but can't hurt
+    xdg-desktop-portal-kde # ^ Ditto
     xournalpp
     yt-dlp
-    zoom-us
-  # ] ++ [
-  #   pkgs23_11.chromium
+    # Screen sharing is broken on Wayland. Used a pinned version.
+    # See https://github.com/NixOS/nixpkgs/issues/322970
+    # zoom-us
+    pkgs-24-05.zoom-us
   ];
 
   # MARK: System Packages
