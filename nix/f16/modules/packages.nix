@@ -103,7 +103,7 @@
     rpi-imager
     # rustdesk # HUGELY increases build times
     signal-desktop
-    skypeforlinux
+    # skypeforlinux
     spotify
     sweethome3d.application # Excludes the textures and furniture editors
     thunderbird
@@ -150,7 +150,8 @@
     # picker: https://wiki.archlinux.org/title/Firefox#KDE_integration
     xdg-desktop-portal # Might already be included by Plasma, but can't hurt
     xdg-desktop-portal-kde # ^ Ditto
-    xournalpp
+    pkgs-24-05.xournalpp # Fix for a memory bug in a dependency (cairo)
+    # xournalpp
     yt-dlp
     # Screen sharing is broken on Wayland. Used a pinned version.
     # See https://github.com/NixOS/nixpkgs/issues/322970
