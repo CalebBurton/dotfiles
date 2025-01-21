@@ -232,7 +232,8 @@ function spoof_mac(){
 
 # Might just be a macos thing
 # TODO: look up how to do this in nixOS
-alias flush-dns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+alias flush-dns="echo 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder' \
+    && sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 # TODO: see if this can work with kde wallet rather than apple keychain
 function get_bw_status() {
