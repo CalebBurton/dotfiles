@@ -1,0 +1,44 @@
+{
+  "folders": [
+    {
+      "path": "../../../../Aledade/outreach"
+    }
+  ],
+  "settings": {
+    "python.languageServer": "Pylance",
+    // "workbench.colorCustomizations" is auto-generated from the `peacock.color` setting
+    "peacock.color": "#907AD6",
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#b1a1e2",
+      "activityBar.activeBorder": "#ab5235",
+      "activityBar.background": "#b1a1e2",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#ab5235",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "statusBar.background": "#907ad6",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#6f53ca",
+      "titleBar.activeBackground": "#907ad6",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#907ad699",
+      "titleBar.inactiveForeground": "#15202b99",
+      "sash.hoverBorder": "#b1a1e2",
+      "statusBarItem.remoteBackground": "#907ad6",
+      "statusBarItem.remoteForeground": "#15202b",
+      "commandCenter.border": "#15202b99"
+    },
+    "prettier.configPath": "./.prettierrc",
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "[typescript]": {
+      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.language.colorizedBracketPairs": [],
+    "vue.splitEditors.layout.left": [
+      "script",
+      "scriptSetup",
+      "styles"
+    ]
+  }
+}

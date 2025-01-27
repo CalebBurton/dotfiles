@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Aledade/aledade.models"
+		}
+	],
+	"settings": {
+		"python.languageServer": "Pylance",
+		// "workbench.colorCustomizations" is auto-generated from the `peacock.color` setting
+		"peacock.color": "#6600cc",
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#7f00ff",
+			"activityBar.background": "#7f00ff",
+			"activityBar.foreground": "#e7e7e7",
+			"activityBar.inactiveForeground": "#e7e7e799",
+			"activityBarBadge.background": "#402000",
+			"activityBarBadge.foreground": "#e7e7e7",
+			"commandCenter.border": "#e7e7e799",
+			"sash.hoverBorder": "#7f00ff",
+			"statusBar.background": "#6600cc",
+			"statusBar.foreground": "#e7e7e7",
+			"statusBarItem.hoverBackground": "#7f00ff",
+			"statusBarItem.remoteBackground": "#6600cc",
+			"statusBarItem.remoteForeground": "#e7e7e7",
+			"titleBar.activeBackground": "#6600cc",
+			"titleBar.activeForeground": "#e7e7e7",
+			"titleBar.inactiveBackground": "#6600cc99",
+			"titleBar.inactiveForeground": "#e7e7e799"
+		},
+	},
+}

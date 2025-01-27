@@ -1,0 +1,35 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Aledade/ingestion-biz-logic"
+		},
+		{
+			"path": "../../../../Aledade/toil"
+		}
+	],
+	"settings": {
+		"python.languageServer": "Pylance",
+		// "workbench.colorCustomizations" is auto-generated from the `peacock.color` setting
+		"peacock.color": "#9E4770",
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#b86089",
+			"activityBar.activeBorder": "#9dc47b",
+			"activityBar.background": "#b86089",
+			"activityBar.foreground": "#e7e7e7",
+			"activityBar.inactiveForeground": "#e7e7e799",
+			"activityBarBadge.background": "#9dc47b",
+			"activityBarBadge.foreground": "#15202b",
+			"statusBar.background": "#9e4770",
+			"statusBar.foreground": "#e7e7e7",
+			"statusBarItem.hoverBackground": "#b86089",
+			"titleBar.activeBackground": "#9e4770",
+			"titleBar.activeForeground": "#e7e7e7",
+			"titleBar.inactiveBackground": "#9e477099",
+			"titleBar.inactiveForeground": "#e7e7e799",
+			"sash.hoverBorder": "#b86089",
+			"statusBarItem.remoteBackground": "#9e4770",
+			"statusBarItem.remoteForeground": "#e7e7e7",
+			"commandCenter.border": "#e7e7e799"
+		}
+	},
+}
