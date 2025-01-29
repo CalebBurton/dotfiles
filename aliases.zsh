@@ -323,7 +323,7 @@ alias please="sudo"
 # Add Aledade-specific aliases
 if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
     alias ol='aws sso login'
-    alias rotate_pgpass="python $GITHUB_DIR/dotfiles/rotate_pgpass.py"
+    alias rotate_pgpass="python $GITHUB_DIR/aledade-personal/rotate_pgpass.py"
 
     function rebuild_biz_logic() {
         echo 'docker compose down biz-logic && docker compose build biz-logic && docker compose up -d biz-logic'
