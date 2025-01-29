@@ -12,13 +12,11 @@
         ```
     <!--
         These ones are better to install manually:
-            - iterm2
+            - warp
             - visual-studio-code (make sure to use the arm64 version if needed)
             - browsers
                 - firefox
                 - google-chrome
-                - homebrew/cask-versions/firefox-developer-edition
-                - homebrew/cask-versions/google-chrome-canary
                 - microsoft-edge
             - spotify
     -->
@@ -49,6 +47,7 @@
     - zoom
     - notunes
         - requires configuration: https://github.com/tombonez/noTunes
+    - bluesnooze
     - protonvpn
     - the-unarchiver
     - licecap
@@ -64,11 +63,9 @@
     - inkscape
     - android-studio
     - another-redis-desktop-manager
-    - elgato-thunderbolt-dock
-        - requires `brew tap homebrew/cask-drivers`
+    - elgato-control-center
     - vnc-viewer
     - adobe-acrobat-reader
-    - skype
     - postman
     - flux
 
