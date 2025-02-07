@@ -91,7 +91,9 @@
     krita
     ktailctl
     libreoffice
+    losslesscut-bin # Video trimmer
     nextcloud-client
+    okteta # KDE hex editor
     pdfarranger
     # protonmail-bridge # Backend only...
     protonmail-bridge-gui
