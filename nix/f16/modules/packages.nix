@@ -168,6 +168,8 @@
     dig
     exfatprogs # For partitioning exFAT drives with gparted
     ffmpeg
+    # fontforge # Broken in Qt 6, use the gtk version
+    fontforge-gtk
     git
     gparted # For partitioning drives (GUI version)
     jq
