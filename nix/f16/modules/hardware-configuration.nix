@@ -26,9 +26,13 @@
   # Allow hibernation
   # "If you have boot.initrd.systemd.enable, setting `boot.resumeDevice` can help (on 23.11)"
   security.protectKernelImage = false;
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/2f530523-bc1f-43ee-a82d-c6c3242173aa"; }
-    ];
+  # swapDevices =
+  #   [ { device = "/dev/disk/by-uuid/2f530523-bc1f-43ee-a82d-c6c3242173aa"; } ];
+   swapDevices = [ {
+      device = "/swapfile";
+      size = 32*1024; # Size is in MB, divide by 1024 to get GB
+    } ];
+
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
