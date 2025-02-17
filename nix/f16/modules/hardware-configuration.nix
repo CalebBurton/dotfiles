@@ -4,34 +4,34 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d3d6acff-e3c3-4b60-a3c4-59f6065a57f5";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/d3d6acff-e3c3-4b60-a3c4-59f6065a57f5";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9F36-7062";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/9F36-7062";
+    fsType = "vfat";
+  };
 
   # Allow hibernation
   # "If you have boot.initrd.systemd.enable, setting `boot.resumeDevice` can help (on 23.11)"
   security.protectKernelImage = false;
   # swapDevices =
   #   [ { device = "/dev/disk/by-uuid/2f530523-bc1f-43ee-a82d-c6c3242173aa"; } ];
-   swapDevices = [ {
-      device = "/swapfile";
-      size = 32*1024; # Size is in MB, divide by 1024 to get GB
-    } ];
+  swapDevices = [ {
+    device = "/swapfile";
+    size = 32*1024; # Size is in MB, divide by 1024 to get GB
+  } ];
 
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
