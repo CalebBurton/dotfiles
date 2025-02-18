@@ -1,6 +1,11 @@
 # Also defined in .zshrc, keep them synchronized
 export GITHUB_DIR="$HOME/Code/GitHub"
 export ALEDADE_DIR="$HOME/Code/Aledade"
+if [[ "$(uname)" == "Darwin" ]]; then
+  export IS_MACOS=1
+else
+  export IS_MACOS=0
+fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
   IS_MACOS=1
@@ -88,7 +93,7 @@ function trash() {
 
 alias please="sudo"
 
-if [[ IS_MACOS ]]; then
+if [[ $IS_MACOS == "1" ]]; then
     # macOS Commands
 
     alias flush-dns="echo 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder' \

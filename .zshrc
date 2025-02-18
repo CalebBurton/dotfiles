@@ -29,6 +29,12 @@ else
   export IS_M1=0
 fi
 
+if [[ "$(uname)" == "Darwin" ]]; then
+  export IS_MACOS=1
+else
+  export IS_MACOS=0
+fi
+
 # Add `brew` and homebrew support binaries
 if [[ $IS_M1 == 1 ]]; then
   export PATH="/opt/homebrew/bin:$PATH" # M1 directory
