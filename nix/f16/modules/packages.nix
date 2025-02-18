@@ -84,6 +84,7 @@
     inkscape-with-extensions
     kdePackages.filelight # Disk usage visualizer
     kdePackages.kdenlive
+    kdePackages.partitionmanager
     kdePackages.plasma-nm # Network manager
     kdePackages.skanpage # Needs an override to allow OCR
     # kdePackages.skanpage.override { tesseractLanguages = [ "eng" ]; }
@@ -110,6 +111,7 @@
     sweethome3d.application # Excludes the textures and furniture editors
     thunderbird
     tor-browser-bundle-bin
+    unetbootin # USB ISO writer, like Etcher on macOS. Run it from a terminal.
     vlc
     # See https://nixos.wiki/wiki/Visual_Studio_Code
     (vscode-with-extensions.override {
