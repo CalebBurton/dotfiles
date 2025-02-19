@@ -1,5 +1,6 @@
-# See https://jvns.ca/blog/2024/02/16/popular-git-config-options/ for
-# descriptions of these options
+# For description of these options, see the following:
+# - https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+# - https://git-scm.com/docs/git-config
 
 # Allows storing large binary files more efficiently
 [filter "lfs"]
@@ -13,16 +14,16 @@
     # Email will be overwritten depending on the directory
     # email = ccburton4@gmail.com
 
-# Ending the directory with / means include recursivly
+# Ending the directory with / means include recursively
 [includeIf "gitdir:~/Code/GitHub/"]
     path = ~/Code/GitHub/.gitconfig
     [core]
-        excludesfile = ~/Code/GitHub/.gitignore
+        excludesFile = ~/Code/GitHub/.gitignore
 
 [includeIf "gitdir:~/Code/Aledade/"]
     path = ~/Code/Aledade/.gitconfig
     [core]
-        excludesfile = ~/Code/Aledade/.gitignore
+        excludesFile = ~/Code/Aledade/.gitignore
 
 # Sorts by most recent branches by default
 [branch]
@@ -40,7 +41,7 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 
 [fetch]
-    fsckobjects = true
+    fsckObjects = true
     prune = true
 
 [init]
@@ -49,8 +50,12 @@
 [log]
     date = iso
 
+[maintenance]
+    auto = true
+    strategy = incremental
+
 [merge]
-    conflictstyle = zdiff3
+    conflictStyle = zdiff3
 
 [pull]
     ff = only
@@ -60,11 +65,13 @@
 [push]
     default = simple
     autoSetupRemote = true
-    followtags = true
+    followTags = true
 
 [rebase]
-    autosquash = true
+    abbreviateCommands = true
+    autoSquash = true
     missingCommitsCheck = error
+    updateRefs = true
 
 [receive]
     fsckObjects = true
@@ -81,4 +88,4 @@
     recurse = true
 
 [transfer]
-    fsckobjects = true
+    fsckObjects = true

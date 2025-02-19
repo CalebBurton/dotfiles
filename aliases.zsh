@@ -53,7 +53,28 @@ alias gdestroy="git rm -r"
 alias grid='git rebase -i --autosquash origin/$(git_develop_branch)'
 alias grim="git rebase -i --autosquash origin/$(git_main_branch)"
 
-# overwrite a `git restore` alias with my `git reset` function
+function gfix() {
+    git log --oneline --graph
+    while true; do
+        echo -n "Enter the commit SHA you want to amend: "
+        read sha
+        git commit -a --fixup="$sha"
+        sha=""
+        break;
+    done
+    echo ""
+    return 0;
+}
+
+# Overwrite oh-my-zsh versions with better defaults
+alias gst="git status -s -b"
+alias glog="glol"
+alias gap="git add --patch"
+alias gdc="git diff --cached"
+alias gp="echo 'Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
+alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
+
+# overwrite the `git restore` alias with my `git reset` function
 unalias grst
 function grst() {
     while true; do
@@ -69,14 +90,6 @@ function grst() {
     echo ""
     return 0;
 }
-
-# Overwrite oh-my-zsh versions with better defaults
-alias gst="git status -s -b"
-alias glog="glol"
-alias gap="git add --patch"
-alias gdc="git diff --cached"
-alias gp="echo 'Error: \"gp\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
-alias gpu="echo 'Error: \"gpu\" is ambiguous. Use \"gpl\" to pull or \"gps\" to push.' && return 1"
 
 alias update-npm-packages="npx npm-check-updates -i"
 
