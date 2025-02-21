@@ -188,6 +188,7 @@
     tesseract # OCR
     unzip
     vim
+    yt-dlp
     zip
   ];
 }
