@@ -235,8 +235,10 @@ else
     FLAKE_LOCATION="/home/cburton/Code/GitHub/dotfiles/nix/f16"
     alias nixos-update="echo 'sudo nix flake update --flake $FLAKE_LOCATION#' \
         && sudo nix flake update --flake $FLAKE_LOCATION#"
-    alias nixos-build="echo 'sudo nixos-rebuild build --flake $FLAKE_LOCATION#' \
-        && sudo nixos-rebuild build --flake $FLAKE_LOCATION#"
+    alias nixos-build="pushd $FLAKE_LOCATION; \
+        echo 'sudo nixos-rebuild build --flake $FLAKE_LOCATION#'; \
+        sudo nixos-rebuild build --flake $FLAKE_LOCATION#; \
+        popd"
     alias nixos-switch="echo 'sudo nixos-rebuild switch --flake $FLAKE_LOCATION#' \
         && sudo nixos-rebuild switch --flake $FLAKE_LOCATION#"
     alias nixos-boot="echo 'sudo nixos-rebuild boot --flake $FLAKE_LOCATION#' \
