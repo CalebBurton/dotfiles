@@ -56,8 +56,12 @@ alias grim="git rebase -i --autosquash origin/$(git_main_branch)"
 function gfix() {
     git log --oneline --graph
     while true; do
-        echo -n "Enter the commit SHA you want to amend: "
+        echo -n "Enter the commit SHA you want to amend or leave blank to cancel: "
         read sha
+        if [[ -z "$sha" ]]; then
+            echo "Empty SHA. Exiting."
+            return 0
+        fi
         git commit -a --fixup="$sha"
         sha=""
         break;
