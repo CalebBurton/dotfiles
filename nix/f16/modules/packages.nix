@@ -102,7 +102,7 @@
     protonvpn-gui
     # unstable.qbittorrent
     qbittorrent
-    # realvnc-vnc-viewer # Broken as of 4/6/24
+    realvnc-vnc-viewer
     rpi-imager
     # rustdesk # HUGELY increases build times
     signal-desktop
