@@ -274,7 +274,7 @@ else
 fi
 
 # Add Aledade-specific aliases
-if command -v scutil &> /dev/null && [ "$(scutil --get ComputerName)" = "Aledade-M3680" ]; then
+if command -v scutil &> /dev/null && [[ "$(scutil --get ComputerName)" == Aledade* ]]; then
     alias ol='aws sso login'
     alias rotate_pgpass="python $GITHUB_DIR/aledade-personal/rotate_pgpass.py"
 

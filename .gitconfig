@@ -68,10 +68,10 @@
     followTags = true
 
 [rebase]
-    abbreviateCommands = true
+    # abbreviateCommands = true
     autoSquash = true
     missingCommitsCheck = error
-    updateRefs = true
+    # updateRefs = true
 
 [receive]
     fsckObjects = true
