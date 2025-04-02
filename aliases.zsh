@@ -310,11 +310,11 @@ if command -v scutil &> /dev/null && [[ "$(scutil --get ComputerName)" == Aledad
 
     gcomt() {
         echo 'test'
-        PREF="$(gitcurrent | grep -oE '[aApPrRcChH]{3,4}-(\d{4,6})' | tr aprch APRCH)"
-        if [ -z $PREF ] && [[ "$PREF" == "" ]]; then
+        PREFIX="$(gitcurrent | grep -oE '(app|APP|arch|ARCH|opmod|OPMOD)-(\d{2,6})' | tr 'a-z' 'A-Z')"
+        if [ -z $PREFIX ] && [[ "$PREFIX" == "" ]]; then
             MSG="${1}"
         else
-            MSG="${PREF}: ${1}"
+            MSG="${PREFIX}: ${1}"
         fi
         printf "
         Committing locally with message \`\`$MSG\`\`\n
