@@ -94,12 +94,13 @@
     libreoffice
     losslesscut-bin # Video trimmer
     nextcloud-client
+    obs-studio
     okteta # KDE hex editor
     pdfarranger
     # protonmail-bridge # Backend only...
     protonmail-bridge-gui
-    # unstable.protonvpn-gui
-    protonvpn-gui
+    unstable.protonvpn-gui
+    # protonvpn-gui
     # unstable.qbittorrent
     qbittorrent
     realvnc-vnc-viewer
@@ -122,6 +123,8 @@
         ms-python.black-formatter # Python Black formatter
         ms-python.vscode-pylance  # Pylance python language server
         usernamehw.errorlens      # ErrorLens
+        vincaslt.highlight-matching-tag
+        vue.volar                 # Vue syntax highlighting
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # Run the `get_sha` alias to get the correct sha256 value
         {
@@ -144,6 +147,13 @@
           publisher = "streetsidesoftware";
           version = "4.0.16";
           sha256 = "sha256-1GH3liiExURy5e6owSRr5UJ7UXa8KUgglIzfGsSPARg=";
+        }
+        {
+          # "Duplicate" action in right click menu
+          name = "vscode-Duplicate";
+          publisher = "mrmlnc";
+          version = "1.2.1";
+          sha256 = "sha256-mA3fd3rMsDnZk/LqoxRk/RF9iW+GMAAFE23wngK06cc=";
         }
       ];
     })
@@ -181,6 +191,7 @@
     man
     nmap
     parted # For partioning drives (CLI version)
+    pdftk
     python312
     python312Packages.pip
     s3fs
