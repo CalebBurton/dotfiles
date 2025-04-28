@@ -78,6 +78,7 @@
 
   # Configure internationalization properties
   time.timeZone = "America/New_York";
+  # time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";

@@ -86,8 +86,9 @@
     kdePackages.kdenlive
     kdePackages.partitionmanager
     kdePackages.plasma-nm # Network manager
-    kdePackages.skanpage # Needs an override to allow OCR
-    # kdePackages.skanpage.override { tesseractLanguages = [ "eng" ]; }
+    # kdePackages.skanpage # Needs an override to allow OCR
+    # https://github.com/NixOS/nixpkgs/issues/315039
+    (kdePackages.skanpage.override { tesseractLanguages = ["eng"]; })
     krename # File renaming tool
     krita
     ktailctl
