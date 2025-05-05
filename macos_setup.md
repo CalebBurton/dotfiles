@@ -4,6 +4,16 @@
     - `xcode-select --install`
     - or try to use a command like `git --version` and it will prompt you
 
+- Allow using touchID instead of sudo password:
+    - https://one-tip-a-week.beehiiv.com/p/one-tip-a-week-touchid-for-sudo-commands
+    - Create a new local sudoers file with `sudo vi /etc/pam.d/sudo_local` and add:
+
+    ```sh
+    # sudo_local: local config file which survives system updates and is included for sudo
+    # uncomment the following line to enable Touch ID for sudo
+    auth       sufficient     pam_tid.so
+    ```
+
 - Install homebrew
     - If on an M1, also install the intel version:
 
@@ -35,7 +45,6 @@
         - Chart icon: Right
     - shellcheck
     - dbeaver-community
-        - required prerequisite cask: adoptopenjdk (can be fiddly...)
     - docker
     - gimp
     - vlc
@@ -51,7 +60,6 @@
     - protonvpn
     - the-unarchiver
     - licecap
-    - protonmail-bridge
     - thunderbird
         - In config editor modify the following:
             - mailnews.default_sort_type = 18 (date)
@@ -110,31 +118,14 @@
     ```
 
 - Set up terminal
-    - Install go-cats theme
+    - Install z and oh-my-zsh
 
         ```sh
-        git clone https://github.com/CalebBurton/terminal-themes.git
-        git clone https://github.com/powerline/fonts.git --depth=1
-        cd fonts
-        ./install.sh
-        cd ..
-        rm -rf fonts
-        cp ~/Code/GitHub/terminal-themes/go-cats.zsh-theme ~/.oh-my-zsh/themes/
-        # MANUAL: import all iterm preferences from the terminal-themes directory
-        # MANUAL: System Preferences > Keyboard > Shortcuts > Services, check "New iTerm2 Tab Here" and "New iTerm2 Window Here"
         brew install z
         # MANUAL: install oh-my-zsh: https://ohmyz.sh/#install
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         ```
-
-    - Enable shell integration
-        - https://iterm2.com/documentation-shell-integration.html
-
-    - Allow using touchID for `sudo`: https://it.digitaino.com/use-touchid-to-authenticate-sudo-on-macos/
-
-- Link vscode dictionary
-    - `ln -sf ~/Nextcloud/Backups\ and\ Archives/vscode/spellright.dict ~/Library/Application\ Support/Code/User/spellright.dict`
 
 ## macOS Settings
 
