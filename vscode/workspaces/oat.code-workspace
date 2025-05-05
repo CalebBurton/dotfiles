@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Aledade/operational_admin"
+		},
+	],
+
+	"settings": {
+		// "workbench.colorCustomizations" is auto-generated from the `peacock.color` setting
+		"peacock.color": "#8a0f0f",
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#b81414",
+			"activityBar.background": "#b81414",
+			"activityBar.foreground": "#e7e7e7",
+			"activityBar.inactiveForeground": "#e7e7e799",
+			"activityBarBadge.background": "#13ac13",
+			"activityBarBadge.foreground": "#e7e7e7",
+			"commandCenter.border": "#e7e7e799",
+			"sash.hoverBorder": "#b81414",
+			"statusBar.background": "#8a0f0f",
+			"statusBar.foreground": "#e7e7e7",
+			"statusBarItem.hoverBackground": "#b81414",
+			"statusBarItem.remoteBackground": "#8a0f0f",
+			"statusBarItem.remoteForeground": "#e7e7e7",
+			"titleBar.activeBackground": "#8a0f0f",
+			"titleBar.activeForeground": "#e7e7e7",
+			"titleBar.inactiveBackground": "#8a0f0f99",
+			"titleBar.inactiveForeground": "#e7e7e799"
+		}
+	}
+}

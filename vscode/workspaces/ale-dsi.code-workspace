@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Aledade/ale-dsi"
+		},
+	],
+
+	"settings": {
+		// "workbench.colorCustomizations" is auto-generated from the `peacock.color` setting
+		"peacock.color": "#b1f01f",
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#c2f34f",
+			"activityBar.background": "#c2f34f",
+			"activityBar.foreground": "#15202b",
+			"activityBar.inactiveForeground": "#15202b99",
+			"activityBarBadge.background": "#0e97d1",
+			"activityBarBadge.foreground": "#e7e7e7",
+			"commandCenter.border": "#15202b99",
+			"sash.hoverBorder": "#c2f34f",
+			"statusBar.background": "#b1f01f",
+			"statusBar.foreground": "#15202b",
+			"statusBarItem.hoverBackground": "#94ce0e",
+			"statusBarItem.remoteBackground": "#b1f01f",
+			"statusBarItem.remoteForeground": "#15202b",
+			"titleBar.activeBackground": "#b1f01f",
+			"titleBar.activeForeground": "#15202b",
+			"titleBar.inactiveBackground": "#b1f01f99",
+			"titleBar.inactiveForeground": "#15202b99"
+		}
+	}
+}

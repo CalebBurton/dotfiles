@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Aledade/vela"
+		},
+	],
+
+	"settings": {
+		// "workbench.colorCustomizations" is auto-generated from the `peacock.color` setting
+		"peacock.color": "#002e66",
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#004599",
+			"activityBar.background": "#004599",
+			"activityBar.foreground": "#e7e7e7",
+			"activityBar.inactiveForeground": "#e7e7e799",
+			"activityBarBadge.background": "#20000e",
+			"activityBarBadge.foreground": "#e7e7e7",
+			"commandCenter.border": "#e7e7e799",
+			"sash.hoverBorder": "#004599",
+			"statusBar.background": "#002e66",
+			"statusBar.foreground": "#e7e7e7",
+			"statusBarItem.hoverBackground": "#004599",
+			"statusBarItem.remoteBackground": "#002e66",
+			"statusBarItem.remoteForeground": "#e7e7e7",
+			"titleBar.activeBackground": "#002e66",
+			"titleBar.activeForeground": "#e7e7e7",
+			"titleBar.inactiveBackground": "#002e6699",
+			"titleBar.inactiveForeground": "#e7e7e799"
+		}
+	}
+}
