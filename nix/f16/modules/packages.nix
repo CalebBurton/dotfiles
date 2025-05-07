@@ -179,6 +179,7 @@
     awscli
     bitwarden-cli
     dig
+    evtest # Get info about devices, like the built in keyboard
     exfatprogs # For partitioning exFAT drives with gparted
     ffmpeg
     # fontforge # Broken in Qt 6, use the gtk version

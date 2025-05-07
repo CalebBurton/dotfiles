@@ -133,26 +133,26 @@
   ###############################
   # XRDP server
 
-  services.xrdp.enable = true;
-  services.xrdp.openFirewall = true;
+  # services.xrdp.enable = true;
+  # services.xrdp.openFirewall = true;
 
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (
-        subject.isInGroup("users")
-          && (
-            action.id == "org.freedesktop.login1.reboot" ||
-            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-            action.id == "org.freedesktop.login1.power-off" ||
-            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-          )
-        )
-      {
-        return polkit.Result.YES;
-      }
-    })
-  '';
+  # security.polkit.enable = true;
+  # security.polkit.extraConfig = ''
+  #   polkit.addRule(function(action, subject) {
+  #     if (
+  #       subject.isInGroup("users")
+  #         && (
+  #           action.id == "org.freedesktop.login1.reboot" ||
+  #           action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+  #           action.id == "org.freedesktop.login1.power-off" ||
+  #           action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+  #         )
+  #       )
+  #     {
+  #       return polkit.Result.YES;
+  #     }
+  #   })
+  # '';
 
   ###############################
   ###############################
@@ -310,6 +310,21 @@
       enable = true;
     };
 
+    # # Control laptop lid closing behavior
+    # # Options are "ignore", "poweroff", "reboot", "halt", "kexec", "suspend",
+    # # "hibernate", "hybrid-sleep", "suspend-then-hibernate", "lock"
+    # # Default is "suspend"
+    # logind = {
+    #   lidSwitch = "suspend";              # Nothing connected
+    #   lidSwitchExternalPower = "suspend"; # Power connected
+    #   lidSwitchDocked = "ignore";         # External screen(s) connected
+    # };
+
+    # Disable keyboard while lid is closed
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"
+      SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0014", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"
+    '';
 
     #   openssh = {
     #     enable = true;
