@@ -192,6 +192,7 @@
     lsof
     man
     nmap
+    nodejs_20
     parted # For partioning drives (CLI version)
     pdftk
     python312
