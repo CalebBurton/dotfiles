@@ -89,6 +89,11 @@
     # kdePackages.skanpage # Needs an override to allow OCR
     # https://github.com/NixOS/nixpkgs/issues/315039
     (kdePackages.skanpage.override { tesseractLanguages = ["eng"]; })
+    # # XDG allows non-Qt apps (like Firefox) to use native tools like the file
+    # # picker: https://wiki.archlinux.org/title/Firefox#KDE_integration
+    # xdg-desktop-portal # Might already be included by Plasma, but can't hurt
+    # xdg-desktop-portal-kde # ^ Ditto
+    kdePackages.xdg-desktop-portal-kde
     krename # File renaming tool
     krita
     ktailctl
@@ -161,10 +166,6 @@
     # warp-terminal
     warp-terminal-patched
     whatsapp-for-linux
-    # XDG allows non-Qt apps (like Firefox) to use native tools like the file
-    # picker: https://wiki.archlinux.org/title/Firefox#KDE_integration
-    xdg-desktop-portal # Might already be included by Plasma, but can't hurt
-    xdg-desktop-portal-kde # ^ Ditto
     pkgs-24-05.xournalpp # Fix for a memory bug in a dependency (cairo)
     # xournalpp
     yt-dlp

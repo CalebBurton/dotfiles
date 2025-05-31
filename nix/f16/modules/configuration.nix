@@ -17,7 +17,7 @@
   nix.package = pkgs.nixVersions.stable;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -179,7 +179,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -276,7 +276,6 @@
     # Enable IPP everywhere printers (Apple compatible WiFi printers)
     avahi = {
       enable = true;
-      # nssmdns = true; # Renamed in 24.05
       nssmdns4 = true;
       openFirewall = true;
       publish = {
