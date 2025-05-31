@@ -47,12 +47,12 @@
       # "2606:4700:4700::1111"
       # "2606:4700:4700::1001"
 
-      # Tailscale
-      "100.100.100.100"
-
       # Local loopback for encrypted DNS through dnscrypt-proxy2 (see below)
       "127.0.0.1"
       "::1"
+
+      # Tailscale
+      "100.100.100.100"
     ];
 
     # NM wants to override my DNS settings with whatever it gets from DHCP.
@@ -98,8 +98,9 @@
       ipv4_servers = true;
       ipv6_servers = true;
       require_dnssec = true;
-      # Uncomment this to see if dnscrypt-proxy is actually used to resolve DNS requests
-      # query_log.file = "/var/log/dnscrypt-proxy/query.log";
+      require_nolog = true;
+      # This log is automatically rotated & deleted as needed
+      query_log.file = "/var/log/dnscrypt-proxy/query.log";
       sources.public-resolvers = {
         urls = [
           "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
