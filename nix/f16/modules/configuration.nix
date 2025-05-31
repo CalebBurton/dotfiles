@@ -38,11 +38,31 @@
     # Enable networking
     networkmanager.enable = true;
 
-    # DNS queries use tailscale first, then Cloudflare
-    nameservers = [ "100.100.100.100" "1.1.1.1" ];
+    # DNS queries use Cloudflare first, then tailscale
+    nameservers = [
+      # # Cloudflare IPv4
+      # "1.1.1.1"
+      # "1.0.0.1"
+      # # Cloudflare IPv6. IPv6 is supposedly turned off, but...
+      # "2606:4700:4700::1111"
+      # "2606:4700:4700::1001"
+
+      # Tailscale
+      "100.100.100.100"
+
+      # Local loopback for encrypted DNS through dnscrypt-proxy2 (see below)
+      "127.0.0.1"
+      "::1"
+    ];
+
+    # NM wants to override my DNS settings with whatever it gets from DHCP.
+    # Don't let it.
+    networkmanager.dns = "none";
 
     # Use tailscale magicDNS names
-    search = [ "capybara-castor.ts.net" ];
+    search = [
+      "capybara-castor.ts.net"
+    ];
 
     # IPv6 messes up everything...
     enableIPv6 = false;
@@ -61,6 +81,43 @@
 
       # Or disable the firewall altogether.
       enable = false;
+    };
+  };
+
+  # Use encrypted DNS
+  # https://nixos.wiki/wiki/Encrypted_DNS
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    # Settings reference:
+    # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
+    settings = {
+      listen_addresses = [
+        "127.0.0.1:53"
+        "[::1]:53"
+      ];
+      ipv4_servers = true;
+      ipv6_servers = true;
+      require_dnssec = true;
+      # Uncomment this to see if dnscrypt-proxy is actually used to resolve DNS requests
+      # query_log.file = "/var/log/dnscrypt-proxy/query.log";
+      sources.public-resolvers = {
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+        cache_file = "/var/cache/dnscrypt-proxy/public-resolvers.md";
+        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+      };
+
+      # You can choose a specific set of servers from
+      # https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+      server_names = [
+        "cloudflare"
+        "cloudflare-ipv6"
+        "mullvad-doh"
+        "google"
+        "google-ipv6"
+      ];
     };
   };
 
