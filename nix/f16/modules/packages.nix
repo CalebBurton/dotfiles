@@ -166,13 +166,17 @@
     # warp-terminal
     warp-terminal-patched
     whatsapp-for-linux
-    pkgs-24-05.xournalpp # Fix for a memory bug in a dependency (cairo)
+    # There's a memory bug in a dependency (cairo)
+    # Broken from 24.11 - 25.05. Fixed in unstable.
+    # See https://github.com/NixOS/nixpkgs/pull/359029
     # xournalpp
+    unstable.xournalpp
     yt-dlp
-    # Screen sharing is broken on Wayland. Used a pinned version.
+    # Screen sharing bug on Wayland
+    # Broken from 24.11 - 25.05. Fixed in unstable.
     # See https://github.com/NixOS/nixpkgs/issues/322970
     # zoom-us
-    pkgs-24-05.zoom-us
+    unstable.zoom-us
   ];
 
   # MARK: System Packages

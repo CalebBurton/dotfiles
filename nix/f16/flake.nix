@@ -8,7 +8,7 @@
     # nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs.url = "nixpkgs/nixos-25.05";
 
-    nixpkgs-24-05.url = "nixpkgs/nixos-24.05";
+    # nixpkgs-24-05.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     # Framework specific hardware tweaks
@@ -24,7 +24,7 @@
 
   outputs = {
     nixpkgs,
-    nixpkgs-24-05,
+    # nixpkgs-24-05,
     nixpkgs-unstable,
     nixos-hardware,
     # home-manager,
@@ -65,12 +65,12 @@
                   config.allowUnfree = true;
                 };
               })
-              (final: prev: {
-                pkgs-24-05 = import nixpkgs-24-05 {
-                  inherit system;
-                  config.allowUnfree = true;
-                };
-              })
+              # (final: prev: {
+              #   pkgs-24-05 = import nixpkgs-24-05 {
+              #     inherit system;
+              #     config.allowUnfree = true;
+              #   };
+              # })
             ];
           }
 
