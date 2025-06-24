@@ -1,8 +1,5 @@
 {
 	"folders": [
-		{
-			"path": "../../../../Aledade/dags"
-		},
                 {
 			"path": "../../../../Aledade/airflow-dags"
 		}

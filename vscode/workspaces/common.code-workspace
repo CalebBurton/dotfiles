@@ -32,6 +32,9 @@
 			"statusBarItem.remoteBackground": "#444444",
 			"statusBarItem.remoteForeground": "#e7e7e7",
 			"commandCenter.border": "#e7e7e799"
+		},
+		"[markdown]": {
+			"editor.tabSize": 2
 		}
 	}
 }
