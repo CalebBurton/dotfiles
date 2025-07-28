@@ -48,6 +48,10 @@
     - docker
     - gimp
     - vlc
+    - itsycal
+    - slowquitapps
+        - (prevents accidental Cmd+Q presses from instant quitting)
+        - required prerequisite: `brew tap dteoh/sqa`
     - nextcloud
     - logitech-options
         - required prerequisite: `brew tap homebrew/cask-drivers`
@@ -100,14 +104,6 @@
     brew install --cask stretchly
     rm -rf ~/Library/Application\ Support/Stretchly/config.json
     ln -sf ~/Nextcloud/Backups\ and\ Archives/stretchly.json ~/Library/Application\ Support/Stretchly/config.json
-    ```
-
-- Install & configure day-o
-
-    ```sh
-    brew install --cask day-o
-    rm -rf ~/Library/Preferences/com.shauninman.Day-O.plist
-    ln -sf ~/Nextcloud/Backups\ and\ Archives/com.shauninman.Day-O.plist ~/Library/Preferences/com.shauninman.Day-O.plist
     ```
 
 - Install fonts
