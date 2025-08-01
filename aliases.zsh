@@ -312,11 +312,11 @@ if command -v scutil &> /dev/null && [[ "$(scutil --get ComputerName)" == Aledad
 
     gcomt() {
         echo 'test'
-        PREFIX="$(gitcurrent | grep -oE '(app|APP|arch|ARCH|opmod|OPMOD)-(\d{2,6})' | tr 'a-z' 'A-Z')"
-        if [ -z $PREFIX ] && [[ "$PREFIX" == "" ]]; then
+        JIRA_PREFIX="$(gitcurrent | grep -oE '(app|APP|arch|ARCH|opmod|OPMOD)-(\d{2,6})' | tr 'a-z' 'A-Z')"
+        if [ -z $JIRA_PREFIX ] && [[ "$JIRA_PREFIX" == "" ]]; then
             MSG="${1}"
         else
-            MSG="${PREFIX}: ${1}"
+            MSG="${JIRA_PREFIX}: ${1}"
         fi
         printf "
         Committing locally with message \`\`$MSG\`\`\n
